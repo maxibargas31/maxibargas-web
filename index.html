@@ -476,25 +476,97 @@
           <!-- Para agregar tu foto: eliminá el SVG y descomentá la línea siguiente -->
           <!-- <img src="foto.jpg" alt="Maxi Bargas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"> -->
           <svg class="foto-svg" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Corner marks -->
-            <path d="M20 50 L20 20 L50 20" stroke="rgba(176,128,96,0.35)" stroke-width="0.8"/>
-            <path d="M230 20 L260 20 L260 50" stroke="rgba(176,128,96,0.35)" stroke-width="0.8"/>
-            <path d="M20 310 L20 340 L50 340" stroke="rgba(176,128,96,0.35)" stroke-width="0.8"/>
-            <path d="M260 310 L260 340 L230 340" stroke="rgba(176,128,96,0.35)" stroke-width="0.8"/>
-            <!-- Person silhouette — head -->
-            <circle cx="140" cy="110" r="48" stroke="rgba(176,128,96,0.2)" stroke-width="1"/>
-            <!-- Neck -->
-            <line x1="128" y1="156" x2="124" y2="175" stroke="rgba(176,128,96,0.15)" stroke-width="1"/>
-            <line x1="152" y1="156" x2="156" y2="175" stroke="rgba(176,128,96,0.15)" stroke-width="1"/>
-            <!-- Shoulders + body -->
-            <path d="M80 190 Q140 170 200 190 L215 290 L65 290 Z" stroke="rgba(176,128,96,0.18)" stroke-width="1" fill="none"/>
-            <!-- Arms -->
-            <path d="M80 200 Q55 230 50 270" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
-            <path d="M200 200 Q225 230 230 270" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
-            <!-- Center line (subtle) -->
-            <line x1="140" y1="175" x2="140" y2="290" stroke="rgba(176,128,96,0.08)" stroke-width="1"/>
-            <!-- Glow dot -->
-            <circle cx="140" cy="110" r="3" fill="rgba(176,128,96,0.3)"/>
+            <defs>
+              <radialGradient id="skinG" cx="50%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#f8dfc8"/>
+                <stop offset="100%" stop-color="#e8b99a"/>
+              </radialGradient>
+              <radialGradient id="bgGlow" cx="50%" cy="45%" r="55%">
+                <stop offset="0%" stop-color="rgba(176,128,96,0.07)"/>
+                <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Ambient glow -->
+            <ellipse cx="140" cy="185" rx="95" ry="115" fill="url(#bgGlow)"/>
+
+            <!-- HAIR back -->
+            <path d="M86 118 Q84 88 98 70 Q116 50 140 48 Q164 50 182 70 Q196 88 194 118 Q200 130 212 195 Q216 250 210 305 L70 305 Q64 250 68 195 Q80 130 86 118Z" fill="#15102a"/>
+
+            <!-- FACE -->
+            <path d="M102 138 Q96 162 97 183 Q99 210 116 225 Q128 234 140 235 Q152 234 164 225 Q181 210 183 183 Q184 162 178 138 Q171 110 140 107 Q109 110 102 138Z" fill="url(#skinG)"/>
+
+            <!-- Face side shadows -->
+            <path d="M102 138 Q96 162 97 183 Q99 205 112 220 Q102 195 102 165 Q102 145 108 128Z" fill="rgba(200,145,110,0.18)"/>
+            <path d="M178 138 Q184 162 183 183 Q181 205 168 220 Q178 195 178 165 Q178 145 172 128Z" fill="rgba(200,145,110,0.18)"/>
+
+            <!-- EARS -->
+            <ellipse cx="97" cy="175" rx="7" ry="9" fill="#f0c8a5"/>
+            <ellipse cx="183" cy="175" rx="7" ry="9" fill="#f0c8a5"/>
+
+            <!-- HAIR front / bangs -->
+            <path d="M88 122 Q90 98 102 80 Q114 63 130 58 Q120 75 118 95 Q115 108 116 118Z" fill="#1e1535"/>
+            <path d="M192 122 Q190 98 178 80 Q166 63 150 58 Q160 75 162 95 Q165 108 164 118Z" fill="#1e1535"/>
+            <path d="M116 118 Q118 100 125 88 Q133 76 140 74 Q147 76 155 88 Q162 100 164 118 Q155 112 148 116 Q140 119 132 116 Q125 112 116 118Z" fill="#120e22"/>
+            <!-- Side hair front pieces -->
+            <path d="M92 125 Q86 145 85 165 Q84 178 88 190 Q84 178 84 162 Q83 146 86 132Z" fill="#15102a"/>
+            <path d="M188 125 Q194 145 195 165 Q196 178 192 190 Q196 178 196 162 Q197 146 194 132Z" fill="#15102a"/>
+
+            <!-- EYEBROWS -->
+            <path d="M109 150 Q120 144 132 147" stroke="#2a1838" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <path d="M148 147 Q160 144 171 150" stroke="#2a1838" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+
+            <!-- LEFT EYE -->
+            <path d="M109 162 Q120 155 131 162 Q120 174 109 162Z" fill="white"/>
+            <ellipse cx="120" cy="163" rx="8" ry="9" fill="#3d2468"/>
+            <ellipse cx="120" cy="163" rx="5" ry="6" fill="#0c0815"/>
+            <ellipse cx="120" cy="163" rx="7.5" ry="8.5" stroke="rgba(176,128,96,0.25)" stroke-width="0.5" fill="none"/>
+            <ellipse cx="123" cy="159" rx="2.5" ry="2" fill="white" opacity="0.92"/>
+            <circle cx="118" cy="166" r="1" fill="white" opacity="0.45"/>
+            <path d="M109 162 Q120 155 131 162" stroke="#180a28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M110 163 Q120 170 130 163" stroke="rgba(80,40,60,0.45)" stroke-width="0.9" fill="none"/>
+            <path d="M109 162 Q107 157 108 153" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+            <path d="M131 162 Q133 157 132 153" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+            <!-- RIGHT EYE -->
+            <path d="M149 162 Q160 155 171 162 Q160 174 149 162Z" fill="white"/>
+            <ellipse cx="160" cy="163" rx="8" ry="9" fill="#3d2468"/>
+            <ellipse cx="160" cy="163" rx="5" ry="6" fill="#0c0815"/>
+            <ellipse cx="160" cy="163" rx="7.5" ry="8.5" stroke="rgba(176,128,96,0.25)" stroke-width="0.5" fill="none"/>
+            <ellipse cx="163" cy="159" rx="2.5" ry="2" fill="white" opacity="0.92"/>
+            <circle cx="158" cy="166" r="1" fill="white" opacity="0.45"/>
+            <path d="M149 162 Q160 155 171 162" stroke="#180a28" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M150 163 Q160 170 170 163" stroke="rgba(80,40,60,0.45)" stroke-width="0.9" fill="none"/>
+            <path d="M149 162 Q147 157 148 153" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+            <path d="M171 162 Q173 157 172 153" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+            <!-- NOSE -->
+            <path d="M136 182 Q140 188 144 182" stroke="#d4a080" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+            <circle cx="136" cy="187" r="1.5" fill="rgba(200,135,100,0.35)"/>
+            <circle cx="144" cy="187" r="1.5" fill="rgba(200,135,100,0.35)"/>
+
+            <!-- MOUTH -->
+            <path d="M129 200 Q135 205 140 206 Q145 205 151 200" stroke="#c88060" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M129 200 Q135 198 140 199 Q145 198 151 200 Q147 203 140 203 Q133 203 129 200Z" fill="rgba(200,130,90,0.22)"/>
+
+            <!-- NECK -->
+            <path d="M126 233 Q124 252 122 264 Q131 270 140 270 Q149 270 158 264 Q156 252 154 233 Q148 238 140 239 Q132 238 126 233Z" fill="#f0c8a5"/>
+            <path d="M126 233 Q124 252 122 264 Q126 262 129 258 Q128 248 128 235Z" fill="rgba(195,135,100,0.18)"/>
+
+            <!-- CLOTHING -->
+            <path d="M35 360 L35 298 Q52 272 82 267 Q104 262 122 264 Q131 270 140 270 Q149 270 158 264 Q176 262 198 267 Q228 272 245 298 L245 360Z" fill="#0d1829"/>
+            <!-- Collar -->
+            <path d="M122 264 Q131 272 140 274 Q149 272 158 264 Q152 274 146 279 Q140 282 134 279 Q128 274 122 264Z" fill="#091220"/>
+            <path d="M122 264 Q114 268 108 278 Q118 272 134 279 Q140 282 146 279 Q162 272 172 278 Q166 268 158 264" stroke="rgba(176,128,96,0.28)" stroke-width="0.8" fill="none"/>
+            <!-- Subtle shirt texture lines -->
+            <path d="M88 285 Q91 305 90 330" stroke="rgba(176,128,96,0.06)" stroke-width="1" fill="none"/>
+            <path d="M192 285 Q189 305 190 330" stroke="rgba(176,128,96,0.06)" stroke-width="1" fill="none"/>
+
+            <!-- GOLD CORNER MARKS -->
+            <path d="M20 50 L20 20 L50 20" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+            <path d="M230 20 L260 20 L260 50" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+            <path d="M20 310 L20 340 L50 340" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+            <path d="M260 310 L260 340 L230 340" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
           </svg>
           <span class="foto-label">Tu fotografía</span>
         </div>

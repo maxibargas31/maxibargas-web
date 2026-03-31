@@ -226,14 +226,95 @@
             <div class="frame-corner bl"></div>
             <div class="frame-corner br"></div>
             <div class="historia-foto-inner">
-              <svg class="foto-placeholder-svg" viewBox="0 0 280 380" fill="none">
-                <circle cx="140" cy="120" r="55" stroke="rgba(176,128,96,0.18)" stroke-width="1"/>
-                <path d="M75 205 Q140 185 205 205 L220 310 L60 310 Z" stroke="rgba(176,128,96,0.15)" stroke-width="1" fill="none"/>
-                <path d="M75 215 Q50 250 45 290" stroke="rgba(176,128,96,0.1)" stroke-width="1"/>
-                <path d="M205 215 Q230 250 235 290" stroke="rgba(176,128,96,0.1)" stroke-width="1"/>
-                <circle cx="140" cy="120" r="4" fill="rgba(176,128,96,0.25)"/>
-                <line x1="125" y1="172" x2="120" y2="192" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
-                <line x1="155" y1="172" x2="160" y2="192" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
+              <svg class="foto-placeholder-svg" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="skinG2" cx="50%" cy="35%" r="60%">
+                    <stop offset="0%" stop-color="#f8dfc8"/>
+                    <stop offset="100%" stop-color="#e8b99a"/>
+                  </radialGradient>
+                  <radialGradient id="bgGlow2" cx="50%" cy="42%" r="55%">
+                    <stop offset="0%" stop-color="rgba(176,128,96,0.07)"/>
+                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+
+                <!-- Ambient glow -->
+                <ellipse cx="140" cy="200" rx="95" ry="120" fill="url(#bgGlow2)"/>
+
+                <!-- HAIR back -->
+                <path d="M86 128 Q84 98 98 78 Q116 56 140 54 Q164 56 182 78 Q196 98 194 128 Q200 140 215 210 Q220 268 214 325 L66 325 Q60 268 65 210 Q80 140 86 128Z" fill="#15102a"/>
+
+                <!-- FACE -->
+                <path d="M102 150 Q96 174 97 196 Q99 224 116 240 Q128 250 140 251 Q152 250 164 240 Q181 224 183 196 Q184 174 178 150 Q171 120 140 117 Q109 120 102 150Z" fill="url(#skinG2)"/>
+
+                <!-- Face shadows -->
+                <path d="M102 150 Q96 174 97 196 Q99 218 112 234 Q102 208 102 178 Q102 158 108 140Z" fill="rgba(200,145,110,0.17)"/>
+                <path d="M178 150 Q184 174 183 196 Q181 218 168 234 Q178 208 178 178 Q178 158 172 140Z" fill="rgba(200,145,110,0.17)"/>
+
+                <!-- EARS -->
+                <ellipse cx="97" cy="188" rx="7" ry="9" fill="#f0c8a5"/>
+                <ellipse cx="183" cy="188" rx="7" ry="9" fill="#f0c8a5"/>
+
+                <!-- HAIR front / bangs -->
+                <path d="M88 133 Q90 108 102 90 Q114 72 130 66 Q120 84 118 105 Q115 120 116 130Z" fill="#1e1535"/>
+                <path d="M192 133 Q190 108 178 90 Q166 72 150 66 Q160 84 162 105 Q165 120 164 130Z" fill="#1e1535"/>
+                <path d="M116 130 Q118 112 125 100 Q133 87 140 85 Q147 87 155 100 Q162 112 164 130 Q155 124 148 128 Q140 131 132 128 Q125 124 116 130Z" fill="#120e22"/>
+                <path d="M92 136 Q86 158 85 178 Q84 192 88 205 Q84 192 84 176 Q83 160 86 146Z" fill="#15102a"/>
+                <path d="M188 136 Q194 158 195 178 Q196 192 192 205 Q196 192 196 176 Q197 160 194 146Z" fill="#15102a"/>
+
+                <!-- EYEBROWS -->
+                <path d="M109 163 Q120 157 132 160" stroke="#2a1838" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+                <path d="M148 160 Q160 157 171 163" stroke="#2a1838" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+
+                <!-- LEFT EYE -->
+                <path d="M109 175 Q120 168 131 175 Q120 188 109 175Z" fill="white"/>
+                <ellipse cx="120" cy="176" rx="8" ry="9" fill="#3d2468"/>
+                <ellipse cx="120" cy="176" rx="5" ry="6" fill="#0c0815"/>
+                <ellipse cx="120" cy="176" rx="7.5" ry="8.5" stroke="rgba(176,128,96,0.25)" stroke-width="0.5" fill="none"/>
+                <ellipse cx="123" cy="172" rx="2.5" ry="2" fill="white" opacity="0.92"/>
+                <circle cx="118" cy="179" r="1" fill="white" opacity="0.45"/>
+                <path d="M109 175 Q120 168 131 175" stroke="#180a28" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M110 176 Q120 184 130 176" stroke="rgba(80,40,60,0.45)" stroke-width="0.9" fill="none"/>
+                <path d="M109 175 Q107 170 108 166" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <path d="M131 175 Q133 170 132 166" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+                <!-- RIGHT EYE -->
+                <path d="M149 175 Q160 168 171 175 Q160 188 149 175Z" fill="white"/>
+                <ellipse cx="160" cy="176" rx="8" ry="9" fill="#3d2468"/>
+                <ellipse cx="160" cy="176" rx="5" ry="6" fill="#0c0815"/>
+                <ellipse cx="160" cy="176" rx="7.5" ry="8.5" stroke="rgba(176,128,96,0.25)" stroke-width="0.5" fill="none"/>
+                <ellipse cx="163" cy="172" rx="2.5" ry="2" fill="white" opacity="0.92"/>
+                <circle cx="158" cy="179" r="1" fill="white" opacity="0.45"/>
+                <path d="M149 175 Q160 168 171 175" stroke="#180a28" stroke-width="2" stroke-linecap="round" fill="none"/>
+                <path d="M150 176 Q160 184 170 176" stroke="rgba(80,40,60,0.45)" stroke-width="0.9" fill="none"/>
+                <path d="M149 175 Q147 170 148 166" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <path d="M171 175 Q173 170 172 166" stroke="#180a28" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+
+                <!-- NOSE -->
+                <path d="M136 196 Q140 202 144 196" stroke="#d4a080" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                <circle cx="136" cy="201" r="1.5" fill="rgba(200,135,100,0.35)"/>
+                <circle cx="144" cy="201" r="1.5" fill="rgba(200,135,100,0.35)"/>
+
+                <!-- MOUTH -->
+                <path d="M129 214 Q135 220 140 221 Q145 220 151 214" stroke="#c88060" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                <path d="M129 214 Q135 212 140 213 Q145 212 151 214 Q147 217 140 217 Q133 217 129 214Z" fill="rgba(200,130,90,0.22)"/>
+
+                <!-- NECK -->
+                <path d="M126 249 Q124 268 122 280 Q131 286 140 286 Q149 286 158 280 Q156 268 154 249 Q148 254 140 255 Q132 254 126 249Z" fill="#f0c8a5"/>
+                <path d="M126 249 Q124 268 122 280 Q126 278 129 274 Q128 264 128 251Z" fill="rgba(195,135,100,0.18)"/>
+
+                <!-- CLOTHING -->
+                <path d="M30 380 L30 316 Q48 288 80 283 Q104 278 122 280 Q131 286 140 286 Q149 286 158 280 Q176 278 200 283 Q232 288 250 316 L250 380Z" fill="#0d1829"/>
+                <path d="M122 280 Q131 288 140 290 Q149 288 158 280 Q152 290 146 295 Q140 298 134 295 Q128 290 122 280Z" fill="#091220"/>
+                <path d="M122 280 Q114 284 108 294 Q118 288 134 295 Q140 298 146 295 Q162 288 172 294 Q166 284 158 280" stroke="rgba(176,128,96,0.28)" stroke-width="0.8" fill="none"/>
+                <path d="M88 300 Q91 320 90 348" stroke="rgba(176,128,96,0.06)" stroke-width="1" fill="none"/>
+                <path d="M192 300 Q189 320 190 348" stroke="rgba(176,128,96,0.06)" stroke-width="1" fill="none"/>
+
+                <!-- GOLD CORNER MARKS -->
+                <path d="M20 55 L20 22 L53 22" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+                <path d="M227 22 L260 22 L260 55" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+                <path d="M20 325 L20 358 L53 358" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
+                <path d="M260 325 L260 358 L227 358" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
               </svg>
               <span class="foto-caption">Tu fotografía</span>
             </div>
