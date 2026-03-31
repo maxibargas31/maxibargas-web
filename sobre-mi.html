@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre mí — Maxi Bargas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    /* ═══ HISTORIA ═══ */
+    #historia { padding: 7rem 0; }
+
+    .historia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .historia-foto-col { position: sticky; top: calc(var(--nav-h) + 2rem); }
+
+    .historia-foto {
+      aspect-ratio: 2/3;
+      background: linear-gradient(160deg, var(--panel) 0%, var(--card) 100%);
+      border: 1px solid var(--card-b);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+
+    .historia-foto::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(176,128,96,0.07), transparent 65%);
+    }
+
+    .historia-foto-inner {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      height: 100%; width: 100%; padding-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .foto-placeholder-svg { width: 100%; height: 80%; position: absolute; top: 0; }
+
+    .foto-caption {
+      position: relative;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    .frame-corner {
+      position: absolute; width: 40px; height: 40px;
+      border-color: rgba(176,128,96,0.3); border-style: solid;
+    }
+    .frame-corner.tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+    .frame-corner.tr { top: 12px; right: 12px; border-width: 1px 1px 0 0; }
+    .frame-corner.bl { bottom: 12px; left: 12px; border-width: 0 0 1px 1px; }
+    .frame-corner.br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+    .historia-texto h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--cream); font-weight: 600;
+      margin-bottom: 2rem; line-height: 1.15;
+    }
+
+    .historia-texto p {
+      font-size: 0.96rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.9;
+      margin-bottom: 1.4rem;
+    }
+    .historia-texto p strong { color: var(--cream); font-weight: 400; }
+
+    /* ═══ CITA ═══ */
+    #cita-section {
+      padding: 7rem 0;
+      background: var(--panel);
+      border-top: 1px solid var(--card-b);
+      border-bottom: 1px solid var(--card-b);
+    }
+
+    .cita-inner { text-align: center; max-width: 720px; margin: 0 auto; }
+
+    .cita-text {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.4;
+      margin: 2rem 0 1rem;
+    }
+
+    .cita-autor {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ═══ ENFOQUE ═══ */
+    #enfoque { padding: 7rem 0; }
+
+    .enfoque-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .enfoque-item {
+      background: var(--navy);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      padding: 3rem 2.5rem;
+      transition: background 0.35s;
+      position: relative;
+    }
+    .enfoque-item:hover { background: var(--panel); }
+
+    .enfoque-num {
+      font-family: var(--f-display);
+      font-size: 4rem;
+      color: rgba(176,128,96,0.1);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .enfoque-item h3 {
+      font-size: 1.3rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 0.7rem;
+    }
+
+    .enfoque-item p {
+      font-size: 0.88rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.8;
+    }
+
+    /* ═══ VALORES ═══ */
+    #valores {
+      padding: 7rem 0;
+      background: var(--panel);
+      border-top: 1px solid var(--card-b);
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 1rem;
+    }
+
+    .valor { text-align: center; }
+
+    .valor-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--card-b);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .valor h3 {
+      font-size: 1.3rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 0.6rem;
+    }
+
+    .valor p {
+      font-size: 0.88rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.8;
+    }
+
+    /* ═══ CTA ═══ */
+    #cta { padding: 7rem 0; text-align: center; }
+    #cta h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--cream); margin-bottom: 1rem;
+    }
+    #cta p { color: var(--cream-dim); font-weight: 300; margin-bottom: 2.5rem; }
+
+    @media (max-width: 860px) {
+      .historia-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .historia-foto-col { position: static; }
+      .historia-foto { aspect-ratio: 4/3; }
+      .enfoque-grid { grid-template-columns: 1fr; }
+      .valores-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+      #historia, #enfoque, #valores, #cta, #cita-section { padding: 4rem 0; }
+      .historia-foto { aspect-ratio: 3/2; }
+      .historia-texto h2 { font-size: 1.8rem; }
+      .valores-grid { grid-template-columns: 1fr; }
+      .cita-text { font-size: clamp(1.4rem, 6vw, 2rem); }
+      .enfoque-item { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Maxi Bargas</a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html" class="active">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <span class="eyebrow" data-reveal="fade">Mi historia</span>
+    <h1 data-reveal="up">Un camino hacia<br>la presencia</h1>
+    <div class="page-hero-line"></div>
+  </div>
+
+  <!-- HISTORIA -->
+  <section id="historia">
+    <div class="wrap">
+      <div class="historia-grid">
+        <div class="historia-foto-col" data-reveal="left">
+          <div class="historia-foto">
+            <div class="frame-corner tl"></div>
+            <div class="frame-corner tr"></div>
+            <div class="frame-corner bl"></div>
+            <div class="frame-corner br"></div>
+            <div class="historia-foto-inner">
+              <svg class="foto-placeholder-svg" viewBox="0 0 280 380" fill="none">
+                <circle cx="140" cy="120" r="55" stroke="rgba(176,128,96,0.18)" stroke-width="1"/>
+                <path d="M75 205 Q140 185 205 205 L220 310 L60 310 Z" stroke="rgba(176,128,96,0.15)" stroke-width="1" fill="none"/>
+                <path d="M75 215 Q50 250 45 290" stroke="rgba(176,128,96,0.1)" stroke-width="1"/>
+                <path d="M205 215 Q230 250 235 290" stroke="rgba(176,128,96,0.1)" stroke-width="1"/>
+                <circle cx="140" cy="120" r="4" fill="rgba(176,128,96,0.25)"/>
+                <line x1="125" y1="172" x2="120" y2="192" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
+                <line x1="155" y1="172" x2="160" y2="192" stroke="rgba(176,128,96,0.12)" stroke-width="1"/>
+              </svg>
+              <span class="foto-caption">Tu fotografía</span>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="right">
+          <h2>De la búsqueda personal<br>al acompañamiento</h2>
+          <p>Mi camino en el bienestar no comenzó en un aula — comenzó en la vida. En un momento en que necesitaba <strong>encontrar un punto de quietud</strong> en medio del ruido, descubrí que el cuerpo guarda respuestas que la mente no siempre puede ver.</p>
+          <p>Empecé a explorar el masaje terapéutico como una forma de reconectar con lo físico, con lo presente. Después llegaron las constelaciones sistémicas, y con ellas una comprensión más profunda de los vínculos y la forma en que <strong>las historias familiares viven en nuestras decisiones</strong>.</p>
+          <p>Hoy acompaño a personas que están en ese mismo lugar donde yo estuve: sabiendo que algo necesita cambiar, pero sin saber del todo cómo ni por dónde. Mi rol no es darte respuestas — es ayudarte a encontrar las tuyas.</p>
+          <p>Cada sesión es un espacio sin juicios, con presencia plena y un profundo respeto por tu proceso.</p>
+          <a href="servicios.html#agenda" class="btn btn-gold" style="margin-top:2rem;">Reservar una sesión</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA -->
+  <section id="cita-section">
+    <div class="wrap">
+      <div class="cita-inner" data-reveal="up">
+        <div class="gold-rule" style="max-width:200px;margin:0 auto 2.5rem;"></div>
+        <p class="cita-text">"El cuerpo es el mapa del alma.<br>Aprender a leerlo es aprender a conocerse."</p>
+        <p class="cita-autor">— Maxi Bargas</p>
+        <div class="gold-rule" style="max-width:200px;margin:2.5rem auto 0;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENFOQUE -->
+  <section id="enfoque">
+    <div class="wrap">
+      <div class="sec-header" data-reveal="up">
+        <span class="eyebrow">Mi enfoque</span>
+        <h2>Cómo trabajo</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="enfoque-grid" data-stagger>
+        <div class="enfoque-item">
+          <div class="enfoque-num">01</div>
+          <h3>Escucha antes que técnica</h3>
+          <p>Antes de cualquier intervención, lo primero es escuchar — el cuerpo, las palabras y lo que está debajo de ellas.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">02</div>
+          <h3>Presencia plena en sesión</h3>
+          <p>No hay protocolos rígidos. Hay un encuentro genuino con lo que esa persona necesita en ese momento.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">03</div>
+          <h3>Integración cuerpo-mente</h3>
+          <p>Trabajo desde la unidad de lo físico y lo sistémico, para generar cambios que realmente duran.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">04</div>
+          <h3>Respeto por el proceso</h3>
+          <p>No hay apuro. Cada persona tiene su tiempo. La transformación genuina no se apresura.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section id="valores">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Pilares</span>
+        <h2>Lo que guía mi trabajo</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="valores-grid" data-stagger>
+        <div class="valor">
+          <div class="valor-icon">🤍</div>
+          <h3>Presencia</h3>
+          <p>Estar completamente disponible para cada persona, sin distracciones ni agendas propias.</p>
+        </div>
+        <div class="valor">
+          <div class="valor-icon">🌱</div>
+          <h3>Profundidad</h3>
+          <p>No me quedo en la superficie. Busco entender el origen, no solo el síntoma visible.</p>
+        </div>
+        <div class="valor">
+          <div class="valor-icon">🔑</div>
+          <h3>Autonomía</h3>
+          <p>Mi objetivo es que cada persona desarrolle su propia capacidad de reconectarse y sanar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="wrap" data-reveal="up">
+      <h2>¿Resonó algo en vos?</h2>
+      <p>Podemos empezar con una sesión. Sin compromisos. Solo presencia.</p>
+      <a href="servicios.html#agenda" class="btn btn-gold">Reservar una sesión</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Maxi Bargas</a>
+          <p class="footer-tagline">Un espacio de presencia, escucha y profundidad para reconectarte con vos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/598091364790">+598 091 364 790</a></li>
+            <li><a href="servicios.html">Lun · Mié · Vie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Maxi Bargas</span> — Todos los derechos reservados.</p>
+        <p>Uruguay</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- MOBILE NAV -->
+  <div class="mob-nav" id="mob-nav">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="blog.html">Blog</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="mob-nav-foot">Maxi Bargas · Uruguay</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

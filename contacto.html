@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Maxi Bargas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    /* ═══ CONTACTO ═══ */
+    #contacto { padding: 7rem 0; }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* Info column */
+    .contacto-info h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--cream); font-weight: 600;
+      line-height: 1.15; margin-bottom: 1.5rem;
+    }
+
+    .contacto-intro {
+      font-size: 0.94rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.9;
+      margin-bottom: 3rem;
+    }
+
+    .info-items { display: flex; flex-direction: column; gap: 0; }
+
+    .info-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--card-b);
+    }
+    .info-item:first-child { border-top: 1px solid var(--card-b); }
+
+    .info-icon {
+      width: 38px; height: 38px;
+      border: 1px solid var(--card-b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .info-text h4 {
+      font-family: var(--f-body);
+      font-size: 0.66rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-text p, .info-text a {
+      font-size: 0.9rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.5;
+      transition: color 0.2s;
+    }
+    .info-text a:hover { color: var(--cream); }
+
+    /* Form column */
+    .contacto-form-wrap {
+      background: var(--panel);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      padding: 3rem;
+    }
+
+    .form-header { margin-bottom: 2rem; }
+
+    .form-header h3 {
+      font-size: 1.7rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 0.3rem;
+    }
+
+    .form-header p {
+      font-size: 0.85rem; color: var(--mist);
+      font-weight: 300;
+    }
+
+    .form-double {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+
+    /* ═══ MAPA / EXTRA ═══ */
+    #extra {
+      padding: 0 0 7rem;
+    }
+
+    .extra-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .extra-item {
+      background: var(--navy);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      transition: background 0.35s;
+    }
+    .extra-item:hover { background: var(--panel); }
+
+    .extra-icon {
+      font-size: 1.5rem;
+      display: block; margin-bottom: 1.2rem;
+    }
+
+    .extra-item h3 {
+      font-size: 1.1rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 0.5rem;
+    }
+
+    .extra-item p {
+      font-size: 0.85rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .extra-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      #contacto, #extra { padding: 4rem 0; }
+      .contacto-form-wrap { padding: 1.8rem 1.5rem; }
+      .form-double { grid-template-columns: 1fr; }
+      .extra-grid { grid-template-columns: 1fr; }
+      .contacto-info h2 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Maxi Bargas</a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <span class="eyebrow" data-reveal="fade">Hablemos</span>
+    <h1 data-reveal="up">Contacto</h1>
+    <div class="page-hero-line"></div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contacto-grid">
+
+        <!-- INFO -->
+        <div data-reveal="left">
+          <h2>¿Querés invitarme a tu espacio?</h2>
+          <p class="contacto-intro">Estoy disponible para conferencias, talleres de bienestar y charlas sobre terapia sistémica y consciencia corporal. Contactame y hablamos sobre cómo puedo aportar a tu comunidad o evento.</p>
+
+          <div class="info-items">
+            <div class="info-item">
+              <div class="info-icon">📱</div>
+              <div class="info-text">
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/598091364790">+598 091 364 790</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-text">
+                <h4>Ubicación</h4>
+                <p>Uruguay · Sesiones presenciales</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">📅</div>
+              <div class="info-text">
+                <h4>Disponibilidad</h4>
+                <p>Lunes, Miércoles y Viernes</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">🌿</div>
+              <div class="info-text">
+                <h4>Para eventos</h4>
+                <p>Conferencias · Talleres · Retiros</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div data-reveal="right">
+          <div class="contacto-form-wrap">
+            <div class="form-header">
+              <h3>Enviame un mensaje</h3>
+              <p>Te respondo a la brevedad.</p>
+            </div>
+            <form id="form-contacto" onsubmit="enviarContacto(event)">
+              <div class="form-double">
+                <div class="form-group">
+                  <label class="form-label" for="nombre">Nombre</label>
+                  <input class="form-input" type="text" id="nombre" placeholder="Tu nombre" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Email</label>
+                  <input class="form-input" type="email" id="email" placeholder="tu@correo.com" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="motivo">Motivo de contacto</label>
+                <div class="form-select-wrap">
+                  <select class="form-select" id="motivo" required>
+                    <option value="" disabled selected>Seleccioná una opción</option>
+                    <option value="Conferencia">Conferencia</option>
+                    <option value="Taller">Taller</option>
+                    <option value="Retiro">Retiro de bienestar</option>
+                    <option value="Consulta">Consulta general</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="organizacion">Organización (opcional)</label>
+                <input class="form-input" type="text" id="organizacion" placeholder="Institución o empresa" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="mensaje">Mensaje</label>
+                <textarea class="form-textarea" id="mensaje" rows="5" placeholder="Contame sobre tu evento o consulta..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit">Enviar por WhatsApp</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA INFO -->
+  <section id="extra">
+    <div class="wrap">
+      <div class="extra-grid" data-stagger>
+        <div class="extra-item">
+          <span class="extra-icon">🎤</span>
+          <h3>Conferencias</h3>
+          <p>Charlas sobre bienestar, consciencia corporal y terapia sistémica adaptadas a tu audiencia.</p>
+        </div>
+        <div class="extra-item">
+          <span class="extra-icon">🌱</span>
+          <h3>Talleres</h3>
+          <p>Experiencias vivenciales de 2 a 4 horas para grupos, empresas o comunidades de bienestar.</p>
+        </div>
+        <div class="extra-item">
+          <span class="extra-icon">🏔</span>
+          <h3>Retiros</h3>
+          <p>Programas intensivos de un día o fin de semana combinando masaje, sistémica y prácticas de presencia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Maxi Bargas</a>
+          <p class="footer-tagline">Un espacio de presencia, escucha y profundidad para reconectarte con vos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/598091364790">+598 091 364 790</a></li>
+            <li><a href="servicios.html">Lun · Mié · Vie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Maxi Bargas</span> — Todos los derechos reservados.</p>
+        <p>Uruguay</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- MOBILE NAV -->
+  <div class="mob-nav" id="mob-nav">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="blog.html">Blog</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="mob-nav-foot">Maxi Bargas · Uruguay</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

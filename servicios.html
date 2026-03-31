@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios — Maxi Bargas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    /* ═══ SERVICIOS ═══ */
+    #servicios { padding: 7rem 0; }
+
+    .svc-full {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      transition: box-shadow 0.4s;
+    }
+    .svc-full:last-child { margin-bottom: 0; }
+    .svc-full:hover { box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+
+    .svc-aside {
+      background: var(--panel);
+      border-right: 1px solid var(--card-b);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-aside::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(176,128,96,0.07) 0%, transparent 65%);
+    }
+
+    .svc-aside-num {
+      font-family: var(--f-display);
+      font-size: 6rem; font-weight: 700;
+      color: rgba(176,128,96,0.12);
+      line-height: 1;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .svc-aside h3 {
+      font-size: 1.35rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .svc-price-big {
+      font-family: var(--f-display);
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+      position: relative;
+    }
+
+    .svc-price-label {
+      font-size: 0.66rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--mist);
+      margin-top: 0.4rem; display: block;
+      position: relative;
+    }
+
+    .svc-main {
+      background: var(--navy);
+      padding: 3.5rem 3rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+
+    .svc-main p {
+      font-size: 0.95rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.9;
+    }
+    .svc-main p strong { color: var(--cream); font-weight: 400; }
+
+    .svc-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .svc-bullets li {
+      font-size: 0.88rem; color: var(--cream-dim);
+      font-weight: 300; padding-left: 1.5rem;
+      position: relative;
+    }
+    .svc-bullets li::before {
+      content: '—'; position: absolute; left: 0;
+      color: var(--gold);
+    }
+
+    .svc-tags {
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .svc-tag {
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--mist);
+      border: 1px solid var(--card-b);
+      padding: 0.28rem 0.8rem;
+    }
+
+    /* ═══ HORARIOS ═══ */
+    #horarios {
+      padding: 7rem 0;
+      background: var(--panel);
+      border-top: 1px solid var(--card-b);
+      border-bottom: 1px solid var(--card-b);
+    }
+
+    .horarios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 720px;
+      margin: 1rem auto 0;
+    }
+
+    .horarios-col h3 {
+      font-size: 1rem; color: var(--cream);
+      font-weight: 400; letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+    }
+
+    .horarios-col ul { list-style: none; }
+
+    .horarios-col li {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.88rem; color: var(--cream-dim); font-weight: 300;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(176,128,96,0.08);
+    }
+    .horarios-col li:last-child { border-bottom: none; }
+
+    .horarios-col .status { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; }
+
+    /* ═══ AGENDA ═══ */
+    #agenda { padding: 7rem 0; }
+
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .agenda-info h3 {
+      font-size: 2.2rem; color: var(--cream);
+      font-weight: 600; margin-bottom: 1.2rem;
+    }
+
+    .agenda-info p {
+      font-size: 0.92rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    .agenda-nota {
+      margin-top: 2rem;
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid var(--gold);
+      background: var(--gold-ghost);
+    }
+    .agenda-nota p {
+      font-size: 0.85rem; color: var(--cream-dim);
+      font-weight: 300; margin: 0;
+    }
+
+    .agenda-form-wrap {
+      background: var(--panel);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+    }
+
+    .form-double {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+
+    @media (max-width: 860px) {
+      .svc-full { grid-template-columns: 1fr; }
+      .svc-aside { border-right: none; border-bottom: 1px solid var(--card-b); }
+      .horarios-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .agenda-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 640px) {
+      #servicios, #horarios, #agenda { padding: 4rem 0; }
+      .svc-main { padding: 2rem 1.5rem; }
+      .svc-aside { padding: 2.5rem 1.5rem; }
+      .svc-aside-num { font-size: 4rem; }
+      .svc-price-big { font-size: 2.2rem; }
+      .horarios-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .form-double { grid-template-columns: 1fr; }
+      .agenda-form-wrap { padding: 1.8rem 1.5rem; }
+      .agenda-nota { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Maxi Bargas</a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html" class="active">Servicios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <span class="eyebrow" data-reveal="fade">Lo que ofrezco</span>
+    <h1 data-reveal="up">Servicios</h1>
+    <div class="page-hero-line"></div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap" data-stagger>
+
+      <div class="svc-full">
+        <div class="svc-aside">
+          <div class="svc-aside-num">01</div>
+          <h3>Masaje<br>Terapéutico</h3>
+          <p class="svc-price-big">$1.300</p>
+          <span class="svc-price-label">sesión · 60 minutos</span>
+        </div>
+        <div class="svc-main">
+          <p>Una sesión de 60 minutos diseñada para adaptarse a lo que tu cuerpo necesita en ese momento. <strong>No hay protocolos rígidos</strong> — hay presencia, escucha y atención genuina.</p>
+          <p>Trabajamos con tensiones musculares, bloqueos físicos y el estrés acumulado, desde un enfoque que integra lo corporal con lo emocional.</p>
+          <ul class="svc-bullets">
+            <li>Adaptado a cada persona y momento</li>
+            <li>Trabajo con contracturas, tensiones y zonas de bloqueo</li>
+            <li>Integra técnicas terapéuticas y presencia consciente</li>
+            <li>Ideal para liberar el estrés acumulado</li>
+          </ul>
+          <div class="svc-tags">
+            <span class="svc-tag">60 minutos</span>
+            <span class="svc-tag">Presencial</span>
+            <span class="svc-tag">Individual</span>
+          </div>
+          <a href="#agenda" class="btn btn-ghost" style="margin-top:0.5rem;">Reservar este servicio <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="svc-full">
+        <div class="svc-aside">
+          <div class="svc-aside-num">02</div>
+          <h3>Terapia<br>Sistémica</h3>
+          <p class="svc-price-big">$1.500</p>
+          <span class="svc-price-label">sesión individual</span>
+        </div>
+        <div class="svc-main">
+          <p>Las terapias sistémicas nos permiten ver los patrones invisibles que se repiten en nuestra vida — conflictos, bloqueos, relaciones que no funcionan — y <strong>encontrar un nuevo orden</strong> que permita la sanación.</p>
+          <p>En sesiones individuales, exploramos el sistema familiar y emocional para traer luz a lo que estaba oculto.</p>
+          <ul class="svc-bullets">
+            <li>Exploración de patrones sistémicos y familiares</li>
+            <li>Trabajo con vínculos, lealtades y mandatos heredados</li>
+            <li>Sesiones individuales con profundidad y presencia</li>
+            <li>Para quienes sienten que algo se repite</li>
+          </ul>
+          <div class="svc-tags">
+            <span class="svc-tag">Variable</span>
+            <span class="svc-tag">Presencial</span>
+            <span class="svc-tag">Individual</span>
+          </div>
+          <a href="#agenda" class="btn btn-ghost" style="margin-top:0.5rem;">Reservar este servicio <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section id="horarios">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Disponibilidad</span>
+        <h2>Días y horarios</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="horarios-grid" data-stagger>
+        <div class="horarios-col">
+          <h3>Días disponibles</h3>
+          <ul>
+            <li>Lunes <span class="status">Disponible</span></li>
+            <li>Martes <span class="status" style="color:var(--mist)">Sin turnos</span></li>
+            <li>Miércoles <span class="status">Disponible</span></li>
+            <li>Jueves <span class="status" style="color:var(--mist)">Sin turnos</span></li>
+            <li>Viernes <span class="status">Disponible</span></li>
+          </ul>
+        </div>
+        <div class="horarios-col">
+          <h3>Turnos disponibles</h3>
+          <ul>
+            <li>9:00 <span class="status">Mañana</span></li>
+            <li>10:30 <span class="status">Mañana</span></li>
+            <li>12:00 <span class="status">Mediodía</span></li>
+            <li>16:00 <span class="status">Tarde</span></li>
+            <li>17:30 <span class="status">Tarde</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="wrap">
+      <div class="agenda-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">Reservas</span>
+          <h3>Agendá tu turno</h3>
+          <p>Completá el formulario y te voy a contactar para confirmar la disponibilidad. El turno queda confirmado cuando recibís mi respuesta.</p>
+          <div class="agenda-nota">
+            <p>📍 Sesiones presenciales en Uruguay. Escribime ante cualquier duda antes de reservar.</p>
+          </div>
+        </div>
+        <div data-reveal="right">
+          <div class="agenda-form-wrap">
+            <form id="form-turno" onsubmit="enviarWhatsApp(event)">
+              <div class="form-group">
+                <label class="form-label" for="nombre">Tu nombre</label>
+                <input class="form-input" type="text" id="nombre" placeholder="Nombre completo" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="servicio">Servicio</label>
+                <div class="form-select-wrap">
+                  <select class="form-select" id="servicio" required>
+                    <option value="" disabled selected>Seleccioná un servicio</option>
+                    <option value="Masaje Terapéutico ($1.300)">Masaje Terapéutico — $1.300</option>
+                    <option value="Terapia Sistémica ($1.500)">Terapia Sistémica — $1.500</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-double">
+                <div class="form-group">
+                  <label class="form-label" for="dia">Día</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="dia" required>
+                      <option value="" disabled selected>Día</option>
+                      <option value="Lunes">Lunes</option>
+                      <option value="Miércoles">Miércoles</option>
+                      <option value="Viernes">Viernes</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="horario">Horario</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="horario" required>
+                      <option value="" disabled selected>Horario</option>
+                      <option value="9:00">9:00</option>
+                      <option value="10:30">10:30</option>
+                      <option value="12:00">12:00</option>
+                      <option value="16:00">16:00</option>
+                      <option value="17:30">17:30</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn-submit">Confirmar turno por WhatsApp</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Maxi Bargas</a>
+          <p class="footer-tagline">Un espacio de presencia, escucha y profundidad para reconectarte con vos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/598091364790">+598 091 364 790</a></li>
+            <li><a href="#">Lun · Mié · Vie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Maxi Bargas</span> — Todos los derechos reservados.</p>
+        <p>Uruguay</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- MOBILE NAV -->
+  <div class="mob-nav" id="mob-nav">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="blog.html">Blog</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="mob-nav-foot">Maxi Bargas · Uruguay</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

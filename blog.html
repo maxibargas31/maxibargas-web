@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Maxi Bargas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    /* ═══ FEATURED ═══ */
+    #featured { padding: 7rem 0 4rem; }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: box-shadow 0.4s;
+    }
+    .featured-card:hover { box-shadow: 0 16px 70px rgba(0,0,0,0.6); }
+
+    .featured-img {
+      background: var(--panel);
+      min-height: 400px;
+      display: flex; align-items: center; justify-content: center;
+      border-right: 1px solid var(--card-b);
+      position: relative; overflow: hidden;
+    }
+
+    .featured-img::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(176,128,96,0.08) 0%, transparent 65%);
+    }
+
+    .featured-img-label {
+      font-size: 0.6rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--fog);
+      position: relative;
+    }
+
+    .featured-body {
+      background: var(--navy);
+      padding: 3.5rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .post-tag {
+      font-size: 0.66rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem; display: block;
+    }
+
+    .featured-body h2 {
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      color: var(--cream); font-weight: 600;
+      line-height: 1.2; margin-bottom: 0.8rem;
+    }
+
+    .post-date {
+      font-size: 0.72rem; color: var(--mist);
+      letter-spacing: 0.08em; margin-bottom: 1.5rem;
+    }
+
+    .featured-body p {
+      font-size: 0.93rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    /* ═══ GRID ═══ */
+    #grid { padding: 0 0 7rem; }
+
+    .posts-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .posts-header h3 {
+      font-size: 0.7rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--mist);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .post-card {
+      background: var(--navy);
+      border: 1px solid var(--card-b);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: background 0.35s;
+    }
+    .post-card:hover { background: var(--panel); }
+
+    .post-img {
+      height: 180px;
+      background: var(--mid);
+      border-bottom: 1px solid var(--card-b);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+
+    .post-img-label {
+      font-size: 0.58rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--fog);
+    }
+
+    .post-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+
+    .post-body h3 {
+      font-size: 1.2rem; color: var(--cream);
+      font-weight: 600; line-height: 1.25;
+      margin-bottom: 0.8rem;
+    }
+
+    .post-body p {
+      font-size: 0.84rem; color: var(--cream-dim);
+      font-weight: 300; line-height: 1.75;
+      flex: 1; margin-bottom: 1.5rem;
+    }
+
+    /* ═══ NEWSLETTER ═══ */
+    #newsletter {
+      padding: 7rem 0;
+      background: var(--panel);
+      border-top: 1px solid var(--card-b);
+      text-align: center;
+    }
+
+    #newsletter h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--cream); margin-bottom: 0.8rem;
+    }
+
+    #newsletter p {
+      font-size: 0.92rem; color: var(--cream-dim);
+      font-weight: 300; margin-bottom: 2.5rem;
+    }
+
+    .nl-form {
+      display: flex; gap: 0; max-width: 420px; margin: 0 auto;
+    }
+
+    .nl-form input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      background: var(--gold-ghost);
+      border: 1px solid var(--card-b); border-right: none;
+      color: var(--cream);
+      font-family: var(--f-body); font-size: 0.9rem; font-weight: 300;
+      outline: none; border-radius: 0;
+      transition: border-color 0.3s;
+    }
+    .nl-form input::placeholder { color: var(--mist); }
+    .nl-form input:focus { border-color: var(--gold); }
+
+    .nl-form button {
+      padding: 0.9rem 1.6rem;
+      background: var(--gold); color: var(--deep);
+      font-family: var(--f-body);
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      border: 1px solid var(--gold);
+      transition: background 0.3s;
+      white-space: nowrap; cursor: pointer;
+    }
+    .nl-form button:hover { background: var(--gold-l); }
+
+    @media (max-width: 860px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-img { min-height: 220px; border-right: none; border-bottom: 1px solid var(--card-b); }
+      .posts-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      #featured, #grid, #newsletter { padding: 4rem 0; }
+      #featured { padding-bottom: 2rem; }
+      .featured-body { padding: 2rem 1.5rem; }
+      .featured-body h2 { font-size: 1.6rem; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .nl-form { flex-direction: column; }
+      .nl-form input { border-right: 1px solid var(--card-b); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Maxi Bargas</a>
+    <ul class="nav-links">
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <span class="eyebrow" data-reveal="fade">Reflexiones & Artículos</span>
+    <h1 data-reveal="up">Blog</h1>
+    <div class="page-hero-line"></div>
+  </div>
+
+  <!-- DESTACADO -->
+  <section id="featured">
+    <div class="wrap">
+      <div class="featured-card" data-reveal="up">
+        <div class="featured-img">
+          <span class="featured-img-label">imagen del artículo</span>
+        </div>
+        <div class="featured-body">
+          <span class="post-tag">✦ Destacado · Bienestar</span>
+          <h2>El cuerpo no miente: lo que la tensión física nos quiere decir</h2>
+          <p class="post-date">15 de marzo, 2025</p>
+          <p>Cada contractura, cada zona de rigidez, guarda una historia que no encontró otra forma de expresarse. Aprender a escuchar el cuerpo no es un lujo — es el primer acto de honestidad con uno mismo.</p>
+          <a href="#" class="btn btn-ghost">Leer artículo completo <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section id="grid">
+    <div class="wrap">
+      <div class="posts-header" data-reveal="fade">
+        <h3>Todos los artículos</h3>
+      </div>
+      <div class="posts-grid" data-stagger>
+
+        <article class="post-card">
+          <div class="post-img">
+            <span class="post-img-label">imagen</span>
+          </div>
+          <div class="post-body">
+            <span class="post-tag">Terapia · Feb 2025</span>
+            <h3>¿Qué es la Terapia Sistémica y cómo puede transformar tu vida?</h3>
+            <p>Una mirada profunda a los patrones que heredamos sin saberlo, y las herramientas para sanarlos desde la raíz.</p>
+            <a href="#" class="btn btn-ghost">Leer más <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-img">
+            <span class="post-img-label">imagen</span>
+          </div>
+          <div class="post-body">
+            <span class="post-tag">Reflexión · Ene 2025</span>
+            <h3>Pequeños rituales diarios para cultivar el bienestar</h3>
+            <p>El bienestar no es un destino, es una práctica cotidiana. Herramientas simples para conectar con vos cada día.</p>
+            <a href="#" class="btn btn-ghost">Leer más <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-img">
+            <span class="post-img-label">imagen</span>
+          </div>
+          <div class="post-body">
+            <span class="post-tag">Cuerpo · Dic 2024</span>
+            <h3>Presencia: el arte de estar completamente donde estás</h3>
+            <p>Vivimos en una época de distracción constante. La presencia no es meditación — es una forma de relacionarse con la vida.</p>
+            <a href="#" class="btn btn-ghost">Leer más <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <div class="wrap" data-reveal="up">
+      <span class="eyebrow" style="display:block;margin-bottom:0.8rem;">Newsletter</span>
+      <h2>Reflexiones en tu correo</h2>
+      <p>Artículos sobre bienestar, cuerpo y transformación — sin spam, sin ruido.</p>
+      <form class="nl-form" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="tu@correo.com" />
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">Maxi Bargas</a>
+          <p class="footer-tagline">Un espacio de presencia, escucha y profundidad para reconectarte con vos.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="https://wa.me/598091364790">+598 091 364 790</a></li>
+            <li><a href="servicios.html">Lun · Mié · Vie</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Maxi Bargas</span> — Todos los derechos reservados.</p>
+        <p>Uruguay</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- MOBILE NAV -->
+  <div class="mob-nav" id="mob-nav">
+    <a href="index.html">Inicio</a>
+    <a href="sobre-mi.html">Sobre mí</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="blog.html">Blog</a>
+    <a href="contacto.html">Contacto</a>
+    <p class="mob-nav-foot">Maxi Bargas · Uruguay</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
