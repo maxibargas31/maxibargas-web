@@ -33,20 +33,14 @@
     }
 
     .historia-foto-inner {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-end;
-      height: 100%; width: 100%; padding-bottom: 1.5rem;
-      position: relative;
+      position: absolute; inset: 0;
     }
 
-    .foto-placeholder-svg { width: 100%; height: 80%; position: absolute; top: 0; }
-
-    .foto-caption {
-      position: relative;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--mist);
+    .historia-foto-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .frame-corner {
@@ -226,7 +220,8 @@
             <div class="frame-corner bl"></div>
             <div class="frame-corner br"></div>
             <div class="historia-foto-inner">
-              <svg class="foto-placeholder-svg" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <img src="foto.png" alt="Maxi Bargas" />
+              <svg style="display:none" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <radialGradient id="skinG2" cx="50%" cy="35%" r="60%">
                     <stop offset="0%" stop-color="#f8dfc8"/>
@@ -316,7 +311,6 @@
                 <path d="M20 325 L20 358 L53 358" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
                 <path d="M260 325 L260 358 L227 358" stroke="rgba(176,128,96,0.4)" stroke-width="0.8" fill="none"/>
               </svg>
-              <span class="foto-caption">Tu fotografía</span>
             </div>
           </div>
         </div>
