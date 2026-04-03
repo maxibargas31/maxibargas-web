@@ -430,7 +430,7 @@
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-left { justify-content: center; padding: calc(var(--nav-h) + 2rem) var(--pad) 1.5rem; }
-      .foto-frame { width: 240px; }
+      .foto-frame { width: min(300px, 72vw); }
       .hero-right { padding: 1.5rem var(--pad) 4rem; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .blog-grid { grid-template-columns: 1fr 1fr; }
@@ -439,21 +439,25 @@
       #about-teaser, #blog-teaser, #services, #cta { padding: 5rem 0; }
     }
     @media (max-width: 640px) {
-      .hero-left { padding: calc(var(--nav-h) + 1.5rem) 1.5rem 1rem; }
-      .foto-frame { width: 180px; }
+      .hero-left { padding: calc(var(--nav-h) + 1.2rem) 1.5rem 1.2rem; }
+      .foto-frame { width: min(260px, 74vw); }
       .foto-frame::before, .foto-frame::after { display: none; }
-      .hero-right { padding: 1rem 1.5rem 3.5rem; }
-      .hero-h1 { font-size: clamp(2rem, 9vw, 2.8rem); }
-      .hero-tagline { font-size: 1rem; margin: 1.2rem 0 2rem; }
+      .hero-right { padding: 0.8rem 1.5rem 3rem; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+      .hero-tagline { font-size: 1rem; margin: 1.2rem auto 2rem; max-width: 320px; }
       .hero-btns { flex-direction: column; align-items: stretch; }
       .hero-btns .btn { text-align: center; justify-content: center; }
       .blog-grid { grid-template-columns: 1fr; }
       #about-teaser, #blog-teaser, #services, #cta { padding: 4rem 0; }
       .cta-h2 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+      .svc-card { padding: 2.5rem 1.8rem; }
+      .blog-img-area { height: 160px; }
     }
-    @media (max-width: 400px) {
-      .foto-frame { width: 150px; }
-      .hero-h1 { font-size: 1.9rem; }
+    @media (max-width: 430px) {
+      .foto-frame { width: 78vw; }
+      .hero-h1 { font-size: clamp(2rem, 8.5vw, 2.5rem); }
+      .hero-right { padding: 0.8rem 1.2rem 2.5rem; }
     }
   </style>
 </head>
@@ -584,7 +588,7 @@
         Un espacio de presencia, escucha y profundidad<br>para reconectarte con vos.
       </p>
       <div class="hero-btns" data-stagger>
-        <a href="servicios.html#agenda" class="btn btn-gold">Reservá tu turno</a>
+        <a href="https://calendly.com/maxibargas31/masaje-terapeutico" target="_blank" rel="noopener" class="btn btn-gold">Reservá tu turno</a>
         <a href="sobre-mi.html" class="btn btn-outline">Conocerme</a>
       </div>
     </div>
@@ -654,7 +658,7 @@
           <h3>Masaje Terapéutico</h3>
           <p>60 minutos que se adaptan completamente a lo que tu cuerpo necesita. Un espacio de escucha activa, presencia y alivio genuino.</p>
           <span class="svc-price">$1.300</span>
-          <a href="servicios.html#agenda" class="btn btn-ghost">Reservar <span class="arrow">→</span></a>
+          <a href="https://calendly.com/maxibargas31/masaje-terapeutico" target="_blank" rel="noopener" class="btn btn-ghost">Reservar <span class="arrow">→</span></a>
         </div>
 
         <div class="svc-card">
@@ -662,7 +666,7 @@
           <h3>Terapia Sistémica</h3>
           <p>Sesiones individuales para explorar los vínculos y patrones que se repiten, y encontrar el lugar desde el cual moverse con libertad.</p>
           <span class="svc-price">$1.500</span>
-          <a href="servicios.html#agenda" class="btn btn-ghost">Reservar <span class="arrow">→</span></a>
+          <a href="https://calendly.com/maxibargas31/terapia-sistemica" target="_blank" rel="noopener" class="btn btn-ghost">Reservar <span class="arrow">→</span></a>
         </div>
 
       </div>
@@ -730,7 +734,7 @@
         <h2 class="cta-h2">¿Listo para empezar <em>tu proceso</em>?</h2>
         <p class="cta-sub">Reservá tu primera sesión. Sin compromisos, solo presencia.</p>
         <div class="cta-btns">
-          <a href="servicios.html#agenda" class="btn btn-gold">Reservar mi turno</a>
+          <a href="https://calendly.com/maxibargas31/new-meeting" target="_blank" rel="noopener" class="btn btn-gold">Reservar mi turno</a>
           <a href="contacto.html" class="btn btn-outline">Escribirme</a>
         </div>
       </div>
