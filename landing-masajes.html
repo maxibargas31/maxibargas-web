@@ -3,304 +3,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Masaje Terapéutico en Ciudad de la Costa — Maxi Bargas</title>
-  <link rel="stylesheet" href="estilos.css">
+  <title>Masaje Terapéutico — Maxi Bargas · Ciudad de la Costa</title>
+  <meta name="description" content="Masaje terapéutico para contracturas crónicas en Ciudad de la Costa. Trabajo la causa, no solo el síntoma.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep:    #020208;
+      --navy:    #04040e;
+      --mid:     #080818;
+      --panel:   #0b0b1e;
+      --card:    #0f0f26;
+      --gold:    #b08060;
+      --gold-l:  #c8986a;
+      --gold-dim: rgba(176,128,96,0.4);
+      --gold-ghost: rgba(176,128,96,0.07);
+      --cream:   #f0ebe0;
+      --cream-dim: #b8b0a0;
+      --mist:    #5e5448;
+      --fog:     #2e2820;
+      --f-display: 'Cormorant Garamond', Georgia, serif;
+      --f-body:  'Lato', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--navy);
+      color: var(--cream);
+      font-family: var(--f-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ═══ LAYOUT ═══ */
-    .landing {
-      min-height: 100vh;
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 5rem var(--pad) 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Ambient glow */
-    .landing::before {
-      content: '';
-      position: fixed; inset: 0;
+      padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
       background:
-        radial-gradient(ellipse 55% 60% at 20% 30%, rgba(176,128,96,0.06) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(80,60,120,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .landing-inner {
-      max-width: 680px;
-      width: 100%;
-      text-align: center;
-      position: relative;
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(176,128,96,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(176,128,96,0.04) 0%, transparent 50%),
+        linear-gradient(180deg, var(--deep) 0%, var(--navy) 50%, var(--mid) 100%);
       z-index: 1;
     }
 
-    /* ═══ EYEBROW ═══ */
-    .l-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      font-size: 0.62rem;
-      letter-spacing: 0.38em;
+    .hero-eyebrow {
+      font-family: var(--f-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.1s forwards;
     }
-    .l-eyebrow::before,
-    .l-eyebrow::after {
-      content: '';
-      width: 28px; height: 1px;
+
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
       background: var(--gold-dim);
+      vertical-align: middle;
+      margin-right: 0.75rem;
     }
 
-    /* ═══ HEADLINE ═══ */
-    .l-h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      color: var(--cream);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 1.4rem;
-    }
-    .l-h1 em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .l-sub {
+    .hero-headline {
       font-family: var(--f-display);
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      color: var(--cream-dim);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 300;
-      line-height: 1.6;
-      margin-bottom: 3.5rem;
-      opacity: 0.85;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.25s forwards;
     }
 
-    /* ═══ DIVIDER ═══ */
-    .l-rule {
-      width: 40px; height: 1px;
-      background: var(--gold-dim);
-      margin: 0 auto 3.5rem;
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold-l);
     }
 
-    /* ═══ PUNTOS ═══ */
-    .l-points {
+    .hero-sub {
+      font-family: var(--f-display);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 44ch;
+      margin-bottom: 3rem;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.4s forwards;
+    }
+
+    .hero-cta-group {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      margin-bottom: 3.5rem;
-      text-align: left;
-      border: 1px solid var(--card-b);
-      border-radius: var(--r-lg);
-      overflow: hidden;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.55s forwards;
     }
 
-    .l-point {
-      display: flex;
-      gap: 1.4rem;
-      align-items: flex-start;
-      padding: 1.6rem 2rem;
-      border-bottom: 1px solid var(--card-b);
-      background: rgba(176,128,96,0.03);
-      transition: background 0.25s;
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.1rem 2.8rem;
+      background: var(--gold);
+      color: var(--deep);
+      font-family: var(--f-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      align-self: flex-start;
+      box-shadow: 0 4px 32px rgba(176,128,96,0.2);
     }
-    .l-point:last-child { border-bottom: none; }
-    .l-point:hover { background: rgba(176,128,96,0.065); }
 
-    .l-point-num {
+    .btn-primary:hover {
+      background: var(--gold-l);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(176,128,96,0.35);
+    }
+
+    .btn-primary svg { flex-shrink: 0; }
+
+    .hero-trust {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--mist);
+      text-transform: uppercase;
+    }
+
+    /* ── GOLD RULE ── */
+    .rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      margin: 0;
+    }
+
+    /* ── PAIN SECTION ── */
+    .pain {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+      background: var(--mid);
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .pain-intro {
       font-family: var(--f-display);
-      font-size: 1.9rem;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.3;
+      max-width: 30ch;
+      margin-bottom: 3rem;
+      color: var(--cream);
+    }
+
+    .pain-intro em { font-style: italic; color: var(--gold-l); }
+
+    .pain-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .pain-item {
+      padding: 1.6rem 1.8rem;
+      background: var(--panel);
+      border: 1px solid var(--gold-ghost);
+      border-left: 2px solid var(--gold-dim);
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .pain-item:hover {
+      background: rgba(176,128,96,0.05);
+      border-left-color: var(--gold);
+    }
+
+    .pain-item-title {
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .pain-item-text {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+      background:
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(176,128,96,0.05) 0%, transparent 60%),
+        var(--navy);
+      z-index: 1;
+    }
+
+    .how-headline {
+      font-family: var(--f-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 300;
+      max-width: 30ch;
+      margin-bottom: 3.5rem;
+      line-height: 1.3;
+      color: var(--cream);
+    }
+
+    .how-headline em { font-style: italic; color: var(--gold-l); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+    }
+
+    .step {
+      position: relative;
+      padding-top: 1rem;
+    }
+
+    .step-num {
+      font-family: var(--f-display);
+      font-size: 3.5rem;
       font-weight: 300;
       color: var(--gold-dim);
       line-height: 1;
-      flex-shrink: 0;
-      margin-top: 0.15rem;
+      margin-bottom: 0.75rem;
     }
 
-    .l-point-body {}
-
-    .l-point-title {
+    .step-title {
       font-family: var(--f-display);
       font-size: 1.15rem;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--cream);
-      margin-bottom: 0.3rem;
-      line-height: 1.25;
+      margin-bottom: 0.5rem;
     }
 
-    .l-point-text {
-      font-size: 0.9rem;
+    .step-text {
+      font-size: 0.88rem;
       color: var(--cream-dim);
+      line-height: 1.65;
+    }
+
+    /* ── DIFFERENTIATOR ── */
+    .diff {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 6vw, 5rem);
+      background: var(--deep);
+      border-top: 1px solid var(--fog);
+      border-bottom: 1px solid var(--fog);
+      z-index: 1;
+      text-align: center;
+    }
+
+    .diff-quote {
+      font-family: var(--f-display);
+      font-size: clamp(1.6rem, 4vw, 3rem);
       font-weight: 300;
-      line-height: 1.7;
+      font-style: italic;
+      line-height: 1.3;
+      color: var(--cream);
+      max-width: 28ch;
+      margin: 0 auto 1.5rem;
     }
 
-    /* ═══ CTA ═══ */
-    .l-cta-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.1rem;
-    }
+    .diff-quote em { color: var(--gold-l); font-style: normal; }
 
-    .l-btn {
-      display: inline-block;
-      font-family: var(--f-body);
+    .diff-author {
       font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--deep);
-      background: var(--gold);
-      padding: 1.2rem 3.4rem;
-      border-radius: var(--r);
-      transition: all 0.35s var(--ease);
-      box-shadow: 0 4px 30px rgba(176,128,96,0.2);
-    }
-    .l-btn:hover {
-      background: var(--gold-l);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(176,128,96,0.32);
-    }
-
-    .l-location {
-      font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--mist);
     }
-    .l-location span {
-      color: var(--gold-dim);
-      margin: 0 0.5rem;
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      position: relative;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem);
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 50%, rgba(176,128,96,0.07) 0%, transparent 70%),
+        var(--mid);
+      z-index: 1;
+      text-align: center;
     }
 
-    /* ═══ CONFIANZA ═══ */
-    .l-trust {
-      margin-top: 4rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--card-b);
+    .final-cta-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta-headline {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--cream);
+      max-width: 22ch;
+      margin: 0 auto 1.2rem;
+    }
+
+    .final-cta-headline em { font-style: italic; color: var(--gold-l); }
+
+    .final-cta-sub {
+      font-family: var(--f-display);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-style: italic;
+      color: var(--cream-dim);
+      margin-bottom: 3rem;
+    }
+
+    .cta-buttons {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 1rem;
     }
 
-    .l-trust-num {
-      font-family: var(--f-display);
-      font-size: 2.4rem;
-      font-weight: 300;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .l-trust-text {
-      font-size: 0.88rem;
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid var(--gold-dim);
       color: var(--cream-dim);
-      font-weight: 300;
-      line-height: 1.5;
-      text-align: left;
-    }
-    .l-trust-text strong {
-      display: block;
-      color: var(--cream);
+      font-family: var(--f-body);
+      font-size: 0.8rem;
       font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
     }
 
-    /* ═══ RESPONSIVE ═══ */
-    @media (max-width: 600px) {
-      .landing { padding: 4rem var(--pad) 3.5rem; }
-      .l-h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
-      .l-point { padding: 1.3rem 1.4rem; gap: 1rem; }
-      .l-btn { padding: 1.1rem 2.4rem; width: 100%; text-align: center; }
-      .l-trust { flex-direction: column; text-align: center; }
-      .l-trust-text { text-align: center; }
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--cream);
     }
 
+    .availability {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+
+    .availability-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem clamp(1.5rem, 6vw, 5rem);
+      background: var(--deep);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .footer-logo {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--cream-dim);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-back {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-back:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease, ease), transform 0.8s var(--ease, ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .btn-primary { align-self: stretch; text-align: center; }
+      .steps { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pain-list { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; text-align: center; }
+      .hero-headline { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
 
-  <main class="landing">
-    <div class="landing-inner">
+<!-- ── HERO ── -->
+<section class="hero">
+  <p class="hero-eyebrow"><span></span>Masaje Terapéutico · Ciudad de la Costa</p>
 
-      <!-- Eyebrow -->
-      <div class="l-eyebrow">Masaje Terapéutico · Ciudad de la Costa</div>
+  <h1 class="hero-headline">
+    El dolor que sentís<br>
+    tiene una <em>causa.</em><br>
+    Vamos a encontrarla.
+  </h1>
 
-      <!-- Headline -->
-      <h1 class="l-h1">
-        ¿Seguís sufriendo<br><em>el mismo dolor?</em>
-      </h1>
-      <p class="l-sub">
-        Una contractura no se va sola.<br>
-        Un masaje terapéutico puede cambiar eso.
-      </p>
+  <p class="hero-sub">
+    No es solo tensión. Tu cuerpo está pidiendo atención.<br>
+    Trabajo la contractura desde la raíz — y te explico qué hacer para que no vuelva.
+  </p>
 
-      <div class="l-rule"></div>
+  <div class="hero-cta-group">
+    <a href="https://calendly.com/maxibargas31/masaje-terapeutico" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Reservá tu turno
+    </a>
+    <span class="hero-trust">Turnos disponibles esta semana · 60 min · Ciudad de la Costa</span>
+  </div>
+</section>
 
-      <!-- Puntos -->
-      <div class="l-points">
+<div class="rule"></div>
 
-        <div class="l-point">
-          <div class="l-point-num">01</div>
-          <div class="l-point-body">
-            <div class="l-point-title">Lo que resuelve</div>
-            <p class="l-point-text">Contracturas en hombros, tensión en espalda alta y dolor lumbar. Esos puntos que cargás hace semanas — o meses — y que con el tiempo solo empeoran.</p>
-          </div>
-        </div>
+<!-- ── PAIN SECTION ── -->
+<section class="pain">
+  <p class="section-label reveal">¿Te identificás con esto?</p>
+  <p class="pain-intro reveal">
+    Hay dolores que se vuelven <em>parte de la rutina.</em><br>
+    No deberían serlo.
+  </p>
 
-        <div class="l-point">
-          <div class="l-point-num">02</div>
-          <div class="l-point-body">
-            <div class="l-point-title">Cómo trabajo</div>
-            <p class="l-point-text">Antes de empezar, identifico exactamente dónde está el problema. No masajeo por masajear: cada movimiento tiene un propósito y va directo a la raíz del dolor.</p>
-          </div>
-        </div>
+  <ul class="pain-list">
+    <li class="pain-item reveal">
+      <p class="pain-item-title">Girar el cuello se siente como un cuchillo</p>
+      <p class="pain-item-text">Manejás mirando solo al frente. Dormís en una sola posición. El cuello dejó de ser libre.</p>
+    </li>
+    <li class="pain-item reveal">
+      <p class="pain-item-title">El hombro siempre cargado, siempre tenso</p>
+      <p class="pain-item-text">Angular, romboide, trapecio — zonas que acumulan todo. El estrés, la postura, los años.</p>
+    </li>
+    <li class="pain-item reveal">
+      <p class="pain-item-title">La contractura vuelve siempre al mismo lugar</p>
+      <p class="pain-item-text">La trabajaste, mejoró. Y dos semanas después está de vuelta. Eso pasa porque no se trabajó la causa.</p>
+    </li>
+    <li class="pain-item reveal">
+      <p class="pain-item-title">Lumbar que no te deja moverse bien</p>
+      <p class="pain-item-text">Levantarte de una silla, agacharte, cargar algo. Cada movimiento con ese recordatorio constante.</p>
+    </li>
+  </ul>
+</section>
 
-        <div class="l-point">
-          <div class="l-point-num">03</div>
-          <div class="l-point-body">
-            <div class="l-point-title">Qué te llevás</div>
-            <p class="l-point-text">Alivio real al salir — y la claridad de entender qué genera ese dolor y qué pequeños cambios hacés para que no vuelva.</p>
-          </div>
-        </div>
+<div class="rule"></div>
 
-      </div>
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+  <p class="section-label reveal">Cómo trabajo</p>
+  <h2 class="how-headline reveal">
+    No solo alivio el dolor.<br>
+    <em>Te explico qué está pasando</em> y qué hacer después.
+  </h2>
 
-      <!-- CTA -->
-      <div class="l-cta-wrap">
-        <a
-          href="https://calendly.com/maxibargas31/masaje-terapeutico"
-          target="_blank"
-          rel="noopener"
-          class="l-btn"
-        >
-          Reservá tu turno
-        </a>
-        <p class="l-location">
-          Ciudad de la Costa
-          <span>·</span>
-          Turnos disponibles esta semana
-        </p>
-      </div>
-
-      <!-- Confianza -->
-      <div class="l-trust">
-        <div class="l-trust-num">+200</div>
-        <div class="l-trust-text">
-          <strong>personas ya dejaron de sufrir ese dolor.</strong>
-          Cada una llegó pensando que era algo que había que aguantar.
-        </div>
-      </div>
-
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <p class="step-title">Escucho y evalúo</p>
+      <p class="step-text">Antes de tocar, entiendo. ¿Dónde duele, desde cuándo, qué lo provoca? El cuerpo tiene un historial y hay que leerlo.</p>
     </div>
-  </main>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <p class="step-title">Trabajo la causa</p>
+      <p class="step-text">El masaje se adapta completamente a lo que tu cuerpo necesita. Tejido profundo, liberación miofascial, técnicas específicas para cada zona.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <p class="step-title">Te doy herramientas</p>
+      <p class="step-text">Al finalizar te explico qué pasó, qué fortalecer, qué estirar, qué evitar. Para que el alivio dure — y el dolor no vuelva.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<section class="diff">
+  <p class="diff-quote reveal">
+    "El cuerpo no miente.<br>
+    Cada contractura guarda <em>una historia.</em>"
+  </p>
+  <p class="diff-author reveal">— Maxi Bargas, Masajista Terapéutico</p>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+  <p class="final-cta-eyebrow reveal">Empezá hoy</p>
+  <h2 class="final-cta-headline reveal">
+    Si estás cansado de sentir<br>
+    siempre el <em>mismo dolor,</em><br>
+    escribime.
+  </h2>
+  <p class="final-cta-sub reveal">Primera sesión · 60 minutos · Ciudad de la Costa</p>
+
+  <div class="cta-buttons reveal">
+    <a href="https://calendly.com/maxibargas31/masaje-terapeutico" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Reservá tu turno
+    </a>
+  </div>
+
+  <div class="availability reveal">
+    <span class="availability-dot"></span>
+    Turnos disponibles esta semana
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <a href="https://maxibargas.com" class="footer-logo">Maxi Bargas</a>
+  <a href="https://maxibargas.com" class="footer-back">← Volver al sitio</a>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
