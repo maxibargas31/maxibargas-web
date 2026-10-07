@@ -1,0 +1,149 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import BookingLink from '../components/cta/BookingLink.astro';
+import WhatsAppLink from '../components/cta/WhatsAppLink.astro';
+import CtaSection from '../components/cta/CtaSection.astro';
+import { brand, services } from '../config/site';
+import foto from '../assets/foto.png';
+import '../styles/pages/home.css';
+
+// TODO(SEO): la home no tiene description propia; usa la neutra de site.ts.
+const marquee = ['Kinesiología Terapéutica', 'Masaje', 'Entrenamiento Funcional', brand.method, brand.city];
+---
+<BaseLayout
+  title="Maxi Bargas — Kinesiología Terapéutica · Ciudad de la Costa"
+  schema
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+
+    <div class="hero-left" data-reveal="left">
+      <div class="foto-frame">
+        <div class="foto-inner">
+          <Picture
+            src={foto}
+            alt={brand.name}
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            widths={[340, 680, 1020]}
+            sizes="(max-width: 430px) 78vw, (max-width: 640px) min(260px, 74vw), (max-width: 900px) min(300px, 72vw), 340px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <p class="hero-eyebrow" data-reveal="fade">Kinesiología · Terapia · Movimiento</p>
+      <h1 class="hero-h1" data-reveal="up">
+        Vivís con dolor<br>crónico y ya<br><em>probaste</em> <strong>de todo.</strong>
+      </h1>
+      <p class="hero-tagline" data-reveal="up">
+        Te ayudo a tener un cuerpo apto para la vida —<br>trabajando la causa, no el síntoma.
+      </p>
+      <div class="hero-btns" data-stagger>
+        <BookingLink variant="gold">Reservá tu sesión</BookingLink>
+        <Button href="/sobre-mi" variant="outline">Conocé el proceso</Button>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      {[...marquee, ...marquee].map((item) => (
+        <Fragment><span>{item}</span><span class="dot">·</span></Fragment>
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT TEASER ═══ -->
+  <section id="about-teaser">
+    <div class="wrap">
+      <div class="about-grid">
+        <div data-reveal="left">
+          <p class="about-quote">
+            "El dolor crónico no es tu destino. Es una señal de que algo necesita atención — y tiene solución."
+          </p>
+        </div>
+        <div data-reveal="right">
+          <span class="eyebrow">Sobre mí</span>
+          <p class="about-text">
+            Soy Maxi Bargas, kinesiólogo terapéutico en Ciudad de la Costa. Trabajo con personas que llevan meses o años con dolor crónico — que ya fueron al médico, tomaron antiinflamatorios y siguieron igual.
+          </p>
+          <p class="about-text">
+            Mi enfoque integra kinesiología, masaje terapéutico y entrenamiento funcional. No trato síntomas — trabajo el cuerpo completo para que el dolor no vuelva y puedas moverte con libertad.
+          </p>
+          <Button href="/sobre-mi" variant="ghost" arrow class="about-link">Mi historia</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICIOS ═══ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Lo que ofrezco</span>
+        <h2>Servicios</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="services-grid" data-stagger>
+
+        <div class="svc-card">
+          <div class="svc-num">01</div>
+          <h3>{services.masaje.name}</h3>
+          <p>Para el dolor que vuelve siempre al mismo lugar. Trabajo la contractura desde la raíz y te doy herramientas para que no regrese.</p>
+          <BookingLink href={services.masaje.booking} variant="ghost" arrow>Reservar</BookingLink>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-num">02</div>
+          <h3>{services.kine4life.name}</h3>
+          <p>3 meses — Evaluación, tratamiento y entrenamiento funcional en un proceso continuo. Para pasar del dolor a un cuerpo funcional e independiente.</p>
+          <Button href="/contacto" variant="ghost" arrow>Consultar</Button>
+        </div>
+
+        <div class="svc-card">
+          <div class="svc-num">03</div>
+          <h3>{services.cuerpoActivo.name}</h3>
+          <p>Programa de movimiento y fuerza funcional para adultos mayores. Dos sesiones semanales para mejorar la autonomía, el equilibrio y la calidad de vida.</p>
+          <Button href={services.cuerpoActivo.href} variant="ghost" arrow>Consultar</Button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FRASE CENTRAL ═══ -->
+  <section class="frase-central">
+    <div class="wrap">
+      <div data-reveal="up">
+        <div class="gold-rule"></div>
+        <blockquote>
+          "El dolor crónico no es tu destino. Es una señal de que algo necesita atención — y tiene solución."
+        </blockquote>
+        <p class="frase-autor">{brand.name}</p>
+        <div class="gold-rule is-bottom"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog teaser quitado temporalmente hasta que haya artículos reales -->
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <CtaSection id="cta" eyebrow="Empezá hoy" subtitle="Reservá una sesión y empezamos a trabajar desde la causa.">
+    <Fragment slot="title">¿Cansado de sentir <em>siempre el mismo</em> dolor?</Fragment>
+    <BookingLink variant="gold">Reservar mi turno</BookingLink>
+    <WhatsAppLink variant="outline">Escribirme por WhatsApp</WhatsAppLink>
+  </CtaSection>
+</BaseLayout>
