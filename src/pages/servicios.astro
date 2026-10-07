@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import Button from '../components/ui/Button.astro';
+import BookingLink from '../components/cta/BookingLink.astro';
+import WhatsAppLink from '../components/cta/WhatsAppLink.astro';
+import { booking, services, whatsappLink } from '../config/site';
+import '../styles/pages/servicios.css';
+// TODO(SEO): escribir description específica para Servicios.
+
+const { masaje, kine4life, cuerpoActivo } = services;
+---
+<BaseLayout title="Servicios — Maxi Bargas">
+  <PageHero eyebrow="Lo que ofrezco">Servicios</PageHero>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap" data-stagger>
+
+      <div class="svc-full">
+        <div class="svc-aside">
+          <div class="svc-aside-num">01</div>
+          <h3>Masaje<br>Terapéutico</h3>
+          <p class="svc-price-big">{masaje.price}</p>
+          <span class="svc-price-label">sesión · {masaje.duration}</span>
+        </div>
+        <div class="svc-main">
+          <p>Para el dolor que vuelve siempre al mismo lugar. <strong>Trabajo la contractura desde la raíz</strong> — no solo para que pase, sino para entender qué lo genera y que no regrese.</p>
+          <p>Cada sesión empieza con una evaluación breve de la zona afectada. A partir de ahí trabajo con técnicas neuromusculares, liberación miofascial y puntos gatillo, adaptadas a tu cuadro específico.</p>
+          <ul class="svc-bullets">
+            <li>Evaluación inicial de la zona de dolor</li>
+            <li>Técnicas neuromusculares y liberación miofascial</li>
+            <li>Trabajo en puntos gatillo y contracturas crónicas</li>
+            <li>Indicaciones post-sesión para sostener el resultado</li>
+          </ul>
+          <div class="svc-tags">
+            <span class="svc-tag">{masaje.duration}</span>
+            <span class="svc-tag">Presencial</span>
+            <span class="svc-tag">Individual</span>
+          </div>
+          <BookingLink href={masaje.booking} variant="ghost" arrow>Reservar este servicio</BookingLink>
+        </div>
+      </div>
+
+      <div class="svc-full">
+        <div class="svc-aside">
+          <div class="svc-aside-num">02</div>
+          <h3>Programa<br>Kine4Life</h3>
+          <p class="svc-price-big is-text">{kine4life.price}</p>
+          <span class="svc-price-label">proceso de {kine4life.duration}</span>
+        </div>
+        <div class="svc-main">
+          <p>Para quienes llevan meses o años con el mismo dolor y quieren resolverlo de verdad. <strong>Evaluación, tratamiento y entrenamiento funcional</strong> integrados en un proceso continuo de 3 meses.</p>
+          <p>No son sesiones sueltas — es un programa con diagnóstico inicial, plan de tratamiento progresivo y entrenamiento funcional específico para que el cuerpo no vuelva al dolor.</p>
+          <ul class="svc-bullets">
+            <li>Evaluación kinesiológica completa en la primera sesión</li>
+            <li>Plan de tratamiento individualizado semana a semana</li>
+            <li>Entrenamiento funcional progresivo integrado al tratamiento</li>
+            <li>Seguimiento por WhatsApp entre sesiones</li>
+            <li>Reajuste del plan según evolución</li>
+          </ul>
+          <div class="svc-tags">
+            <span class="svc-tag">{kine4life.duration}</span>
+            <span class="svc-tag">Presencial</span>
+            <span class="svc-tag">Individual</span>
+          </div>
+          <WhatsAppLink message={kine4life.whatsappMessage} variant="ghost" arrow>Consultar por WhatsApp</WhatsAppLink>
+        </div>
+      </div>
+
+      <div class="svc-full">
+        <div class="svc-aside">
+          <div class="svc-aside-num">03</div>
+          <h3>Cuerpo<br>Activo</h3>
+          <p class="svc-price-big is-text">{cuerpoActivo.price}</p>
+          <span class="svc-price-label">{cuerpoActivo.frequency}</span>
+        </div>
+        <div class="svc-main">
+          <p>Programa de movimiento y fuerza funcional diseñado específicamente para <strong>adultos mayores</strong>. Dos sesiones semanales para mejorar la autonomía, el equilibrio y la calidad de vida.</p>
+          <p>Empieza con una evaluación kinesiológica inicial que permite adaptar cada ejercicio a tu historia clínica y tus objetivos. No es gimnasia — es movimiento terapéutico con seguimiento profesional.</p>
+          <ul class="svc-bullets">
+            <li>Evaluación kinesiológica inicial incluida</li>
+            <li>Ejercicios adaptados a tu nivel y patologías</li>
+            <li>Trabajo de equilibrio, fuerza y movilidad articular</li>
+            <li>Prevención de caídas y mejora de la autonomía</li>
+            <li>Seguimiento continuo y ajuste del programa</li>
+          </ul>
+          <div class="svc-tags">
+            <span class="svc-tag">2x semana</span>
+            <span class="svc-tag">Presencial</span>
+            <span class="svc-tag">Adultos mayores</span>
+          </div>
+          <Button href={cuerpoActivo.href} variant="ghost" arrow>Ver el programa</Button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section id="horarios">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Disponibilidad</span>
+        <h2>Días y horarios</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="horarios-grid" data-stagger>
+        <div class="horarios-col">
+          <h3>Días disponibles</h3>
+          <ul>
+            {booking.days.map((d) => (
+              <li>{d.name} <span class:list={['status', { 'is-off': !d.available }]}>{d.available ? 'Disponible' : 'Sin turnos'}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="horarios-col">
+          <h3>Turnos disponibles</h3>
+          <ul>
+            {booking.slots.map((s) => (
+              <li>{s.time} <span class="status">{s.label}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="wrap">
+      <div class="agenda-grid">
+        <div data-reveal="left">
+          <span class="eyebrow">Reservas</span>
+          <h3>Agendá tu turno</h3>
+          <p>Elegí el servicio y reservá directamente en el calendario. El turno queda confirmado al instante.</p>
+          <div class="agenda-nota">
+            <p><span aria-hidden="true">📍</span> Sesiones presenciales en Uruguay. Escribime ante cualquier duda antes de reservar.</p>
+          </div>
+        </div>
+        <div data-reveal="right">
+          <div class="agenda-form-wrap">
+            <div class="form-group">
+              <p class="form-label agenda-label">Seleccioná el servicio para reservar tu turno:</p>
+              <div class="agenda-options">
+                <a href={masaje.booking} target="_blank" rel="noopener" class="btn-submit agenda-btn">
+                  {masaje.name} — {masaje.price}
+                </a>
+                <a href={whatsappLink(kine4life.whatsappMessage)} target="_blank" rel="noopener" class="btn-submit agenda-btn agenda-btn--kine">
+                  {kine4life.name} — {kine4life.price}
+                </a>
+                <a href={cuerpoActivo.href} class="btn-submit agenda-btn agenda-btn--activo">
+                  {cuerpoActivo.name} — Adultos Mayores
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

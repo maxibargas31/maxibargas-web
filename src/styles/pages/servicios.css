@@ -1,0 +1,206 @@
+/* ═══ SERVICIOS ═══ */
+#servicios { padding: 7rem 0; }
+
+.svc-full {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  border: 1px solid var(--card-b);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+  transition: box-shadow 0.4s;
+}
+.svc-full:last-child { margin-bottom: 0; }
+.svc-full:hover { box-shadow: 0 12px 60px rgba(0,0,0,0.5); }
+
+.svc-aside {
+  background: var(--panel);
+  border-right: 1px solid var(--card-b);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.svc-aside::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(176,128,96,0.07) 0%, transparent 65%);
+}
+
+.svc-aside-num {
+  font-family: var(--f-display);
+  font-size: 6rem; font-weight: 700;
+  color: rgba(176,128,96,0.12);
+  line-height: 1;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.svc-aside h3 {
+  font-size: 1.35rem; color: var(--cream);
+  font-weight: 600; margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.svc-price-big {
+  font-family: var(--f-display);
+  font-size: 2.8rem; font-weight: 700;
+  color: var(--gold); line-height: 1;
+  position: relative;
+}
+
+.svc-price-label {
+  font-size: 0.66rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mist);
+  margin-top: 0.4rem; display: block;
+  position: relative;
+}
+
+.svc-main {
+  background: var(--navy);
+  padding: 3.5rem 3rem;
+  display: flex; flex-direction: column; gap: 1.2rem;
+}
+
+.svc-main p {
+  font-size: 0.95rem; color: var(--cream-dim);
+  font-weight: 300; line-height: 1.9;
+}
+.svc-main p strong { color: var(--cream); font-weight: 400; }
+
+.svc-bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.svc-bullets li {
+  font-size: 0.88rem; color: var(--cream-dim);
+  font-weight: 300; padding-left: 1.5rem;
+  position: relative;
+}
+.svc-bullets li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--gold);
+}
+
+.svc-tags {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.svc-tag {
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mist);
+  border: 1px solid var(--card-b);
+  padding: 0.28rem 0.8rem;
+}
+
+/* ═══ HORARIOS ═══ */
+#horarios {
+  padding: 7rem 0;
+  background: var(--panel);
+  border-top: 1px solid var(--card-b);
+  border-bottom: 1px solid var(--card-b);
+}
+
+.horarios-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 720px;
+  margin: 1rem auto 0;
+}
+
+.horarios-col h3 {
+  font-size: 1rem; color: var(--cream);
+  font-weight: 400; letter-spacing: 0.06em;
+  margin-bottom: 1.5rem;
+}
+
+.horarios-col ul { list-style: none; }
+
+.horarios-col li {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.88rem; color: var(--cream-dim); font-weight: 300;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(176,128,96,0.08);
+}
+.horarios-col li:last-child { border-bottom: none; }
+
+.horarios-col .status { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em; }
+
+/* ═══ AGENDA ═══ */
+#agenda { padding: 7rem 0; }
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.agenda-info h3 {
+  font-size: 2.2rem; color: var(--cream);
+  font-weight: 600; margin-bottom: 1.2rem;
+}
+
+.agenda-info p {
+  font-size: 0.92rem; color: var(--cream-dim);
+  font-weight: 300; line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.agenda-nota {
+  margin-top: 2rem;
+  padding: 1.2rem 1.5rem;
+  border-left: 2px solid var(--gold);
+  background: var(--gold-ghost);
+}
+.agenda-nota p {
+  font-size: 0.85rem; color: var(--cream-dim);
+  font-weight: 300; margin: 0;
+}
+
+.agenda-form-wrap {
+  background: var(--panel);
+  border: 1px solid var(--card-b);
+  border-radius: var(--r-lg);
+  padding: 2.5rem;
+}
+
+.form-double {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+
+@media (max-width: 860px) {
+  .svc-full { grid-template-columns: 1fr; }
+  .svc-aside { border-right: none; border-bottom: 1px solid var(--card-b); }
+  .horarios-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .agenda-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 640px) {
+  #servicios, #horarios, #agenda { padding: 4rem 0; }
+  .svc-main { padding: 2rem 1.5rem; }
+  .svc-aside { padding: 2.5rem 1.5rem; }
+  .svc-aside-num { font-size: 4rem; }
+  .svc-price-big { font-size: 2.2rem; }
+  .horarios-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .form-double { grid-template-columns: 1fr; }
+  .agenda-form-wrap { padding: 1.8rem 1.5rem; }
+  .agenda-nota { padding: 1rem 1.2rem; }
+}
+
+/* ═══ Antes en estilos en línea ═══ */
+.svc-main .btn-ghost { margin-top: 0.5rem; }
+.svc-price-big.is-text { font-size: 2rem; }
+.horarios-col .status.is-off { color: var(--mist); }
+
+.form-label.agenda-label { margin-bottom: 1.5rem; }
+.agenda-options { display: flex; flex-direction: column; gap: 1rem; }
+.agenda-btn { display: block; text-align: center; text-decoration: none; }
+/* Variantes secundarias: mantienen su fondo también en hover (como en la V1) */
+.agenda-btn--kine,
+.agenda-btn--kine:hover { background: var(--panel); border: 1px solid var(--gold); color: var(--gold); }
+.agenda-btn--activo,
+.agenda-btn--activo:hover { background: var(--panel); border: 1px solid var(--card-b); color: var(--cream-dim); }
