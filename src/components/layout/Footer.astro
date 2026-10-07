@@ -1,0 +1,33 @@
+---
+import { brand, contact, nav, whatsappLink } from '../../config/site';
+
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">{brand.name}</a>
+        <p class="footer-tagline">{brand.role} · {brand.city} · {brand.country}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Páginas</h4>
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href={whatsappLink()} target="_blank" rel="noopener">{contact.whatsapp.display}</a></li>
+          <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+          <li class="footer-col-text">{brand.city}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {year} <span>{brand.name}</span> — Todos los derechos reservados.</p>
+      <p>{brand.country}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  variant?: 'gold' | 'outline' | 'ghost';
+  /** Abre en pestaña nueva (links externos) */
+  external?: boolean;
+  /** Agrega la flecha animada (variante ghost) */
+  arrow?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'gold', external = false, arrow = false, class: className } = Astro.props;
+---
+<a
+  href={href}
+  class:list={['btn', `btn-${variant}`, className]}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener' : undefined}
+><slot />{arrow && <Fragment>{' '}<span class="arrow" aria-hidden="true">→</span></Fragment>}</a>

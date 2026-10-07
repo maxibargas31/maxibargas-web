@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string;
+  eyebrow: string;
+  subtitle: string;
+}
+const { id, eyebrow, subtitle } = Astro.props;
+---
+<section id={id}>
+  <div class="wrap cta-wrap">
+    <div data-reveal="up">
+      <div class="gold-rule cta-eyebrow">{eyebrow}</div>
+      <h2 class="cta-h2"><slot name="title" /></h2>
+      <p class="cta-sub">{subtitle}</p>
+      <div class="cta-btns">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+---
+import { getImage } from 'astro:assets';
+import { brand, contact, seo, siteUrl } from '../../config/site';
+import foto from '../../assets/foto.png';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  /** Incluye el schema LocalBusiness/Person (home). */
+  schema?: boolean;
+}
+
+const { title = seo.defaultTitle, description = seo.defaultDescription, noindex = false, schema = false } = Astro.props;
+
+// URL canónica: sin .html y sin barra final (salvo la home)
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+const canonical = new URL(path === '' ? '/' : path, Astro.site ?? siteUrl).href;
+
+// Imagen Open Graph 1200×630 generada desde la foto original
+const ogImage = await getImage({ src: foto, width: 1200, height: 630, fit: 'cover', position: 'top', format: 'jpg', quality: 80 });
+const ogImageUrl = new URL(ogImage.src, Astro.site ?? siteUrl).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Physiotherapy',
+      '@id': `${siteUrl}/#negocio`,
+      name: brand.name,
+      url: `${siteUrl}/`,
+      image: ogImageUrl,
+      email: contact.email,
+      telephone: `+${contact.whatsapp.e164}`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: brand.city,
+        addressCountry: brand.countryCode,
+      },
+      areaServed: brand.city,
+      founder: { '@id': `${siteUrl}/#persona` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#persona`,
+      name: brand.name,
+      jobTitle: brand.role,
+      url: `${siteUrl}/`,
+    },
+  ],
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={brand.name} />
+<meta property="og:locale" content={brand.locale} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={brand.name} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
