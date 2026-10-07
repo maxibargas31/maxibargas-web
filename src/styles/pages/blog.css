@@ -1,0 +1,101 @@
+/* ═══ BLOG ═══ */
+/* Estilos de listado heredados de la V1; se usarán cuando haya artículos. */
+
+/* ═══ SIN ARTÍCULOS ═══ */
+#blog-vacio { padding: 7rem 0; text-align: center; }
+#blog-vacio p {
+  font-size: 0.95rem;
+  color: var(--cream-dim);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+/* ═══ GRID ═══ */
+#grid { padding: 7rem 0; }
+
+.posts-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.posts-header h3 {
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--mist);
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.post-card {
+  background: var(--navy);
+  border: 1px solid var(--card-b);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: background 0.35s;
+}
+.post-card:hover { background: var(--panel); }
+
+.post-img {
+  height: 180px;
+  background: var(--mid);
+  border-bottom: 1px solid var(--card-b);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+
+.post-img-label {
+  font-size: 0.58rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--fog);
+}
+
+.post-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+
+.post-body h3 {
+  font-size: 1.2rem; color: var(--cream);
+  font-weight: 600; line-height: 1.25;
+  margin-bottom: 0.8rem;
+}
+
+.post-body p {
+  font-size: 0.84rem; color: var(--cream-dim);
+  font-weight: 300; line-height: 1.75;
+  flex: 1; margin-bottom: 1.5rem;
+}
+
+.post-tag {
+  font-size: 0.66rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem; display: block;
+}
+
+/* ═══ ARTÍCULO ═══ */
+.post-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 6rem 0;
+  font-size: 1rem;
+  color: var(--cream-dim);
+  font-weight: 300;
+  line-height: 1.9;
+}
+.post-content h2, .post-content h3 { color: var(--cream); margin: 2.5rem 0 1rem; }
+.post-content h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.post-content h3 { font-size: 1.4rem; }
+.post-content p, .post-content ul, .post-content ol { margin-bottom: 1.3rem; }
+.post-content ul, .post-content ol { padding-left: 1.4rem; }
+.post-content a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+.post-content strong { color: var(--cream); font-weight: 400; }
+.post-content img { max-width: 100%; height: auto; border-radius: var(--r-lg); margin: 2rem 0; }
+
+@media (max-width: 860px) {
+  .posts-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  #blog-vacio, #grid { padding: 4rem 0; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .post-content { padding: 4rem 0; }
+}

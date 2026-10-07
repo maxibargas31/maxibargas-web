@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/ui/PageHero.astro';
+import Button from '../../components/ui/Button.astro';
+import '../../styles/pages/blog.css';
+
+// noindex mientras no haya artículos (se quita solo al publicar el primero).
+// Solo artículos publicados, del más nuevo al más viejo.
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const fecha = (d: Date) => d.toLocaleDateString('es-UY', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout title="Blog — Maxi Bargas" noindex={posts.length === 0}>
+  <PageHero eyebrow="Reflexiones & Artículos">Blog</PageHero>
+
+  {posts.length === 0 ? (
+    <section id="blog-vacio">
+      <div class="wrap" data-reveal="up">
+        <p>Próximamente vas a encontrar artículos en esta sección.</p>
+      </div>
+    </section>
+  ) : (
+    <section id="grid">
+      <div class="wrap">
+        <div class="posts-grid" data-stagger>
+          {posts.map((post) => (
+            <article class="post-card">
+              <div class="post-body">
+                <span class="post-tag">{post.data.tags.join(' · ')}{post.data.tags.length ? ' · ' : ''}{fecha(post.data.date)}</span>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <Button href={`/blog/${post.id}`} variant="ghost" arrow>Leer más</Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
