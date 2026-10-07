@@ -7,11 +7,13 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  /** Agrega <link rel="canonical"> (desactivar en la 404). */
+  canonical?: boolean;
   /** Incluye el schema LocalBusiness/Person (home). */
   schema?: boolean;
 }
 
-const { title = seo.defaultTitle, description = seo.defaultDescription, noindex = false, schema = false } = Astro.props;
+const { title = seo.defaultTitle, description = seo.defaultDescription, noindex = false, schema = false, canonical: withCanonical = true } = Astro.props;
 
 // URL canónica: sin .html y sin barra final (salvo la home)
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
@@ -52,7 +54,7 @@ const jsonLd = {
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
+{withCanonical && <link rel="canonical" href={canonical} />}
 {noindex && <meta name="robots" content="noindex, follow" />}
 
 <meta property="og:type" content="website" />

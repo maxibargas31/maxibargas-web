@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import Button from '../components/ui/Button.astro';
+import '../styles/pages/404.css';
+---
+<BaseLayout title="Página no encontrada — Maxi Bargas" noindex canonical={false}>
+  <PageHero eyebrow="Error 404">Página no encontrada</PageHero>
+
+  <section id="no-encontrada">
+    <div class="wrap" data-reveal="up">
+      <p>La página que buscás no existe o cambió de dirección.</p>
+      <Button href="/" variant="gold">Volver al inicio</Button>
+    </div>
+  </section>
+</BaseLayout>
