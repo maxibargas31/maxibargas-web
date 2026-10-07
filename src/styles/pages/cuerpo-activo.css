@@ -1,0 +1,154 @@
+/* ═══ CUERPO ACTIVO ═══ */
+/* El formulario clínico de la V1 se quitó hasta su rediseño (ver tag v1-final). */
+
+/* ═══ PRESENTACIÓN ═══ */
+#presentacion {
+  padding: 8rem 0;
+  background: var(--navy);
+  border-bottom: 1px solid var(--card-b);
+}
+
+.pres-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.pres-quote {
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.35;
+  padding-left: 2.5rem;
+  position: relative;
+}
+.pres-quote::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.3em; bottom: 0.3em;
+  width: 1px;
+  background: var(--gold);
+}
+
+.pres-text {
+  font-size: 0.95rem;
+  color: var(--cream-dim);
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+/* ═══ PILARES ═══ */
+#pilares {
+  padding: 8rem 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--card-b);
+}
+
+.pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.pilar-card {
+  background: var(--card);
+  border: 1px solid var(--card-b);
+  border-radius: var(--r-lg);
+  padding: 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s, border-color 0.35s;
+}
+.pilar-card:hover {
+  background: #131330;
+  border-color: var(--gold-dim);
+}
+.pilar-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold-ghost) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.pilar-card:hover::before { opacity: 1; }
+
+.pilar-num {
+  font-family: var(--f-display);
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: rgba(176,128,96,0.08);
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+
+.pilar-card h3 {
+  font-size: 1.4rem;
+  color: var(--cream);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.pilar-card p {
+  font-size: 0.9rem;
+  color: var(--cream-dim);
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+/* ═══ CTA FINAL ═══ */
+#cta-final {
+  padding: 9rem 0;
+  text-align: center;
+  background: var(--mid);
+  border-top: 1px solid var(--card-b);
+  position: relative;
+  overflow: hidden;
+}
+
+#cta-final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(176,128,96,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  color: var(--cream);
+  font-weight: 700;
+  max-width: 580px;
+  margin: 0 auto 1rem;
+  line-height: 1.1;
+}
+.cta-h2 em { font-style: italic; color: var(--gold); font-weight: 300; }
+
+.cta-sub {
+  font-size: 0.95rem;
+  color: var(--cream-dim);
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .pres-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .pilares-grid { grid-template-columns: 1fr 1fr; }
+  #presentacion, #pilares { padding: 5rem 0; }
+}
+
+@media (max-width: 640px) {
+  #presentacion, #pilares, #cta-final { padding: 4rem 0; }
+  .pilares-grid { grid-template-columns: 1fr; }
+  .cta-h2 { font-size: clamp(1.8rem, 7.5vw, 2.4rem); }
+}
+
+/* Antes en estilos en línea */
+.pres-cta { margin-top: 1.5rem; display: inline-flex; }
+#cta-final .cta-eyebrow { max-width: 300px; margin: 0 auto 2.5rem; }

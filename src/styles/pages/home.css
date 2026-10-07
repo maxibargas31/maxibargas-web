@@ -391,6 +391,4 @@
 /* Botones dentro de las cards de servicios */
 .svc-card .btn-ghost { margin-top: auto; }
 
-/* CTA final */
-.cta-wrap { position: relative; z-index: 1; }
 #cta .cta-eyebrow { max-width: 300px; margin: 0 auto 2rem; }

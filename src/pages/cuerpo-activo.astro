@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import Button from '../components/ui/Button.astro';
+import WhatsAppLink from '../components/cta/WhatsAppLink.astro';
+import CtaSection from '../components/cta/CtaSection.astro';
+import { services } from '../config/site';
+import '../styles/pages/cuerpo-activo.css';
+
+// El formulario clínico de la V1 (datos de salud) se quitó por completo hasta su rediseño.
+// Esta página no envía ni almacena ningún dato.
+const { cuerpoActivo } = services;
+---
+<BaseLayout
+  title="Cuerpo Activo — Kinesiología para Adultos Mayores · Maxi Bargas"
+  description="Programa de kinesiología y movimiento para adultos mayores. Evaluación inicial, acompañamiento personalizado y ejercicio seguro."
+>
+  <PageHero eyebrow="Kinesiología · Movimiento · Adultos Mayores">{cuerpoActivo.name}</PageHero>
+
+  <!-- PRESENTACIÓN -->
+  <section id="presentacion">
+    <div class="wrap">
+      <div class="pres-grid">
+
+        <div data-reveal="left">
+          <p class="pres-quote">
+            "Moverse bien no tiene edad. Tiene intención, cuidado y acompañamiento."
+          </p>
+        </div>
+
+        <div data-reveal="right">
+          <span class="eyebrow">El programa</span>
+          <p class="pres-text">
+            Cuerpo Activo es un programa de kinesiología y movimiento diseñado específicamente para adultos mayores que quieren mantener o recuperar su funcionalidad, reducir el dolor y ganar confianza en su cuerpo.
+          </p>
+          <p class="pres-text">
+            No se trata de hacer ejercicio por hacerlo. Se trata de moverte de forma segura, inteligente y sostenible — con un kinesiólogo que te acompaña en cada paso y adapta el trabajo a tu historia y tus objetivos.
+          </p>
+          <p class="pres-text">
+            El primer paso es la evaluación kinesiológica inicial. Escribime y coordinamos tu primera sesión.
+          </p>
+          <WhatsAppLink message={cuerpoActivo.whatsappMessage} variant="gold" class="pres-cta">Escribirme por WhatsApp</WhatsAppLink>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section id="pilares">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Lo que trabajamos</span>
+        <h2>Tres pilares del programa</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="pilares-grid" data-stagger>
+
+        <div class="pilar-card">
+          <div class="pilar-num">01</div>
+          <h3>Movimiento funcional</h3>
+          <p>Ejercicios adaptados a tu nivel y capacidad, orientados a las actividades de la vida diaria: levantarte, caminar, subir escaleras, cargar bolsas. Funcionalidad real, no gimnasia decorativa.</p>
+        </div>
+
+        <div class="pilar-card">
+          <div class="pilar-num">02</div>
+          <h3>Manejo del dolor</h3>
+          <p>Estrategias de kinesiología para reducir el dolor crónico, mejorar la movilidad articular y trabajar las zonas de limitación de forma segura y progresiva.</p>
+        </div>
+
+        <div class="pilar-card">
+          <div class="pilar-num">03</div>
+          <h3>Equilibrio y prevención</h3>
+          <p>Trabajo de estabilidad, coordinación y fuerza de base para reducir el riesgo de caídas y mantener la independencia con el paso del tiempo.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <CtaSection id="cta-final" eyebrow="¿Tenés dudas?" subtitle="Si preferís una charla previa antes de completar la evaluación, escribime directo.">
+    <Fragment slot="title">Hablemos antes de <em>empezar</em></Fragment>
+    <WhatsAppLink message={cuerpoActivo.whatsappMessage} variant="gold">Escribirme por WhatsApp</WhatsAppLink>
+    <Button href="/servicios" variant="outline">Ver todos los servicios</Button>
+  </CtaSection>
+</BaseLayout>

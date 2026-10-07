@@ -462,3 +462,6 @@ summary:focus-visible,
 
 /* Ítem de texto (no link) en columnas del footer */
 .footer-col-text { font-size: 0.88rem; color: var(--mist); font-weight: 300; }
+
+/* Contenedor del componente CtaSection */
+.cta-wrap { position: relative; z-index: 1; }
