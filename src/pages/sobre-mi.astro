@@ -1,0 +1,130 @@
+---
+import { Picture } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import Button from '../components/ui/Button.astro';
+import BookingLink from '../components/cta/BookingLink.astro';
+import { brand } from '../config/site';
+import foto from '../assets/foto.png';
+import '../styles/pages/sobre-mi.css';
+// TODO(SEO): escribir description específica para Sobre mí.
+---
+<BaseLayout title="Sobre mí — Maxi Bargas">
+  <PageHero eyebrow="Mi historia">Kinesiólogo terapéutico<br>en Ciudad de la Costa</PageHero>
+
+  <!-- HISTORIA -->
+  <section id="historia">
+    <div class="wrap">
+      <div class="historia-grid">
+        <div class="historia-foto-col" data-reveal="left">
+          <div class="historia-foto">
+            <div class="frame-corner tl"></div>
+            <div class="frame-corner tr"></div>
+            <div class="frame-corner bl"></div>
+            <div class="frame-corner br"></div>
+            <div class="historia-foto-inner">
+              <Picture
+                src={foto}
+                alt={brand.name}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpg"
+                widths={[340, 680, 1020]}
+                sizes="(max-width: 860px) 100vw, 340px"
+              />
+            </div>
+          </div>
+        </div>
+        <div data-reveal="right">
+          <h2>Del deporte al tratamiento<br>del dolor crónico</h2>
+          <p>Empecé en el mundo del deporte y el entrenamiento. Trabajé con atletas, fui entrenador físico, y ahí entendí algo que los libros no enseñan: <strong>el cuerpo que se mueve bien rara vez duele</strong>. El problema es cuando algo lo frena.</p>
+          <p>Eso me llevó a la kinesiología. Quería entender por qué la gente tiene dolor crónico — ese dolor que no se va, que vuelve, que los médicos no terminan de resolver. Hoy trabajo exactamente con esas personas.</p>
+          <p>Mi enfoque integra kinesiología, masaje terapéutico y entrenamiento funcional. No son tres cosas separadas — son <strong>tres herramientas del mismo proceso</strong>: evaluar, tratar y fortalecer.</p>
+          <p>El objetivo siempre es el mismo: que el dolor no vuelva y que puedas moverte con libertad.</p>
+          <Button href="/servicios" variant="gold" class="historia-cta">Ver los servicios</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA -->
+  <section id="cita-section">
+    <div class="wrap">
+      <div class="cita-inner" data-reveal="up">
+        <div class="gold-rule"></div>
+        <p class="cita-text">"Cuando el cuerpo deja de doler, la vida cambia.<br>No al revés."</p>
+        <p class="cita-autor">— {brand.name}</p>
+        <div class="gold-rule is-bottom"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENFOQUE -->
+  <section id="enfoque">
+    <div class="wrap">
+      <div class="sec-header" data-reveal="up">
+        <span class="eyebrow">Mi enfoque</span>
+        <h2>Cómo trabajo</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="enfoque-grid" data-stagger>
+        <div class="enfoque-item">
+          <div class="enfoque-num">01</div>
+          <h3>Diagnóstico primero</h3>
+          <p>Antes de tratar, evaluamos. Cada dolor tiene una causa específica — y hay que encontrarla antes de intervenir.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">02</div>
+          <h3>Trabajo en el origen</h3>
+          <p>No trabajo sobre el síntoma. Trabajo sobre la estructura, el movimiento y los patrones que generaron el problema.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">03</div>
+          <h3>Progresión funcional</h3>
+          <p>Desde el tratamiento pasamos al movimiento. El objetivo es que el cuerpo no solo deje de doler — que funcione bien.</p>
+        </div>
+        <div class="enfoque-item">
+          <div class="enfoque-num">04</div>
+          <h3>Educación en el proceso</h3>
+          <p>Te explico qué está pasando en tu cuerpo y por qué. Entender el propio problema es parte del tratamiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section id="valores">
+    <div class="wrap">
+      <div class="sec-header centered" data-reveal="up">
+        <span class="eyebrow">Pilares</span>
+        <h2>Lo que guía mi trabajo</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="valores-grid" data-stagger>
+        <div class="valor">
+          <div class="valor-icon" aria-hidden="true">🔍</div>
+          <h3>Evaluación</h3>
+          <p>Cada proceso empieza con una evaluación detallada. Sin diagnóstico claro, no hay tratamiento efectivo.</p>
+        </div>
+        <div class="valor">
+          <div class="valor-icon" aria-hidden="true">🎯</div>
+          <h3>Causa</h3>
+          <p>Busco el origen del dolor, no solo la zona que duele. La raíz importa más que el síntoma.</p>
+        </div>
+        <div class="valor">
+          <div class="valor-icon" aria-hidden="true">⚡</div>
+          <h3>Funcionalidad</h3>
+          <p>El objetivo no es que el dolor se calme — es que el cuerpo funcione bien y de forma independiente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="wrap" data-reveal="up">
+      <h2>¿Querés trabajar el dolor desde la causa?</h2>
+      <p>Reservá tu primera sesión y empezamos a evaluar.</p>
+      <BookingLink variant="gold">Reservar una sesión</BookingLink>
+    </div>
+  </section>
+</BaseLayout>
