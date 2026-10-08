@@ -11,6 +11,8 @@ export const brand = {
   name: 'Maxi Bargas',
   method: 'Kine4Life',
   role: 'Kinesiólogo terapéutico',
+  roles: 'Kinesiólogo · Masajista terapéutico · Entrenador',
+  attention: 'Atención individual 1 a 1',
   city: 'Ciudad de la Costa',
   country: 'Uruguay',
   countryCode: 'UY',
@@ -36,6 +38,7 @@ export function whatsappLink(message?: string): string {
 export const whatsappMessages = {
   kine4life: 'Hola Maxi, quiero consultar sobre el Programa Kine4Life',
   cuerpoActivo: 'Hola Maxi, quiero saber más sobre el programa Cuerpo Activo',
+  evaluacion: 'Hola Maxi, quiero una evaluación',
 } as const;
 
 /* ── RESERVAS ── */
@@ -104,4 +107,25 @@ export const seo = {
   defaultTitle: 'Maxi Bargas — Kinesiología Terapéutica · Ciudad de la Costa',
   // TODO(SEO): description neutra temporal. Reemplazar por copy definitivo.
   defaultDescription: 'Maxi Bargas, kinesiólogo terapéutico en Ciudad de la Costa, Uruguay.',
+} as const;
+
+/* ── V2 (Kine4Life) ── */
+// Menú de la Home V2. Las demás páginas siguen con `nav` hasta migrar su diseño.
+export const navV2 = [
+  { label: 'Método', href: '/#metodo' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Sobre mí', href: '/sobre-mi' },
+  { label: 'Contacto', href: '/contacto' },
+] as const;
+
+// Destinos de los CTA de la V2 (provisorios, centralizados para cambiarlos fácil).
+export const ctaV2 = {
+  // No existe todavía un evento de Calendly para evaluación: por ahora va a WhatsApp.
+  evaluacion: whatsappLink(whatsappMessages.evaluacion),
+  // "Agendar" lleva a las opciones para empezar.
+  agendar: '/#empezar',
+  contame: '/#contame',
+  masaje: booking.calendly.masaje,
+  proceso: '/servicios',
+  whatsapp: whatsappLink(),
 } as const;

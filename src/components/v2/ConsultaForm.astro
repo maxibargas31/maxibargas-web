@@ -1,0 +1,77 @@
+---
+/*
+  Formulario "Contame qué te pasa" — SOLO VISUAL (Deploy Preview).
+  No tiene action, no hace requests y no guarda nada: al enviar solo muestra un aviso.
+  Conectarlo recién cuando estén definidos privacidad y almacenamiento.
+*/
+import Icon from './Icon.astro';
+import { brand, ctaV2 } from '../../config/site';
+---
+<form class="k-form" id="form-consulta" data-preview-only>
+  <div class="k-form-row">
+    <div class="k-field">
+      <label for="c-nombre">Nombre</label>
+      <input id="c-nombre" type="text" autocomplete="name" required />
+    </div>
+    <div class="k-field">
+      <label for="c-email">Email</label>
+      <input id="c-email" type="email" autocomplete="email" required />
+    </div>
+  </div>
+
+  <div class="k-field">
+    <label for="c-whatsapp">WhatsApp <span class="k-opt">(opcional)</span></label>
+    <input id="c-whatsapp" type="tel" autocomplete="tel" inputmode="tel" />
+  </div>
+
+  <div class="k-field">
+    <label for="c-pasa">¿Qué te está pasando?</label>
+    <textarea id="c-pasa" rows="4" required placeholder="Contame brevemente qué sentís, desde cuándo y cuándo aparece la molestia."></textarea>
+  </div>
+
+  <div class="k-field">
+    <label for="c-objetivo">¿Qué te gustaría poder volver a hacer? <span class="k-opt">(opcional)</span></label>
+    <textarea id="c-objetivo" rows="2" placeholder="Entrenar, trabajar sin molestias, correr, jugar al fútbol, moverte con más confianza…"></textarea>
+  </div>
+
+  <fieldset class="k-field k-choice">
+    <legend>¿Cómo preferís que te contacte?</legend>
+    <div class="k-choice-options">
+      <label class="k-pill"><input type="radio" name="c-preferencia" value="email" required /><span><Icon name="mail" /> Email</span></label>
+      <label class="k-pill"><input type="radio" name="c-preferencia" value="whatsapp" /><span><Icon name="message" /> WhatsApp</span></label>
+    </div>
+  </fieldset>
+
+  <div class="k-checks">
+    <label class="k-check">
+      <input type="checkbox" required />
+      <span>Acepto que {brand.name} utilice la información que proporciono para responder mi consulta y contactarme en relación con ella.</span>
+    </label>
+    <label class="k-check">
+      <input type="checkbox" />
+      <span>También quiero recibir ocasionalmente contenidos de {brand.method} sobre movimiento, salud y entrenamiento.</span>
+    </label>
+  </div>
+
+  <button type="submit" class="k-btn k-btn--green k-form-submit">Enviar mi consulta <Icon name="arrow-right" /></button>
+
+  <p class="k-form-note"><Icon name="info" size={16} /> Este formulario no sustituye una evaluación profesional ni está destinado a urgencias médicas.</p>
+
+  <p class="k-form-status" id="form-consulta-status" role="status" hidden>
+    Vista previa: este formulario todavía no está conectado y no envió ni guardó ningún dato.
+    Mientras tanto podés <a href={ctaV2.whatsapp} target="_blank" rel="noopener">escribirme por WhatsApp</a>.
+  </p>
+</form>
+
+<script>
+  // Solo visual: evita cualquier envío y muestra un aviso.
+  const form = document.getElementById('form-consulta') as HTMLFormElement | null;
+  const status = document.getElementById('form-consulta-status');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (status) {
+      status.hidden = false;
+      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>

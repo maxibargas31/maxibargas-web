@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { brand, ctaV2, navV2 } from '../../config/site';
+
+const current = Astro.url.pathname.replace(/\.html$/, '');
+---
+<header class="k-header" id="navbar">
+  <div class="k-header-inner">
+    <a href="/" class="k-logo" aria-label={`${brand.method}, by ${brand.name} — Inicio`}>
+      <span class="k-logo-main">KINE4LIFE</span>
+      <span class="k-logo-sub">by {brand.name}</span>
+    </a>
+
+    <nav class="k-nav" aria-label="Principal">
+      <ul class="k-nav-links">
+        {navV2.map((item) => (
+          <li><a href={item.href} aria-current={current === item.href ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+      <a href={ctaV2.agendar} class="k-btn k-btn--green k-btn--sm">Agendar</a>
+      <button class="k-burger" id="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mob-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="k-mobnav" id="mob-nav">
+  {navV2.map((item) => <a href={item.href}>{item.label}</a>)}
+  <a href={ctaV2.agendar} class="k-btn k-btn--cream">Agendar <Icon name="arrow-right" /></a>
+  <p class="k-mobnav-foot">{brand.method} · {brand.city}</p>
+</div>

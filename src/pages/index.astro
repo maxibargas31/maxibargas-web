@@ -1,149 +1,197 @@
 ---
-import { Picture } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Button from '../components/ui/Button.astro';
-import BookingLink from '../components/cta/BookingLink.astro';
-import WhatsAppLink from '../components/cta/WhatsAppLink.astro';
-import CtaSection from '../components/cta/CtaSection.astro';
-import { brand, services } from '../config/site';
-import foto from '../assets/foto.png';
-import '../styles/pages/home.css';
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import ConsultaForm from '../components/v2/ConsultaForm.astro';
+import { brand, ctaV2 } from '../config/site';
+import '../styles/pages/home-v2.css';
+// TODO(SEO): título y description definitivos de la Home V2.
 
-// TODO(SEO): la home no tiene description propia; usa la neutra de site.ts.
-const marquee = ['Kinesiología Terapéutica', 'Masaje', 'Entrenamiento Funcional', brand.method, brand.city];
+const limites = [
+  { icon: 'repeat', text: 'Dolor que vuelve' },
+  { icon: 'activity', text: 'Contracturas o rigidez frecuentes' },
+  { icon: 'ban', text: 'Movimientos que empezaste a evitar' },
+  { icon: 'dumbbell', text: 'Dejaste de entrenar' },
+  { icon: 'trending-down', text: 'Mejorás, pero la molestia vuelve' },
+  { icon: 'battery', text: 'Sentís que tu cuerpo ya no responde igual' },
+] as const;
+
+const metodo = [
+  { n: '01', title: 'Evaluar', text: 'Entender dónde estás.' },
+  { n: '02', title: 'Recuperar', text: 'Volver a moverte.' },
+  { n: '03', title: 'Fortalecer', text: 'Construir capacidad.' },
+  { n: '04', title: 'Volver a hacer', text: 'Recuperar autonomía.' },
+];
 ---
-<BaseLayout
-  title="Maxi Bargas — Kinesiología Terapéutica · Ciudad de la Costa"
-  schema
->
+<V2Layout title="Maxi Bargas — Kinesiología Terapéutica · Ciudad de la Costa" schema>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="hero">
+  <!-- ═══ 1. HERO ═══ -->
+  <section class="h-hero k-on-green">
+    <div class="k-wrap h-hero-grid">
+      <div class="h-hero-copy">
+        <p class="h-hero-who" data-reveal>
+          <strong>{brand.name}</strong>
+          <span>{brand.roles}</span>
+        </p>
 
-    <div class="hero-left" data-reveal="left">
-      <div class="foto-frame">
-        <div class="foto-inner">
-          <Picture
-            src={foto}
-            alt={brand.name}
-            formats={['avif', 'webp']}
-            fallbackFormat="jpg"
-            widths={[340, 680, 1020]}
-            sizes="(max-width: 430px) 78vw, (max-width: 640px) min(260px, 74vw), (max-width: 900px) min(300px, 72vw), 340px"
-            loading="eager"
-            fetchpriority="high"
-          />
+        <h1 class="k-display h-hero-title" data-reveal>
+          Tu cuerpo puede volver a hacer <mark>más</mark>
+        </h1>
+
+        <p class="h-hero-text" data-reveal>
+          Si el dolor, la rigidez o una limitación están condicionando lo que hacés, trabajamos para que recuperes movimiento, fuerza y confianza.
+        </p>
+
+        <div class="h-hero-method" data-reveal>
+          <span class="h-hero-method-name">{brand.method}</span>
+          <p>Kinesiología, terapia manual y ejercicio integrados en un proceso personalizado.</p>
+        </div>
+
+        <div class="h-hero-actions" data-reveal>
+          <a href={ctaV2.evaluacion} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero una evaluación <Icon name="arrow-right" /></a>
+          <a href={ctaV2.contame} class="k-btn k-btn--line-light">Contame qué te pasa</a>
+        </div>
+
+        <p class="h-hero-meta" data-reveal>
+          <Icon name="map-pin" size={18} /> {brand.city} · {brand.attention}
+        </p>
+      </div>
+
+      <div class="h-hero-media" data-reveal>
+        <!-- TODO(FOTO): reemplazar por una fotografía real de Maxi (src/assets) con <Picture>. -->
+        <div class="h-photo" role="img" aria-label="Espacio reservado para la foto de Maxi Bargas">
+          <svg class="h-photo-arc" viewBox="0 0 400 400" aria-hidden="true">
+            <circle cx="200" cy="200" r="170" />
+            <path d="M200 30 A170 170 0 0 1 370 200" />
+          </svg>
+          <span class="h-photo-label"><Icon name="camera" size={20} /> Foto de Maxi</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-right">
-      <p class="hero-eyebrow" data-reveal="fade">Kinesiología · Terapia · Movimiento</p>
-      <h1 class="hero-h1" data-reveal="up">
-        Vivís con dolor<br>crónico y ya<br><em>probaste</em> <strong>de todo.</strong>
-      </h1>
-      <p class="hero-tagline" data-reveal="up">
-        Te ayudo a tener un cuerpo apto para la vida —<br>trabajando la causa, no el síntoma.
+  <!-- ═══ 2. IDENTIFICACIÓN ═══ -->
+  <section class="k-section h-ident">
+    <div class="k-wrap">
+      <div class="k-head" data-reveal>
+        <h2 class="k-h2 h-ident-title">¿Sentís que tu cuerpo te está empezando a limitar?</h2>
+      </div>
+
+      <ul class="h-ident-grid" data-stagger>
+        {limites.map((item) => (
+          <li class="h-ident-card">
+            <span class="h-icon"><Icon name={item.icon} /></span>
+            <span>{item.text}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="h-ident-close" data-reveal>
+        <span>El problema no es solamente cuánto te duele.</span>
+        <strong>También importa cuánto está afectando lo que podés hacer.</strong>
       </p>
-      <div class="hero-btns" data-stagger>
-        <BookingLink variant="gold">Reservá tu sesión</BookingLink>
-        <Button href="/sobre-mi" variant="outline">Conocé el proceso</Button>
-      </div>
-    </div>
-
-    <div class="hero-scroll" aria-hidden="true">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ═══ MARQUEE ═══ -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      {[...marquee, ...marquee].map((item) => (
-        <Fragment><span>{item}</span><span class="dot">·</span></Fragment>
-      ))}
-    </div>
-  </div>
-
-  <!-- ═══ ABOUT TEASER ═══ -->
-  <section id="about-teaser">
-    <div class="wrap">
-      <div class="about-grid">
-        <div data-reveal="left">
-          <p class="about-quote">
-            "El dolor crónico no es tu destino. Es una señal de que algo necesita atención — y tiene solución."
-          </p>
-        </div>
-        <div data-reveal="right">
-          <span class="eyebrow">Sobre mí</span>
-          <p class="about-text">
-            Soy Maxi Bargas, kinesiólogo terapéutico en Ciudad de la Costa. Trabajo con personas que llevan meses o años con dolor crónico — que ya fueron al médico, tomaron antiinflamatorios y siguieron igual.
-          </p>
-          <p class="about-text">
-            Mi enfoque integra kinesiología, masaje terapéutico y entrenamiento funcional. No trato síntomas — trabajo el cuerpo completo para que el dolor no vuelva y puedas moverte con libertad.
-          </p>
-          <Button href="/sobre-mi" variant="ghost" arrow class="about-link">Mi historia</Button>
-        </div>
+  <!-- ═══ 3. FILOSOFÍA ═══ -->
+  <section class="k-section h-filo">
+    <div class="k-wrap h-filo-grid">
+      <div class="h-filo-copy" data-reveal>
+        <span class="k-eyebrow">Filosofía {brand.method}</span>
+        <h2 class="k-h2">Sentirte mejor es solo una parte del proceso</h2>
+        <p class="k-lead">
+          {brand.method} combina tratamiento y movimiento: aliviar lo que hoy te limita y, al mismo tiempo, darle a tu cuerpo la capacidad de sostener ese cambio.
+        </p>
       </div>
+      <blockquote class="h-filo-quote k-on-green" data-reveal>
+        <p>“El objetivo no es que dependas del tratamiento. <em>Es que cada vez dependas menos de él.</em>”</p>
+      </blockquote>
     </div>
   </section>
 
-  <!-- ═══ SERVICIOS ═══ -->
-  <section id="services">
-    <div class="wrap">
-      <div class="sec-header centered" data-reveal="up">
-        <span class="eyebrow">Lo que ofrezco</span>
-        <h2>Servicios</h2>
-        <div class="divider"></div>
+  <!-- ═══ 4. MÉTODO ═══ -->
+  <section class="k-section h-metodo k-on-green" id="metodo">
+    <div class="k-wrap">
+      <div class="k-head" data-reveal>
+        <span class="k-eyebrow">El método</span>
+        <h2 class="k-h2">Método {brand.method}</h2>
       </div>
-      <div class="services-grid" data-stagger>
 
-        <div class="svc-card">
-          <div class="svc-num">01</div>
-          <h3>{services.masaje.name}</h3>
-          <p>Para el dolor que vuelve siempre al mismo lugar. Trabajo la contractura desde la raíz y te doy herramientas para que no regrese.</p>
-          <BookingLink href={services.masaje.booking} variant="ghost" arrow>Reservar</BookingLink>
-        </div>
+      <ol class="h-steps" data-stagger>
+        {metodo.map((step, i) => (
+          <li class="h-step" style={`--step: ${i + 1}`}>
+            <span class="h-step-n" aria-hidden="true">{step.n}</span>
+            <span class="h-step-bar" aria-hidden="true"><span></span></span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
 
-        <div class="svc-card">
-          <div class="svc-num">02</div>
-          <h3>{services.kine4life.name}</h3>
-          <p>3 meses — Evaluación, tratamiento y entrenamiento funcional en un proceso continuo. Para pasar del dolor a un cuerpo funcional e independiente.</p>
-          <Button href="/contacto" variant="ghost" arrow>Consultar</Button>
-        </div>
-
-        <div class="svc-card">
-          <div class="svc-num">03</div>
-          <h3>{services.cuerpoActivo.name}</h3>
-          <p>Programa de movimiento y fuerza funcional para adultos mayores. Dos sesiones semanales para mejorar la autonomía, el equilibrio y la calidad de vida.</p>
-          <Button href={services.cuerpoActivo.href} variant="ghost" arrow>Consultar</Button>
-        </div>
-
-      </div>
+      <p class="h-metodo-note" data-reveal>
+        No todas las personas recorren el proceso de la misma manera. El plan se adapta a tu situación, evolución y objetivos.
+      </p>
     </div>
   </section>
 
-  <!-- ═══ FRASE CENTRAL ═══ -->
-  <section class="frase-central">
-    <div class="wrap">
-      <div data-reveal="up">
-        <div class="gold-rule"></div>
-        <blockquote>
-          "El dolor crónico no es tu destino. Es una señal de que algo necesita atención — y tiene solución."
-        </blockquote>
-        <p class="frase-autor">{brand.name}</p>
-        <div class="gold-rule is-bottom"></div>
+  <!-- ═══ 5. CÓMO PODEMOS EMPEZAR ═══ -->
+  <section class="k-section h-empezar" id="empezar">
+    <div class="k-wrap">
+      <div class="k-head" data-reveal>
+        <span class="k-eyebrow">Primer paso</span>
+        <h2 class="k-h2">Cómo podemos empezar</h2>
+      </div>
+
+      <div class="h-options" data-stagger>
+        <article class="h-option">
+          <span class="h-icon"><Icon name="clipboard" /></span>
+          <h3>Evaluación inicial</h3>
+          <p>Para entender qué te está pasando y definir el mejor próximo paso.</p>
+          <a href={ctaV2.evaluacion} target="_blank" rel="noopener" class="k-btn k-btn--green">Quiero una evaluación <Icon name="arrow-right" /></a>
+        </article>
+
+        <article class="h-option">
+          <span class="h-icon"><Icon name="hand" /></span>
+          <h3>Masaje terapéutico</h3>
+          <p>Para aliviar tensión, rigidez o sobrecarga.</p>
+          <a href={ctaV2.masaje} target="_blank" rel="noopener" class="k-btn k-btn--line">Quiero un masaje <Icon name="arrow-right" /></a>
+        </article>
+
+        <article class="h-option is-featured k-on-green">
+          <span class="h-icon"><Icon name="trending-up" /></span>
+          <h3>Proceso {brand.method}</h3>
+          <p>Tratamiento + ejercicio + progresión según tu situación y objetivos.</p>
+          <a href={ctaV2.proceso} class="k-btn k-btn--cream">Conocer el proceso <Icon name="arrow-right" /></a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Blog teaser quitado temporalmente hasta que haya artículos reales -->
+  <!-- ═══ 6. CONTAME QUÉ TE PASA ═══ -->
+  <section class="k-section h-contame" id="contame">
+    <div class="k-wrap h-contame-grid">
+      <div class="h-contame-copy" data-reveal>
+        <span class="k-eyebrow">Contame qué te pasa</span>
+        <h2 class="k-h2">¿No sabés por dónde empezar?</h2>
+        <p class="h-contame-sub">Contame qué te está pasando.</p>
+        <p class="k-lead">
+          No necesitás saber qué tratamiento necesitás ni tener un diagnóstico para escribirme. Contame brevemente qué sentís, desde cuándo y qué cosas te está dificultando hacer.
+        </p>
+      </div>
+      <div class="h-contame-form" data-reveal>
+        <ConsultaForm />
+      </div>
+    </div>
+  </section>
 
-  <!-- ═══ CTA FINAL ═══ -->
-  <CtaSection id="cta" eyebrow="Empezá hoy" subtitle="Reservá una sesión y empezamos a trabajar desde la causa.">
-    <Fragment slot="title">¿Cansado de sentir <em>siempre el mismo</em> dolor?</Fragment>
-    <BookingLink variant="gold">Reservar mi turno</BookingLink>
-    <WhatsAppLink variant="outline">Escribirme por WhatsApp</WhatsAppLink>
-  </CtaSection>
-</BaseLayout>
+  <!-- ═══ 7. CTA FINAL ═══ -->
+  <section class="h-final k-on-green">
+    <div class="k-wrap h-final-inner" data-reveal>
+      <h2 class="k-display h-final-title">Tu cuerpo puede volver a hacer <mark>más</mark></h2>
+      <p class="h-final-sub">Empezá por entender dónde estás hoy.</p>
+      <div class="h-final-actions">
+        <a href={ctaV2.evaluacion} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero una evaluación <Icon name="arrow-right" /></a>
+        <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--line-light"><Icon name="message" /> Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</V2Layout>
