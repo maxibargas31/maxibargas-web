@@ -1,137 +1,88 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/ui/PageHero.astro';
-import { availableDaysText, brand, contact, services, whatsappLink } from '../config/site';
-import '../styles/pages/contacto.css';
-// TODO(SEO): escribir description específica para Contacto.
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import ConsultaForm from '../components/v2/ConsultaForm.astro';
+import { brand, contact, ctaV2, services } from '../config/site';
+import '../styles/pages/contacto-v2.css';
+// TODO(SEO): revisar título y description definitivos de Contacto.
 ---
-<BaseLayout title="Contacto — Maxi Bargas">
-  <PageHero eyebrow="Hablemos">Contacto</PageHero>
-
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="wrap">
-      <div class="contacto-grid">
-
-        <!-- INFO -->
-        <div data-reveal="left">
-          <h2>¿Tenés dudas antes de reservar?</h2>
-          <p class="contacto-intro">Escribime por WhatsApp o completá el formulario y te respondo a la brevedad. Si no sabés bien por qué servicio empezar, contame brevemente qué te pasa — te oriento sin compromiso.</p>
-
-          <div class="info-items">
-            <div class="info-item">
-              <div class="info-icon" aria-hidden="true">📱</div>
-              <div class="info-text">
-                <h4>WhatsApp</h4>
-                <a href={whatsappLink()} target="_blank" rel="noopener">{contact.whatsapp.display}</a>
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon" aria-hidden="true">📧</div>
-              <div class="info-text">
-                <h4>Email</h4>
-                <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon" aria-hidden="true">📍</div>
-              <div class="info-text">
-                <h4>Ubicación</h4>
-                <p>{brand.city} · {brand.country}</p>
-              </div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon" aria-hidden="true">📅</div>
-              <div class="info-text">
-                <h4>Disponibilidad</h4>
-                <p>{availableDaysText()}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FORM: no envía datos a ningún servidor; arma un mensaje y abre WhatsApp -->
-        <div data-reveal="right">
-          <div class="contacto-form-wrap">
-            <div class="form-header">
-              <h3>Enviame un mensaje</h3>
-              <p>Te respondo a la brevedad.</p>
-            </div>
-            <form id="form-contacto">
-              <div class="form-double">
-                <div class="form-group">
-                  <label class="form-label" for="nombre">Nombre</label>
-                  <input class="form-input" type="text" id="nombre" placeholder="Tu nombre" autocomplete="name" required />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="email">Email (opcional)</label>
-                  <input class="form-input" type="email" id="email" placeholder="tu@correo.com" autocomplete="email" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="motivo">Motivo de contacto</label>
-                <div class="form-select-wrap">
-                  <select class="form-select" id="motivo" required>
-                    <option value="" disabled selected>Seleccioná una opción</option>
-                    <option value={services.masaje.name}>{services.masaje.name}</option>
-                    <option value={services.kine4life.name}>{services.kine4life.name} ({services.kine4life.duration})</option>
-                    <option value={services.cuerpoActivo.name}>{services.cuerpoActivo.name} (adultos mayores)</option>
-                    <option value="Consulta general">Consulta general</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="mensaje">Mensaje</label>
-                <textarea class="form-textarea" id="mensaje" rows="5" placeholder="Contame tu consulta..." required></textarea>
-              </div>
-              <button type="submit" class="btn-submit">Enviar por WhatsApp</button>
-            </form>
-          </div>
-        </div>
-
+<V2Layout
+  title={`Contacto — ${brand.name} · ${brand.method}`}
+  description="Si tenés dolor, una limitación o no sabés por dónde empezar, escribime y vemos juntos cuál puede ser el mejor próximo paso."
+>
+  <!-- ═══ 1. HERO ═══ -->
+  <section class="c-hero">
+    <div class="k-wrap c-hero-inner">
+      <span class="k-eyebrow" data-reveal>Contacto</span>
+      <h1 class="k-display c-hero-title" data-reveal>Contame qué te está pasando.</h1>
+      <div class="c-hero-text" data-reveal>
+        <p>Si tenés dolor, una limitación o simplemente no sabés por dónde empezar, escribime.</p>
+        <p>Podemos ver juntos cuál puede ser el mejor próximo paso.</p>
       </div>
     </div>
   </section>
 
-  <!-- EXTRA INFO -->
-  <section id="extra">
-    <div class="wrap">
-      <div class="extra-grid" data-stagger>
-        <div class="extra-item">
-          <span class="extra-icon" aria-hidden="true">🤲</span>
-          <h3>{services.masaje.name}</h3>
-          <p>Sesión de {services.masaje.duration} para el dolor que vuelve siempre. Reservá directo en el calendario.</p>
-        </div>
-        <div class="extra-item">
-          <span class="extra-icon" aria-hidden="true">📈</span>
-          <h3>{services.kine4life.name}</h3>
-          <p>Proceso de {services.kine4life.duration} para pasar del dolor a un cuerpo funcional. Escribime para coordinar.</p>
-        </div>
-        <div class="extra-item">
-          <span class="extra-icon" aria-hidden="true">🏃</span>
-          <h3>{services.cuerpoActivo.name}</h3>
-          <p>Movimiento y fuerza funcional para adultos mayores. Completá la evaluación inicial para empezar.</p>
-        </div>
+  <!-- ═══ 2. FORMAS DE CONTACTO ═══ -->
+  <section class="c-ways">
+    <div class="k-wrap">
+      <h2 class="sr-only">Formas de contacto</h2>
+      <ul class="c-ways-grid" data-stagger>
+        <li class="c-way is-featured k-on-green">
+          <span class="c-way-icon"><Icon name="message" /></span>
+          <h3>WhatsApp</h3>
+          <p>Para consultas rápidas o coordinar.</p>
+          <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--cream">Hablar con Maxi <Icon name="arrow-right" /></a>
+        </li>
+        <li class="c-way">
+          <span class="c-way-icon"><Icon name="mail" /></span>
+          <h3>Email</h3>
+          <a href={`mailto:${contact.email}`} class="c-way-email">{contact.email}</a>
+        </li>
+        <li class="c-way">
+          <span class="c-way-icon"><Icon name="hand" /></span>
+          <h3>Reservar masaje</h3>
+          <p>{services.masaje.name} · {services.masaje.duration}</p>
+          <a href={services.masaje.booking} target="_blank" rel="noopener" class="k-btn k-btn--line">Reservar <Icon name="arrow-right" /></a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 3. CONTAME QUÉ TE PASA ═══ -->
+  <section class="k-section c-form" id="contame">
+    <div class="k-wrap c-form-grid">
+      <div class="c-form-copy" data-reveal>
+        <span class="k-eyebrow">Formulario</span>
+        <h2 class="k-h2">Contame qué te pasa</h2>
+        <p class="k-lead">
+          No necesitás saber qué tratamiento necesitás ni tener un diagnóstico para escribirme. Contame brevemente qué sentís, desde cuándo y qué cosas te está dificultando hacer.
+        </p>
+      </div>
+      <div data-reveal>
+        <ConsultaForm />
       </div>
     </div>
   </section>
-</BaseLayout>
 
-<script>
-  import { whatsappLink } from '../config/site';
+  <!-- ═══ 4. UBICACIÓN ═══ -->
+  <section class="c-place">
+    <div class="k-wrap c-place-inner" data-reveal>
+      <span class="c-place-icon"><Icon name="map-pin" /></span>
+      <div>
+        <h2 class="c-place-label">Ubicación</h2>
+        <p class="c-place-city">{brand.city}, {brand.country}</p>
+      </div>
+    </div>
+  </section>
 
-  const form = document.getElementById('form-contacto') as HTMLFormElement | null;
-  const val = (id: string) => (document.getElementById(id) as HTMLInputElement | null)?.value.trim() ?? '';
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = val('email');
-    const texto =
-      `Hola Maxi! Te escribo desde el sitio web 🌿\n\n` +
-      `👤 Nombre: ${val('nombre')}\n` +
-      (email ? `📧 Email: ${email}\n` : '') +
-      `📌 Motivo: ${val('motivo')}\n` +
-      `\n💬 Mensaje:\n${val('mensaje')}`;
-    window.open(whatsappLink(texto), '_blank', 'noopener');
-  });
-</script>
+  <!-- ═══ 5. CTA FINAL ═══ -->
+  <section class="c-final k-on-green">
+    <div class="k-wrap c-final-inner" data-reveal>
+      <h2 class="k-display c-final-title">Si no sabés por dónde empezar, escribime.</h2>
+      <div class="c-final-actions">
+        <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--cream"><Icon name="message" /> Hablar por WhatsApp</a>
+        <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--line-light">Quiero una evaluación <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+</V2Layout>

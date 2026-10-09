@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════════════
+   CONTACTO V2 — KINE4LIFE
+   ═══════════════════════════════════════════════════════ */
+
+/* ═══ 1. HERO ═══ */
+.c-hero {
+  background: var(--k-ivory);
+  padding: calc(var(--k-nav-h) + clamp(2.5rem, 6vw, 5rem)) 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+.c-hero-inner { display: grid; justify-items: start; gap: 1.5rem; }
+.c-hero-title {
+  font-size: clamp(2.5rem, 6.4vw, 5.4rem);
+  color: var(--k-charcoal);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.c-hero-text { display: grid; gap: 0.5rem; max-width: 38rem; font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--k-muted); }
+.c-hero-text p:first-child { color: var(--k-charcoal); font-weight: 600; }
+
+/* ═══ 2. FORMAS DE CONTACTO ═══ */
+.c-ways { background: var(--k-ivory); padding-bottom: clamp(4rem, 8vw, 6.5rem); }
+.c-ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.c-way {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem;
+  padding: clamp(1.6rem, 3vw, 2.1rem);
+  border-radius: var(--k-r-lg);
+  background: var(--k-white);
+  border: 1px solid var(--k-line);
+  box-shadow: var(--k-shadow);
+}
+.c-way-icon {
+  display: inline-grid; place-items: center;
+  width: 3rem; height: 3rem;
+  border-radius: 999px;
+  background: var(--k-green-tint);
+  color: var(--k-green);
+  margin-bottom: 0.5rem;
+}
+.c-way-icon svg { width: 1.4rem; height: 1.4rem; }
+.c-way h3 {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--k-charcoal);
+}
+.c-way p { color: var(--k-muted); flex: 1; }
+.c-way .k-btn { margin-top: 0.75rem; }
+.c-way-email {
+  flex: 1;
+  font-family: var(--k-f-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--k-green);
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+.c-way-email:hover { color: var(--k-green-deep); }
+
+.c-way.is-featured { background: var(--k-green); border-color: var(--k-green); }
+.c-way.is-featured .c-way-icon { background: rgba(247, 244, 237, 0.12); color: var(--k-cream); }
+.c-way.is-featured h3 { color: var(--k-on-green); }
+.c-way.is-featured p { color: var(--k-on-green-dim); }
+
+/* ═══ 3. FORMULARIO ═══ */
+.c-form { background: var(--k-cream); }
+.c-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+.c-form-copy {
+  display: grid; gap: 1.25rem;
+  position: sticky; top: calc(var(--k-nav-h) + 2rem);
+}
+
+/* ═══ 4. UBICACIÓN ═══ */
+.c-place { background: var(--k-white); padding: clamp(3rem, 6vw, 4.5rem) 0; }
+.c-place-inner { display: flex; align-items: center; gap: 1.25rem; }
+.c-place-icon {
+  display: inline-grid; place-items: center;
+  width: 3.5rem; height: 3.5rem;
+  border-radius: 999px;
+  background: var(--k-green);
+  color: var(--k-cream);
+  flex-shrink: 0;
+}
+.c-place-icon svg { width: 1.6rem; height: 1.6rem; }
+.c-place-label {
+  font-family: var(--k-f-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--k-green-soft);
+}
+.c-place-city {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--k-charcoal);
+}
+
+/* ═══ 5. CTA FINAL ═══ */
+.c-final {
+  position: relative;
+  background: var(--k-green);
+  padding: clamp(5rem, 11vw, 8.5rem) 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.c-final::before {
+  content: '';
+  position: absolute; z-index: -1;
+  left: 50%; top: 50%;
+  width: min(110vw, 1100px); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 54px, rgba(247, 244, 237, 0.05) 54px 55px);
+  pointer-events: none;
+}
+.c-final-inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }
+.c-final-title { font-size: clamp(2.2rem, 5.6vw, 4.5rem); max-width: 20ch; text-wrap: balance; }
+.c-final-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 960px) {
+  .c-ways-grid { grid-template-columns: 1fr; max-width: 36rem; }
+  .c-form-grid { grid-template-columns: 1fr; }
+  .c-form-copy { position: static; }
+}
+@media (max-width: 600px) {
+  .c-way .k-btn,
+  .c-final-actions .k-btn { width: 100%; }
+  .c-way .k-btn { align-self: stretch; }
+}

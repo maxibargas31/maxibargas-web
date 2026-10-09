@@ -310,92 +310,6 @@
   line-height: 1.2;
 }
 
-/* Formulario */
-.k-form {
-  background: var(--k-white);
-  border-radius: var(--k-r-lg);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
-  box-shadow: var(--k-shadow);
-  display: grid; gap: 1.15rem;
-}
-.k-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.k-field { display: grid; gap: 0.45rem; border: 0; min-width: 0; }
-.k-field label,
-.k-field legend {
-  font-weight: 600;
-  font-size: 0.92rem;
-  color: var(--k-charcoal);
-}
-.k-opt { font-weight: 400; color: var(--k-muted); }
-
-.k-field input,
-.k-field textarea {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 1rem;
-  background: var(--k-ivory);
-  border: 1.5px solid transparent;
-  border-radius: var(--k-r-sm);
-  transition: border-color 0.2s, background 0.2s;
-}
-.k-field textarea { resize: vertical; min-height: 3.2rem; line-height: 1.5; }
-.k-field input::placeholder,
-.k-field textarea::placeholder { color: #8a8f88; }
-.k-field input:hover,
-.k-field textarea:hover { border-color: var(--k-line); }
-.k-field input:focus,
-.k-field textarea:focus { outline: none; border-color: var(--k-green-soft); background: var(--k-white); }
-
-.k-choice legend { margin-bottom: 0.45rem; }
-.k-choice-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.k-pill { position: relative; cursor: pointer; }
-.k-pill input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.k-pill span {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1.1rem;
-  border-radius: 999px;
-  border: 1.5px solid var(--k-line);
-  font-weight: 600; font-size: 0.95rem;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-.k-pill span svg { width: 1.05rem; height: 1.05rem; }
-.k-pill:hover span { border-color: var(--k-green-soft); }
-.k-pill input:checked + span { background: var(--k-green); border-color: var(--k-green); color: var(--k-on-green); }
-.k-pill input:focus-visible + span { outline: 2.5px solid var(--k-green-soft); outline-offset: 3px; }
-
-.k-checks { display: grid; gap: 0.75rem; margin-top: 0.25rem; }
-.k-check {
-  display: grid; grid-template-columns: auto 1fr; gap: 0.75rem;
-  align-items: start;
-  font-size: 0.9rem; line-height: 1.5;
-  color: var(--k-ink);
-  cursor: pointer;
-}
-.k-check input {
-  width: 1.15rem; height: 1.15rem;
-  margin-top: 0.15rem;
-  accent-color: var(--k-green);
-  cursor: pointer;
-}
-
-.k-form-submit { width: 100%; margin-top: 0.5rem; }
-
-.k-form-note {
-  display: flex; gap: 0.5rem; align-items: flex-start;
-  font-size: 0.8rem; line-height: 1.45;
-  color: var(--k-muted);
-}
-.k-form-note svg { flex-shrink: 0; margin-top: 0.1rem; }
-
-.k-form-status {
-  padding: 0.9rem 1rem;
-  border-radius: var(--k-r-sm);
-  background: var(--k-green-tint);
-  color: var(--k-green-deep);
-  font-size: 0.9rem;
-}
-.k-form-status a { font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
-
 /* ═══ 7. CTA FINAL ═══ */
 .h-final {
   position: relative;
@@ -439,6 +353,5 @@
   .h-ident-grid { grid-template-columns: 1fr; gap: 0.7rem; }
   .h-ident-card { padding: 1.1rem 1.2rem; }
   .h-steps { grid-template-columns: 1fr; row-gap: 2.25rem; }
-  .k-form-row { grid-template-columns: 1fr; }
   .h-option .k-btn { align-self: stretch; }
 }
