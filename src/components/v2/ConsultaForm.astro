@@ -1,55 +1,73 @@
 ---
 /*
-  Formulario "Contame qué te pasa" — SOLO VISUAL (Deploy Preview).
-  No tiene action, no hace requests y no guarda nada: al enviar solo muestra un aviso.
-  Conectarlo recién cuando estén definidos privacidad y almacenamiento.
+  Formulario "Contame qué te pasa" — Netlify Forms (consulta-kine4life).
+  Lo usan la Home y Contacto. Se envía por fetch a "/" (sin recargar la página);
+  Netlify detecta el formulario en el HTML generado durante el deploy.
+  No conecta newsletter, CRM ni emails automáticos al paciente.
 */
 import Icon from './Icon.astro';
 import { brand, ctaV2 } from '../../config/site';
 import '../../styles/v2/form.css';
+
+const FORM_NAME = 'consulta-kine4life';
+const SUBJECT = '[K4L Consulta] Nueva consulta desde la web';
 ---
-<form class="k-form" id="form-consulta" data-preview-only>
+<form
+  class="k-form"
+  id="form-consulta"
+  name={FORM_NAME}
+  method="POST"
+  action="/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
+  <input type="hidden" name="form-name" value={FORM_NAME} />
+  <input type="hidden" name="subject" value={SUBJECT} />
+  <p class="k-hp" aria-hidden="true">
+    <label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+  </p>
+
   <div class="k-form-row">
     <div class="k-field">
       <label for="c-nombre">Nombre</label>
-      <input id="c-nombre" type="text" autocomplete="name" required />
+      <input id="c-nombre" name="nombre" type="text" autocomplete="name" required />
     </div>
     <div class="k-field">
       <label for="c-email">Email</label>
-      <input id="c-email" type="email" autocomplete="email" required />
+      <input id="c-email" name="email" type="email" autocomplete="email" required />
     </div>
   </div>
 
   <div class="k-field">
     <label for="c-whatsapp">WhatsApp <span class="k-opt">(opcional)</span></label>
-    <input id="c-whatsapp" type="tel" autocomplete="tel" inputmode="tel" />
+    <input id="c-whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" />
   </div>
 
   <div class="k-field">
     <label for="c-pasa">¿Qué te está pasando?</label>
-    <textarea id="c-pasa" rows="4" required placeholder="Contame brevemente qué sentís, desde cuándo y cuándo aparece la molestia."></textarea>
+    <textarea id="c-pasa" name="consulta" rows="4" required placeholder="Contame brevemente qué sentís, desde cuándo y cuándo aparece la molestia."></textarea>
   </div>
 
   <div class="k-field">
     <label for="c-objetivo">¿Qué te gustaría poder volver a hacer? <span class="k-opt">(opcional)</span></label>
-    <textarea id="c-objetivo" rows="2" placeholder="Entrenar, trabajar sin molestias, correr, jugar al fútbol, moverte con más confianza…"></textarea>
+    <textarea id="c-objetivo" name="objetivo" rows="2" placeholder="Entrenar, trabajar sin molestias, correr, jugar al fútbol, moverte con más confianza…"></textarea>
   </div>
 
   <fieldset class="k-field k-choice">
     <legend>¿Cómo preferís que te contacte?</legend>
     <div class="k-choice-options">
-      <label class="k-pill"><input type="radio" name="c-preferencia" value="email" required /><span><Icon name="mail" /> Email</span></label>
-      <label class="k-pill"><input type="radio" name="c-preferencia" value="whatsapp" /><span><Icon name="message" /> WhatsApp</span></label>
+      <label class="k-pill"><input type="radio" name="preferencia_contacto" value="email" required /><span><Icon name="mail" /> Email</span></label>
+      <label class="k-pill"><input type="radio" name="preferencia_contacto" value="whatsapp" /><span><Icon name="message" /> WhatsApp</span></label>
     </div>
   </fieldset>
 
   <div class="k-checks">
     <label class="k-check">
-      <input type="checkbox" required />
+      <input type="checkbox" name="consentimiento_consulta" value="si" required />
       <span>Acepto que {brand.name} utilice la información que proporciono para responder mi consulta y contactarme en relación con ella.</span>
     </label>
     <label class="k-check">
-      <input type="checkbox" />
+      <input type="checkbox" name="consentimiento_contenidos" value="si" />
       <span>También quiero recibir ocasionalmente contenidos de {brand.method} sobre movimiento, salud y entrenamiento.</span>
     </label>
   </div>
@@ -58,21 +76,48 @@ import '../../styles/v2/form.css';
 
   <p class="k-form-note"><Icon name="info" size={16} /> Este formulario no sustituye una evaluación profesional ni está destinado a urgencias médicas.</p>
 
-  <p class="k-form-status" id="form-consulta-status" role="status" hidden>
-    Vista previa: este formulario todavía no está conectado y no envió ni guardó ningún dato.
-    Mientras tanto podés <a href={ctaV2.whatsapp} target="_blank" rel="noopener">escribirme por WhatsApp</a>.
+  <p class="k-form-status is-ok" data-status="ok" role="status" tabindex="-1" hidden>
+    Gracias. Recibí tu consulta y voy a responderte lo antes posible.
+  </p>
+  <p class="k-form-status is-error" data-status="error" role="alert" hidden>
+    No se pudo enviar la consulta. Probá de nuevo en unos minutos o <a href={ctaV2.whatsapp} target="_blank" rel="noopener">escribime por WhatsApp</a>.
   </p>
 </form>
 
 <script>
-  // Solo visual: evita cualquier envío y muestra un aviso.
+  // Envío a Netlify Forms sin salir de la página.
   const form = document.getElementById('form-consulta') as HTMLFormElement | null;
-  const status = document.getElementById('form-consulta-status');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (status) {
-      status.hidden = false;
-      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  });
+
+  if (form) {
+    const ok = form.querySelector<HTMLElement>('[data-status="ok"]');
+    const error = form.querySelector<HTMLElement>('[data-status="error"]');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (ok) ok.hidden = true;
+      if (error) error.hidden = true;
+      if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
+
+      try {
+        const data = new FormData(form);
+        const body = new URLSearchParams();
+        data.forEach((value, key) => body.append(key, String(value)));
+
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString(),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        form.reset();
+        if (ok) { ok.hidden = false; ok.focus({ preventScroll: true }); ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+      } catch {
+        if (error) { error.hidden = false; error.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+      } finally {
+        if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
+      }
+    });
+  }
 </script>

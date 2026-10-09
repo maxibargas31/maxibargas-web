@@ -90,3 +90,12 @@
 @media (max-width: 600px) {
   .k-form-row { grid-template-columns: 1fr; }
 }
+
+/* Estados del envío */
+.k-form-status.is-ok { background: var(--k-green); color: var(--k-on-green); font-weight: 600; }
+.k-form-status.is-error { background: #f6e3df; color: #7a2a1d; }
+.k-form-status:focus { outline: none; }
+.k-form-submit[disabled] { opacity: 0.6; cursor: progress; }
+
+/* Honeypot antispam: oculto para personas */
+.k-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
