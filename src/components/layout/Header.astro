@@ -1,0 +1,20 @@
+---
+import { brand, nav } from '../../config/site';
+
+const current = Astro.url.pathname.replace(/\.html$/, '');
+---
+<nav id="navbar" aria-label="Principal">
+  <a href="/" class="nav-logo">{brand.name}</a>
+  <ul class="nav-links">
+    {nav.map((item) => (
+      <li>
+        <a href={item.href} class:list={{ active: current === item.href }} aria-current={current === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mob-nav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>

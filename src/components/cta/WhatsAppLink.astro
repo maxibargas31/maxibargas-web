@@ -1,0 +1,13 @@
+---
+import Button from '../ui/Button.astro';
+import { whatsappLink } from '../../config/site';
+
+interface Props {
+  message?: string;
+  variant?: 'gold' | 'outline' | 'ghost';
+  arrow?: boolean;
+  class?: string;
+}
+const { message, ...rest } = Astro.props;
+---
+<Button href={whatsappLink(message)} external {...rest}><slot /></Button>

@@ -1,0 +1,77 @@
+---
+/*
+  /training — exploración de la futura comunidad (primera versión visual).
+  Fuera del menú, noindex y fuera del sitemap. Sin formulario, newsletter ni pagos.
+*/
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import { brand, ctaV2 } from '../config/site';
+import '../styles/pages/training.css';
+
+const pilares = [
+  { n: '01', icon: 'dumbbell', title: 'Entrenamiento', text: 'Fuerza, CrossFit, conditioning, movilidad y capacidad física.' },
+  { n: '02', icon: 'book', title: 'Aprender', text: 'Contenido práctico para entender cómo y por qué entrenamos.' },
+  { n: '03', icon: 'trending-up', title: 'Progresar', text: 'Planificación, hábitos, seguimiento y objetivos.' },
+  { n: '04', icon: 'users', title: 'Comunidad', text: 'Personas entrenando, aprendiendo y progresando juntas.' },
+] as const;
+---
+<V2Layout
+  title={`Training — ${brand.name}`}
+  description="Entrenamiento, educación y comunidad para personas que quieren construir un cuerpo más fuerte, capaz y preparado."
+  noindex
+  brandVariant="training"
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="t-hero">
+    <div class="k-wrap t-hero-inner">
+      <p class="t-kicker" data-reveal>
+        <span class="t-kicker-main">Training</span>
+        <span>by {brand.name}</span>
+      </p>
+
+      <h1 class="k-display t-title" data-reveal>
+        <span>Entrená mejor.</span>
+        <span>Entendé lo que hacés.</span>
+        <span class="is-accent">Progresá con criterio.</span>
+      </h1>
+
+      <div class="t-hero-foot" data-reveal>
+        <p class="t-hero-text">
+          Entrenamiento, educación y comunidad para personas que quieren construir un cuerpo más fuerte, capaz y preparado.
+        </p>
+        <a href="#comunidad" class="k-btn k-btn--cream">Quiero ser parte <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+    <span class="t-watermark" aria-hidden="true">Training</span>
+  </section>
+
+  <!-- ═══ PILARES ═══ -->
+  <section class="k-section t-pilares">
+    <div class="k-wrap">
+      <h2 class="sr-only">Qué es Training</h2>
+      <ol class="t-grid" data-stagger>
+        {pilares.map((p) => (
+          <li class="t-card">
+            <div class="t-card-top">
+              <span class="t-card-n" aria-hidden="true">{p.n}</span>
+              <span class="t-card-icon"><Icon name={p.icon} /></span>
+            </div>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ ESTO RECIÉN EMPIEZA ═══ -->
+  <section class="t-start k-on-green" id="comunidad">
+    <div class="k-wrap t-start-inner" data-reveal>
+      <h2 class="k-display t-start-title">Esto recién empieza.</h2>
+      <p class="t-start-text">
+        Estoy construyendo una comunidad para personas que quieren tomarse su entrenamiento en serio sin necesidad de ser atletas profesionales.
+      </p>
+      <a href={ctaV2.training} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero ser parte <Icon name="arrow-right" /></a>
+    </div>
+  </section>
+</V2Layout>

@@ -1,0 +1,8 @@
+---
+import { brand, nav } from '../../config/site';
+---
+<div class="mob-nav" id="mob-nav">
+  <a href="/">Inicio</a>
+  {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+  <p class="mob-nav-foot">{brand.name} · {brand.city} · {brand.country}</p>
+</div>

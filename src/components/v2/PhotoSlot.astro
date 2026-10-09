@@ -1,0 +1,22 @@
+---
+/*
+  Espacio reservado para una fotografía real.
+  TODO(FOTO): reemplazar por <Picture> con la foto de Maxi cuando esté disponible.
+*/
+import Icon from './Icon.astro';
+
+interface Props {
+  label?: string;
+  class?: string;
+}
+
+const { label = 'Foto de Maxi', class: className } = Astro.props;
+---
+<div class:list={['k-photo', className]} role="img" aria-label={`Espacio reservado: ${label}`}>
+  <svg class="k-photo-arc" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="170" />
+    <path d="M200 30 A170 170 0 0 1 370 200" />
+  </svg>
+  <span class="k-photo-label"><Icon name="camera" size={20} /> {label}</span>
+  <slot />
+</div>

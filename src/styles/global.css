@@ -2,48 +2,12 @@
    MAXI BARGAS — DESIGN SYSTEM
    ═══════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Pacifico&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap');
-
 /* ── RESET ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 img, svg { display: block; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; outline: none; }
-
-/* ── TOKENS ── */
-:root {
-  --deep:        #020208;
-  --navy:        #04040e;
-  --mid:         #080818;
-  --panel:       #0b0b1e;
-  --card:        #0f0f26;
-  --card-b:      rgba(176,128,96,0.12);
-  --card-b-h:    rgba(176,128,96,0.3);
-
-  --gold:        #b08060;
-  --gold-l:      #c8986a;
-  --gold-dim:    rgba(176,128,96,0.45);
-  --gold-ghost:  rgba(176,128,96,0.07);
-
-  --cream:       #f0ebe0;
-  --cream-dim:   #b8b0a0;
-  --mist:        #5e5448;
-  --fog:         #2e2820;
-
-  --f-display:   'Cormorant Garamond', Georgia, serif;
-  --f-logo:      'Pacifico', cursive;
-  --f-body:      'Lato', sans-serif;
-
-  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
-  --ease2:       cubic-bezier(0.65, 0, 0.35, 1);
-
-  --nav-h:       5rem;
-  --max:         1080px;
-  --pad:         clamp(1.5rem, 5vw, 4rem);
-  --r:           10px;
-  --r-lg:        16px;
-}
 
 /* ── BASE ── */
 body {
@@ -273,19 +237,20 @@ footer {
 
 .divider { width: 36px; height: 1px; background: var(--gold); margin-top: 1.2rem; }
 
-/* ── SCROLL REVEAL SYSTEM ── */
-[data-reveal] {
+/* ── SCROLL REVEAL SYSTEM ──
+   Solo oculta contenido cuando JS está activo (clase .js en <html>).
+   :where() mantiene la misma especificidad que la V1. */
+:where(.js) [data-reveal] {
   opacity: 0;
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
 }
-[data-reveal="up"]    { transform: translateY(48px); }
-[data-reveal="left"]  { transform: translateX(-40px); }
-[data-reveal="right"] { transform: translateX(40px); }
-[data-reveal="fade"]  { transform: none; }
-[data-reveal="scale"] { transform: scale(0.94); }
-[data-reveal].is-visible { opacity: 1 !important; transform: none !important; }
+:where(.js) [data-reveal="up"]    { transform: translateY(48px); }
+:where(.js) [data-reveal="left"]  { transform: translateX(-40px); }
+:where(.js) [data-reveal="right"] { transform: translateX(40px); }
+:where(.js) [data-reveal="fade"]  { transform: none; }
+:where(.js) [data-reveal].is-visible { opacity: 1 !important; transform: none !important; }
 
-[data-stagger] > * {
+:where(.js) [data-stagger] > * {
   opacity: 0;
   transform: translateY(32px);
   transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
@@ -295,6 +260,7 @@ footer {
 [data-stagger].is-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.25s; }
 [data-stagger].is-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.35s; }
 [data-stagger].is-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.45s; }
+[data-stagger].is-visible > *:nth-child(n+6) { opacity:1; transform:none; transition-delay:0.45s; }
 
 /* ── FORM ELEMENTS ── */
 .form-group { margin-bottom: 1.5rem; }
@@ -440,3 +406,62 @@ footer {
 @media (max-width: 375px) {
   .nav-logo { font-size: 1.2rem; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   ACCESIBILIDAD
+   ═══════════════════════════════════════════════════════ */
+
+/* Foco visible solo para navegación con teclado */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold-l);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Saltar al contenido */
+.skip-link {
+  position: fixed;
+  top: 0.75rem; left: 0.75rem;
+  z-index: 10000;
+  padding: 0.7rem 1.2rem;
+  background: var(--gold); color: var(--deep);
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  border-radius: var(--r);
+  transform: translateY(-200%);
+  transition: transform 0.2s;
+}
+.skip-link:focus { transform: none; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* Movimiento reducido: sin animaciones, contenido siempre visible */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+  [data-reveal],
+  [data-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Ítem de texto (no link) en columnas del footer */
+.footer-col-text { font-size: 0.88rem; color: var(--mist); font-weight: 300; }
+
+/* Contenedor del componente CtaSection */
+.cta-wrap { position: relative; z-index: 1; }

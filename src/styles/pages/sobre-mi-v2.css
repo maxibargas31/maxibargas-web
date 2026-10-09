@@ -1,0 +1,275 @@
+/* ═══════════════════════════════════════════════════════
+   SOBRE MÍ V2 — KINE4LIFE
+   ═══════════════════════════════════════════════════════ */
+
+/* ═══ 1. HERO ═══ */
+.m-hero {
+  background: var(--k-ivory);
+  padding: calc(var(--k-nav-h) + clamp(2.5rem, 6vw, 5rem)) 0 clamp(4rem, 8vw, 6.5rem);
+}
+.m-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: center;
+}
+.m-hero-copy { display: grid; gap: 1.6rem; justify-items: start; }
+.m-hero-title {
+  display: grid;
+  gap: 0.15em;
+  font-size: clamp(2.3rem, 5.2vw, 4.5rem);
+  color: var(--k-charcoal);
+  text-wrap: balance;
+}
+.m-hero-title .is-green { color: var(--k-green); }
+.m-hero-title mark {
+  background: var(--k-green);
+  color: var(--k-on-green);
+  padding: 0 0.12em;
+  border-radius: 0.08em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.m-hero-text { display: grid; gap: 0.75rem; max-width: 36rem; font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--k-muted); }
+.m-hero-intro { color: var(--k-charcoal); font-weight: 600; font-size: clamp(1.15rem, 1.7vw, 1.3rem); }
+
+.m-hero-media { position: relative; }
+.m-hero-media .k-photo { box-shadow: var(--k-shadow); }
+.m-roles {
+  position: absolute;
+  left: -1.25rem; bottom: 1.5rem;
+  display: grid; gap: 0.45rem;
+  justify-items: start;
+}
+.m-roles li {
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: var(--k-green);
+  color: var(--k-on-green);
+  font-family: var(--k-f-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -14px rgba(18, 43, 32, 0.6);
+}
+
+/* ═══ 2. MI RECORRIDO ═══ */
+.m-story { background: var(--k-white); }
+.m-story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+.m-story-head { display: grid; gap: 1.1rem; position: sticky; top: calc(var(--k-nav-h) + 2rem); }
+.m-story-body {
+  display: grid; gap: 1rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+  color: var(--k-ink);
+  padding-top: 0.5rem;
+}
+.m-story-key {
+  margin-top: 0.75rem;
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.1;
+  color: var(--k-charcoal);
+}
+.m-story-close {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  color: var(--k-green);
+}
+
+/* Puente Tratamiento — Kine4Life — Entrenamiento */
+.m-bridge {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1rem 0 0.5rem;
+}
+.m-bridge-node {
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--k-line);
+  font-family: var(--k-f-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--k-muted);
+  white-space: nowrap;
+}
+.m-bridge-node.is-center {
+  background: var(--k-green);
+  border-color: var(--k-green);
+  color: var(--k-on-green);
+  font-weight: 900;
+  font-stretch: 112%;
+}
+.m-bridge-line {
+  height: 2px;
+  min-width: 1rem;
+  background: repeating-linear-gradient(90deg, var(--k-green-soft) 0 6px, transparent 6px 11px);
+}
+
+/* ═══ 3. CÓMO ENTIENDO MI TRABAJO ═══ */
+.m-work { background: var(--k-green-deep); }
+.m-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.m-work-card {
+  display: flex; flex-direction: column; gap: 0.8rem;
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  border-radius: var(--k-r-lg);
+  background: rgba(247, 244, 237, 0.06);
+  border: 1px solid var(--k-line-light);
+}
+.m-work-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 1.75rem; }
+.m-work-n {
+  font-family: var(--k-f-display);
+  font-weight: 900;
+  font-stretch: 78%;
+  font-size: 3.25rem;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--k-cream);
+}
+.m-work-icon {
+  display: inline-grid; place-items: center;
+  width: 2.9rem; height: 2.9rem;
+  border-radius: 999px;
+  background: var(--k-cream);
+  color: var(--k-green-deep);
+}
+.m-work-icon svg { width: 1.4rem; height: 1.4rem; }
+.m-work-card h3 {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--k-on-green);
+}
+.m-work-card p { color: var(--k-on-green-dim); }
+
+/* ═══ 4. FRASE ═══ */
+.m-quote {
+  background: var(--k-cream);
+  padding: clamp(4.5rem, 10vw, 8rem) 0;
+}
+.m-quote blockquote { max-width: 60rem; margin: 0 auto; text-align: center; }
+.m-quote p {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-stretch: 90%;
+  font-size: clamp(1.75rem, 4vw, 3.1rem);
+  line-height: 1.12;
+  color: var(--k-charcoal);
+  text-wrap: balance;
+}
+.m-quote em { font-style: normal; color: var(--k-green); }
+.m-quote footer {
+  margin-top: 1.75rem;
+  font-family: var(--k-f-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--k-muted);
+}
+
+/* ═══ 5. ¿POR QUÉ KINE4LIFE? ═══ */
+.m-why { background: var(--k-ivory); }
+.m-why-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+.m-why-copy { display: grid; gap: 1rem; font-size: clamp(1.05rem, 1.5vw, 1.18rem); color: var(--k-muted); }
+.m-why-copy .k-h2 { margin-bottom: 0.5rem; }
+.m-why-lead { color: var(--k-charcoal); font-weight: 600; }
+
+.m-lockup {
+  position: relative;
+  display: grid; gap: 1.1rem;
+  padding: clamp(2.25rem, 5vw, 3.5rem);
+  border-radius: var(--k-r-lg);
+  background: var(--k-green);
+  overflow: hidden;
+  isolation: isolate;
+}
+.m-lockup::before {
+  content: '';
+  position: absolute; z-index: -1;
+  right: -8rem; bottom: -8rem;
+  width: 22rem; aspect-ratio: 1;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 30px, rgba(247, 244, 237, 0.07) 30px 31px);
+}
+.m-lockup-name {
+  font-family: var(--k-f-display);
+  font-weight: 900;
+  font-stretch: 112%;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--k-on-green);
+}
+.m-lockup-rule { width: 3.5rem; height: 4px; border-radius: 999px; background: var(--k-cream); }
+.m-lockup-tag {
+  font-family: var(--k-f-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  color: var(--k-cream);
+}
+
+/* ═══ 6. CTA FINAL ═══ */
+.m-final {
+  position: relative;
+  background: var(--k-green);
+  padding: clamp(5rem, 11vw, 8.5rem) 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.m-final::before {
+  content: '';
+  position: absolute; z-index: -1;
+  left: 50%; top: 50%;
+  width: min(110vw, 1100px); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 54px, rgba(247, 244, 237, 0.05) 54px 55px);
+  pointer-events: none;
+}
+.m-final-inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }
+.m-final-title { font-size: clamp(2.3rem, 6vw, 4.75rem); max-width: 18ch; text-wrap: balance; }
+.m-final-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 960px) {
+  .m-hero-grid { grid-template-columns: 1fr; }
+  .m-hero-media { max-width: 26rem; }
+  .m-roles { left: auto; right: -0.75rem; }
+  .m-story-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .m-story-head { position: static; }
+  .m-work-grid { grid-template-columns: 1fr; max-width: 40rem; }
+  .m-why-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .m-hero-media { max-width: none; }
+  .m-hero-media .k-photo { aspect-ratio: 5 / 4; }
+  .m-roles { position: static; margin-top: 1rem; display: flex; flex-wrap: wrap; }
+  .m-bridge { grid-template-columns: 1fr; justify-items: start; gap: 0.4rem; }
+  .m-bridge-line { width: 2px; height: 1rem; min-width: 0; margin-left: 1.5rem; background: repeating-linear-gradient(180deg, var(--k-green-soft) 0 5px, transparent 5px 9px); }
+  .m-work-top { padding-bottom: 1rem; }
+  .m-final-actions .k-btn { width: 100%; }
+}

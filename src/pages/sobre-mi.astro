@@ -1,0 +1,129 @@
+---
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import PhotoSlot from '../components/v2/PhotoSlot.astro';
+import { brand, ctaV2 } from '../config/site';
+import '../styles/pages/sobre-mi-v2.css';
+// TODO(SEO): revisar título y description definitivos de Sobre mí.
+
+const roles = ['Kinesiólogo', 'Masajista terapéutico', 'Entrenador'];
+
+const enfoque = [
+  { n: '01', icon: 'search', title: 'Escuchar y evaluar', text: 'Entender a la persona antes de decidir qué hacer.' },
+  { n: '02', icon: 'hand', title: 'Tratar cuando es necesario', text: 'Utilizar terapia manual, masaje y otras herramientas cuando pueden ayudar.' },
+  { n: '03', icon: 'dumbbell', title: 'Construir capacidad', text: 'Usar movimiento, ejercicio y fuerza para recuperar autonomía.' },
+] as const;
+---
+<V2Layout
+  title={`Sobre mí — ${brand.name} · ${brand.method}`}
+  description="Soy Maxi Bargas, kinesiólogo, masajista terapéutico y entrenador. Integro esos tres mundos para que tu cuerpo pueda hacer más."
+>
+  <!-- ═══ 1. HERO ═══ -->
+  <section class="m-hero">
+    <div class="k-wrap m-hero-grid">
+      <div class="m-hero-copy">
+        <span class="k-eyebrow" data-reveal>Sobre mí</span>
+        <h1 class="k-display m-hero-title" data-reveal>
+          <span>No trabajo solo para que te duela menos.</span>
+          <span class="is-green">Quiero que tu cuerpo pueda hacer <mark>más</mark>.</span>
+        </h1>
+        <div class="m-hero-text" data-reveal>
+          <p class="m-hero-intro">Soy {brand.name}, kinesiólogo, masajista terapéutico y entrenador.</p>
+          <p>Mi forma de trabajar nace de integrar esos tres mundos: entender qué te está limitando, ayudarte a recuperar movimiento y acompañarte a construir un cuerpo más fuerte y capaz.</p>
+        </div>
+      </div>
+
+      <div class="m-hero-media" data-reveal>
+        <PhotoSlot />
+        <ul class="m-roles" aria-label="Perfil profesional">
+          {roles.map((r) => <li>{r}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. MI RECORRIDO ═══ -->
+  <section class="k-section m-story">
+    <div class="k-wrap m-story-grid">
+      <div class="m-story-head" data-reveal>
+        <span class="k-eyebrow">Mi recorrido</span>
+        <h2 class="k-h2">De tratar el dolor a construir capacidad</h2>
+      </div>
+
+      <div class="m-story-body" data-reveal>
+        <p>Durante años trabajé ligado al entrenamiento y la preparación física.</p>
+        <p>Con el tiempo entendí que muchas personas no necesitaban solamente tratamiento ni solamente entrenamiento.</p>
+        <p class="m-story-key">Necesitaban un puente entre ambos.</p>
+
+        <div class="m-bridge" aria-hidden="true">
+          <span class="m-bridge-node">Tratamiento</span>
+          <span class="m-bridge-line"></span>
+          <span class="m-bridge-node is-center">{brand.method}</span>
+          <span class="m-bridge-line"></span>
+          <span class="m-bridge-node">Entrenamiento</span>
+        </div>
+
+        <p class="m-story-close">De ahí nace {brand.method}.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. CÓMO ENTIENDO MI TRABAJO ═══ -->
+  <section class="k-section m-work k-on-green">
+    <div class="k-wrap">
+      <div class="k-head" data-reveal>
+        <span class="k-eyebrow">Mi enfoque</span>
+        <h2 class="k-h2">Cómo entiendo mi trabajo</h2>
+      </div>
+      <ol class="m-work-grid" data-stagger>
+        {enfoque.map((e) => (
+          <li class="m-work-card">
+            <div class="m-work-top">
+              <span class="m-work-n" aria-hidden="true">{e.n}</span>
+              <span class="m-work-icon"><Icon name={e.icon} /></span>
+            </div>
+            <h3>{e.title}</h3>
+            <p>{e.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═══ 4. FRASE DESTACADA ═══ -->
+  <section class="m-quote">
+    <div class="k-wrap" data-reveal>
+      <blockquote>
+        <p>“No quiero que dependas permanentemente de una camilla. <em>Quiero ayudarte a construir un cuerpo cada vez más capaz.</em>”</p>
+        <footer>— {brand.name}</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══ 5. ¿POR QUÉ KINE4LIFE? ═══ -->
+  <section class="k-section m-why">
+    <div class="k-wrap m-why-grid">
+      <div class="m-why-copy" data-reveal>
+        <h2 class="k-h2">¿Por qué {brand.method}?</h2>
+        <p class="m-why-lead">Porque el objetivo no es simplemente superar una molestia puntual.</p>
+        <p>Es poder seguir moviéndote, entrenando y haciendo las cosas que son importantes para vos durante toda la vida.</p>
+      </div>
+      <div class="m-lockup k-on-green" data-reveal>
+        <span class="m-lockup-name">KINE4LIFE</span>
+        <span class="m-lockup-rule" aria-hidden="true"></span>
+        <span class="m-lockup-tag">Movimiento para toda la vida.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. CTA FINAL ═══ -->
+  <section class="m-final k-on-green">
+    <div class="k-wrap m-final-inner" data-reveal>
+      <h2 class="k-display m-final-title">Contame qué te está pasando.</h2>
+      <div class="m-final-actions">
+        <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero una evaluación <Icon name="arrow-right" /></a>
+        <a href={ctaV2.contame} class="k-btn k-btn--line-light">Contame qué te pasa</a>
+      </div>
+    </div>
+  </section>
+</V2Layout>

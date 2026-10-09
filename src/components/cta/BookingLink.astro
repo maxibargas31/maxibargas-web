@@ -1,0 +1,14 @@
+---
+import Button from '../ui/Button.astro';
+import { booking } from '../../config/site';
+
+interface Props {
+  variant?: 'gold' | 'outline' | 'ghost';
+  arrow?: boolean;
+  class?: string;
+  /** Link de Calendly; por defecto, el masaje terapéutico */
+  href?: string;
+}
+const { href = booking.calendly.masaje, ...rest } = Astro.props;
+---
+<Button href={href} external {...rest}><slot /></Button>

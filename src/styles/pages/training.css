@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════════════════
+   TRAINING — primera versión visual
+   Misma identidad V2; el carbón toma protagonismo para
+   diferenciarlo del lado clínico de Kine4Life.
+   ═══════════════════════════════════════════════════════ */
+
+
+/* ═══ HERO ═══ */
+.t-hero {
+  position: relative;
+  background: var(--k-charcoal);
+  color: var(--k-ivory);
+  padding: calc(var(--k-nav-h) + clamp(3rem, 8vw, 6.5rem)) 0 clamp(6rem, 14vw, 11rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Cuadrícula sutil, tipo planilla de entrenamiento */
+.t-hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  background-image:
+    linear-gradient(rgba(247, 244, 237, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 244, 237, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, #000 30%, transparent 95%);
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 95%);
+  pointer-events: none;
+}
+
+.t-hero-inner { position: relative; }
+
+.t-kicker {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 0.45rem 1rem 0.45rem 0.45rem;
+  border: 1px solid rgba(247, 244, 237, 0.18);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: rgba(247, 244, 237, 0.72);
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+.t-kicker-main {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: var(--k-green);
+  color: var(--k-cream);
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.t-title {
+  display: grid;
+  font-size: clamp(2.6rem, 7.4vw, 6.5rem);
+  color: var(--k-ivory);
+}
+.t-title .is-accent { color: var(--k-cream); }
+.t-title .is-accent::after {
+  content: '';
+  display: block;
+  width: clamp(4rem, 12vw, 9rem);
+  height: 0.12em;
+  margin-top: 0.22em;
+  background: var(--k-green-soft);
+  border-radius: 999px;
+}
+
+.t-hero-foot {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 1.5rem 2.5rem;
+}
+.t-hero-text {
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: rgba(247, 244, 237, 0.74);
+}
+
+/* Palabra de fondo */
+.t-watermark {
+  position: absolute; z-index: -1;
+  left: 50%; bottom: -0.2em;
+  transform: translateX(-50%);
+  font-family: var(--k-f-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  font-size: clamp(7rem, 30vw, 26rem);
+  line-height: 0.8;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(247, 244, 237, 0.08);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ═══ PILARES ═══ */
+.t-pilares { background: var(--k-ivory); }
+.t-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.t-card {
+  display: flex; flex-direction: column; gap: 0.85rem;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+
+  background: var(--k-cream);
+  border-radius: var(--k-r-lg);
+  transition: transform 0.35s var(--k-ease), background 0.35s, color 0.35s;
+}
+.t-card-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 2.5rem; }
+.t-card-n {
+  font-family: var(--k-f-display);
+  font-weight: 900;
+  font-stretch: 78%;
+  font-size: 3.25rem;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--k-green);
+  transition: -webkit-text-stroke-color 0.35s;
+}
+.t-card-icon {
+  display: inline-grid; place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 999px;
+  background: var(--k-ivory);
+  color: var(--k-green);
+  transition: background 0.35s, color 0.35s;
+}
+.t-card-icon svg { width: 1.35rem; height: 1.35rem; }
+.t-card h3 {
+  font-family: var(--k-f-display);
+  font-weight: 800;
+  font-stretch: 85%;
+  font-size: clamp(1.3rem, 1.75vw, 1.55rem);
+  text-transform: uppercase;
+  line-height: 1;
+  overflow-wrap: anywhere;
+  color: var(--k-charcoal);
+  transition: color 0.35s;
+}
+.t-card p { color: var(--k-muted); transition: color 0.35s; }
+
+.t-card:hover { transform: translateY(-4px); background: var(--k-charcoal); }
+.t-card:hover h3 { color: var(--k-ivory); }
+.t-card:hover p { color: rgba(247, 244, 237, 0.72); }
+.t-card:hover .t-card-n { -webkit-text-stroke-color: var(--k-cream); }
+.t-card:hover .t-card-icon { background: var(--k-green); color: var(--k-cream); }
+
+/* ═══ ESTO RECIÉN EMPIEZA ═══ */
+.t-start {
+  position: relative;
+  background: var(--k-green);
+  padding: clamp(5rem, 11vw, 9rem) 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.t-start::before {
+  content: '';
+  position: absolute; z-index: -1;
+  right: -12rem; top: 50%;
+  width: 34rem; aspect-ratio: 1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 38px, rgba(247, 244, 237, 0.06) 38px 39px);
+  pointer-events: none;
+}
+.t-start-inner { display: grid; justify-items: start; gap: 1.5rem; max-width: 52rem; }
+.t-start-title { font-size: clamp(2.6rem, 7vw, 5.25rem); }
+.t-start-text { font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--k-on-green-dim); max-width: 40rem; }
+.t-start .k-btn { margin-top: 0.75rem; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 960px) {
+  .t-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .t-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+  .t-card { min-height: 0; }
+  .t-card-top { padding-bottom: 0.75rem; }
+  .t-hero-foot .k-btn,
+  .t-start .k-btn { width: 100%; }
+  .t-start-inner { justify-items: stretch; }
+  .t-kicker { font-size: 0.8rem; }
+}

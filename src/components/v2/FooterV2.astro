@@ -1,0 +1,40 @@
+---
+import Icon from './Icon.astro';
+import LogoV2, { type BrandVariant } from './LogoV2.astro';
+import { brand, contact, navV2, whatsappLink } from '../../config/site';
+
+interface Props {
+  variant?: BrandVariant;
+}
+
+const { variant = 'kine4life' } = Astro.props;
+const year = new Date().getFullYear();
+---
+<footer class="k-footer">
+  <div class="k-wrap">
+    <div class="k-footer-top">
+      <div class="k-footer-brand">
+        <LogoV2 variant={variant} />
+        <p class="k-footer-tag">{brand.roles}</p>
+      </div>
+      <div>
+        <h3>Navegación</h3>
+        <ul>
+          {navV2.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <ul class="k-footer-contact">
+          <li><Icon name="message" /><a href={whatsappLink()} target="_blank" rel="noopener">{contact.whatsapp.display}</a></li>
+          <li><Icon name="mail" /><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+          <li><Icon name="map-pin" /><span>{brand.city}, {brand.country}</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="k-footer-bottom">
+      <p>© {year} {brand.name} · {variant === 'training' ? 'Training' : brand.method}</p>
+      <p>{brand.city} · {brand.country}</p>
+    </div>
+  </div>
+</footer>

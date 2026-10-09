@@ -1,0 +1,138 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import { brand, contact, services, whatsappLink } from '../config/site';
+
+const { masaje } = services;
+---
+<LandingLayout
+  title="Masaje Terapéutico — Maxi Bargas · Ciudad de la Costa"
+  description="Masaje terapéutico para contracturas crónicas en Ciudad de la Costa. Trabajo la causa, no solo el síntoma."
+>
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <p class="hero-eyebrow"><span></span>{masaje.name} · {brand.city}</p>
+
+    <h1 class="hero-headline">
+      El dolor que sentís<br>
+      tiene una <em>causa.</em><br>
+      Vamos a encontrarla.
+    </h1>
+
+    <p class="hero-sub">
+      No es solo tensión. Tu cuerpo está pidiendo atención.<br>
+      Trabajo la contractura desde la raíz — y te explico qué hacer para que no vuelva.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href={masaje.booking} target="_blank" rel="noopener" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservá tu turno
+      </a>
+      <span class="hero-trust">Turnos disponibles esta semana · {masaje.durationShort} · {brand.city}</span>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ── PAIN SECTION ── -->
+  <section class="pain">
+    <p class="section-label reveal">¿Te identificás con esto?</p>
+    <p class="pain-intro reveal">
+      Hay dolores que se vuelven <em>parte de la rutina.</em><br>
+      No deberían serlo.
+    </p>
+
+    <ul class="pain-list">
+      <li class="pain-item reveal">
+        <p class="pain-item-title">Girar el cuello se siente como un cuchillo</p>
+        <p class="pain-item-text">Manejás mirando solo al frente. Dormís en una sola posición. El cuello dejó de ser libre.</p>
+      </li>
+      <li class="pain-item reveal">
+        <p class="pain-item-title">El hombro siempre cargado, siempre tenso</p>
+        <p class="pain-item-text">Angular, romboide, trapecio — zonas que acumulan todo. El estrés, la postura, los años.</p>
+      </li>
+      <li class="pain-item reveal">
+        <p class="pain-item-title">La contractura vuelve siempre al mismo lugar</p>
+        <p class="pain-item-text">La trabajaste, mejoró. Y dos semanas después está de vuelta. Eso pasa porque no se trabajó la causa.</p>
+      </li>
+      <li class="pain-item reveal">
+        <p class="pain-item-title">Lumbar que no te deja moverse bien</p>
+        <p class="pain-item-text">Levantarte de una silla, agacharte, cargar algo. Cada movimiento con ese recordatorio constante.</p>
+      </li>
+    </ul>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how">
+    <p class="section-label reveal">Cómo trabajo</p>
+    <h2 class="how-headline reveal">
+      No solo alivio el dolor.<br>
+      <em>Te explico qué está pasando</em> y qué hacer después.
+    </h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <p class="step-title">Escucho y evalúo</p>
+        <p class="step-text">Antes de tocar, entiendo. ¿Dónde duele, desde cuándo, qué lo provoca? El cuerpo tiene un historial y hay que leerlo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <p class="step-title">Trabajo la causa</p>
+        <p class="step-text">El masaje se adapta completamente a lo que tu cuerpo necesita. Tejido profundo, liberación miofascial, técnicas específicas para cada zona.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <p class="step-title">Te doy herramientas</p>
+        <p class="step-text">Al finalizar te explico qué pasó, qué fortalecer, qué estirar, qué evitar. Para que el alivio dure — y el dolor no vuelva.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUOTE ── -->
+  <section class="diff">
+    <p class="diff-quote reveal">
+      "El cuerpo no miente.<br>
+      Cada contractura guarda <em>una historia.</em>"
+    </p>
+    <p class="diff-author reveal">— {brand.name}, Masajista Terapéutico</p>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="final-cta">
+    <p class="final-cta-eyebrow reveal">Empezá hoy</p>
+    <h2 class="final-cta-headline reveal">
+      Si estás cansado de sentir<br>
+      siempre el <em>mismo dolor,</em><br>
+      escribime.
+    </h2>
+    <p class="final-cta-sub reveal">Primera sesión · {masaje.duration} · {brand.city}</p>
+
+    <div class="cta-buttons reveal">
+      <a href={masaje.booking} target="_blank" rel="noopener" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Reservá tu turno
+      </a>
+    </div>
+
+    <div class="availability reveal">
+      <span class="availability-dot" aria-hidden="true"></span>
+      Turnos disponibles esta semana
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" slot="footer">
+    <div>
+      <a href="/" class="footer-logo">{brand.name}</a>
+      <p class="footer-sub">{brand.role} · {brand.city} · {brand.country}</p>
+    </div>
+    <div class="footer-contact">
+      <a href={whatsappLink()} target="_blank" rel="noopener">{contact.whatsapp.display}</a>
+      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      <a href="/" class="footer-back">← Volver al sitio</a>
+    </div>
+  </footer>
+</LandingLayout>

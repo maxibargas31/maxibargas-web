@@ -1,0 +1,40 @@
+/* ═══════════════════════════════════════════════════════
+   KINE4LIFE — TOKENS V2
+   Paleta provisoria: confirmar los HEX exactos de la marca
+   (verde Kine4Life del Instagram) y reemplazarlos acá.
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* Verde Kine4Life */
+  --k-green:        #1c3f30;
+  --k-green-deep:   #122b20;
+  --k-green-soft:   #2d5a46;
+  --k-green-tint:   #dfe8e1;
+
+  /* Neutros */
+  --k-cream:        #ece5d6;
+  --k-ivory:        #f7f4ed;
+  --k-white:        #ffffff;
+  --k-charcoal:     #1b1d1c;
+  --k-ink:          #2a2d2b;
+  --k-muted:        #5f655f;   /* texto secundario sobre claro (AA) */
+  --k-line:         rgba(27, 29, 28, 0.12);
+  --k-line-light:   rgba(247, 244, 237, 0.18);
+  --k-on-green:     #f7f4ed;
+  --k-on-green-dim: rgba(247, 244, 237, 0.74);
+
+  /* Tipografía */
+  --k-f-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --k-f-body:    'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Espaciado y forma */
+  --k-max:    1200px;
+  --k-pad:    clamp(1.25rem, 5vw, 3.5rem);
+  --k-sec:    clamp(4.5rem, 10vw, 8.5rem);
+  --k-r-sm:   10px;
+  --k-r:      18px;
+  --k-r-lg:   28px;
+  --k-nav-h:  4.75rem;
+
+  --k-ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --k-shadow: 0 1px 2px rgba(18, 43, 32, 0.06), 0 12px 32px -12px rgba(18, 43, 32, 0.18);
+}

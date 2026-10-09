@@ -1,0 +1,88 @@
+---
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import ConsultaForm from '../components/v2/ConsultaForm.astro';
+import { brand, contact, ctaV2, services } from '../config/site';
+import '../styles/pages/contacto-v2.css';
+// TODO(SEO): revisar título y description definitivos de Contacto.
+---
+<V2Layout
+  title={`Contacto — ${brand.name} · ${brand.method}`}
+  description="Si tenés dolor, una limitación o no sabés por dónde empezar, escribime y vemos juntos cuál puede ser el mejor próximo paso."
+>
+  <!-- ═══ 1. HERO ═══ -->
+  <section class="c-hero">
+    <div class="k-wrap c-hero-inner">
+      <span class="k-eyebrow" data-reveal>Contacto</span>
+      <h1 class="k-display c-hero-title" data-reveal>Contame qué te está pasando.</h1>
+      <div class="c-hero-text" data-reveal>
+        <p>Si tenés dolor, una limitación o simplemente no sabés por dónde empezar, escribime.</p>
+        <p>Podemos ver juntos cuál puede ser el mejor próximo paso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2. FORMAS DE CONTACTO ═══ -->
+  <section class="c-ways">
+    <div class="k-wrap">
+      <h2 class="sr-only">Formas de contacto</h2>
+      <ul class="c-ways-grid" data-stagger>
+        <li class="c-way is-featured k-on-green">
+          <span class="c-way-icon"><Icon name="message" /></span>
+          <h3>WhatsApp</h3>
+          <p>Para consultas rápidas o coordinar.</p>
+          <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--cream">Hablar con Maxi <Icon name="arrow-right" /></a>
+        </li>
+        <li class="c-way">
+          <span class="c-way-icon"><Icon name="mail" /></span>
+          <h3>Email</h3>
+          <a href={`mailto:${contact.email}`} class="c-way-email">{contact.email}</a>
+        </li>
+        <li class="c-way">
+          <span class="c-way-icon"><Icon name="hand" /></span>
+          <h3>Reservar masaje</h3>
+          <p>{services.masaje.name} · {services.masaje.duration}</p>
+          <a href={services.masaje.booking} target="_blank" rel="noopener" class="k-btn k-btn--line">Reservar <Icon name="arrow-right" /></a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 3. CONTAME QUÉ TE PASA ═══ -->
+  <section class="k-section c-form" id="contame">
+    <div class="k-wrap c-form-grid">
+      <div class="c-form-copy" data-reveal>
+        <span class="k-eyebrow">Formulario</span>
+        <h2 class="k-h2">Contame qué te pasa</h2>
+        <p class="k-lead">
+          No necesitás saber qué tratamiento necesitás ni tener un diagnóstico para escribirme. Contame brevemente qué sentís, desde cuándo y qué cosas te está dificultando hacer.
+        </p>
+      </div>
+      <div data-reveal>
+        <ConsultaForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. UBICACIÓN ═══ -->
+  <section class="c-place">
+    <div class="k-wrap c-place-inner" data-reveal>
+      <span class="c-place-icon"><Icon name="map-pin" /></span>
+      <div>
+        <h2 class="c-place-label">Ubicación</h2>
+        <p class="c-place-city">{brand.city}, {brand.country}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. CTA FINAL ═══ -->
+  <section class="c-final k-on-green">
+    <div class="k-wrap c-final-inner" data-reveal>
+      <h2 class="k-display c-final-title">Si no sabés por dónde empezar, escribime.</h2>
+      <div class="c-final-actions">
+        <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--cream"><Icon name="message" /> Hablar por WhatsApp</a>
+        <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--line-light">Quiero una evaluación <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+</V2Layout>
