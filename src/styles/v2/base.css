@@ -336,3 +336,31 @@ body {
   color: var(--k-green-soft);
 }
 .k-footer .k-logo--training .k-logo-sub { color: var(--k-cream); }
+
+/* ═══ FOTO (placeholder hasta tener fotografía real) ═══ */
+.k-photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--k-r-lg);
+  background: linear-gradient(160deg, var(--k-cream) 0%, #e2d9c6 100%);
+  overflow: hidden;
+  display: grid; place-items: center;
+}
+.k-photo-arc {
+  position: absolute; inset: 8%;
+  width: 84%; height: 84%;
+  fill: none;
+  stroke: var(--k-green);
+  stroke-width: 1.2;
+  opacity: 0.18;
+}
+.k-photo-arc path { stroke-width: 6; stroke-linecap: round; opacity: 0.9; }
+.k-photo-label {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--k-green-deep);
+  font-size: 0.85rem; font-weight: 600;
+}
