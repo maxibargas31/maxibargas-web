@@ -2,12 +2,6 @@
    HOME V2 — KINE4LIFE (primera iteración)
    ═══════════════════════════════════════════════════════ */
 
-/* Contexto sobre verde: textos y eyebrows claros */
-.k-on-green { color: var(--k-on-green); }
-.k-on-green .k-h2 { color: var(--k-on-green); }
-.k-on-green .k-eyebrow { color: var(--k-cream); }
-.k-on-green .k-lead { color: var(--k-on-green-dim); }
-
 /* Ícono en círculo */
 .h-icon {
   display: inline-grid; place-items: center;

@@ -39,6 +39,7 @@ export const whatsappMessages = {
   kine4life: 'Hola Maxi, quiero consultar sobre el Programa Kine4Life',
   cuerpoActivo: 'Hola Maxi, quiero saber más sobre el programa Cuerpo Activo',
   evaluacion: 'Hola Maxi, quiero una evaluación',
+  training: 'Hola Maxi, quiero ser parte de la comunidad de Training',
 } as const;
 
 /* ── RESERVAS ── */
@@ -128,4 +129,6 @@ export const ctaV2 = {
   masaje: booking.calendly.masaje,
   proceso: '/servicios',
   whatsapp: whatsappLink(),
+  // /training: sin formulario ni newsletter todavía; "Quiero ser parte" abre WhatsApp.
+  training: whatsappLink(whatsappMessages.training),
 } as const;

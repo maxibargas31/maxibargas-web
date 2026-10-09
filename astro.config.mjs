@@ -9,8 +9,8 @@ export default defineConfig({
   trailingSlash: 'never',
   integrations: [
     sitemap({
-      // /blog no se promociona hasta que tenga contenido real
-      filter: (page) => !/\/(404|blog)(\.html)?$/.test(page),
+      // /blog y /training no se promocionan todavía
+      filter: (page) => !/\/(404|blog|training)(\.html)?$/.test(page),
     }),
   ],
 });
