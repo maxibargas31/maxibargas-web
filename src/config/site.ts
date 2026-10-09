@@ -40,6 +40,8 @@ export const whatsappMessages = {
   cuerpoActivo: 'Hola Maxi, quiero saber más sobre el programa Cuerpo Activo',
   evaluacion: 'Hola Maxi, quiero una evaluación',
   training: 'Hola Maxi, quiero ser parte de la comunidad de Training',
+  evaluacionInicial: 'Hola Maxi, quiero coordinar una evaluación inicial.',
+  procesoKine4life: 'Hola Maxi, quiero saber más sobre el Proceso Kine4Life.',
 } as const;
 
 /* ── RESERVAS ── */
@@ -131,4 +133,7 @@ export const ctaV2 = {
   whatsapp: whatsappLink(),
   // /training: sin formulario ni newsletter todavía; "Quiero ser parte" abre WhatsApp.
   training: whatsappLink(whatsappMessages.training),
+  // /servicios (V2)
+  evaluacionInicial: whatsappLink(whatsappMessages.evaluacionInicial),
+  procesoInfo: whatsappLink(whatsappMessages.procesoKine4life),
 } as const;

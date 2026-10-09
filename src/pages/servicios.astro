@@ -1,162 +1,159 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/ui/PageHero.astro';
-import Button from '../components/ui/Button.astro';
-import BookingLink from '../components/cta/BookingLink.astro';
-import WhatsAppLink from '../components/cta/WhatsAppLink.astro';
-import { booking, services, whatsappLink } from '../config/site';
-import '../styles/pages/servicios.css';
-// TODO(SEO): escribir description específica para Servicios.
+import V2Layout from '../layouts/V2Layout.astro';
+import Icon from '../components/v2/Icon.astro';
+import { brand, ctaV2, services } from '../config/site';
+import '../styles/pages/servicios-v2.css';
+// TODO(SEO): revisar título y description definitivos de Servicios.
 
-const { masaje, kine4life, cuerpoActivo } = services;
+const { masaje } = services;
+
+const opciones = [
+  { n: '01', href: '#evaluacion', title: 'Evaluación inicial', sub: 'Entender antes de intervenir.' },
+  { n: '02', href: '#masaje', title: 'Masaje terapéutico', sub: 'Aliviar tensión, rigidez y sobrecarga.' },
+  { n: '03', href: '#proceso', title: `Proceso ${brand.method}`, sub: 'Tratamiento + movimiento + progresión.' },
+];
 ---
-<BaseLayout title="Servicios — Maxi Bargas">
-  <PageHero eyebrow="Lo que ofrezco">Servicios</PageHero>
-
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <div class="wrap" data-stagger>
-
-      <div class="svc-full">
-        <div class="svc-aside">
-          <div class="svc-aside-num">01</div>
-          <h3>Masaje<br>Terapéutico</h3>
-          <p class="svc-price-big">{masaje.price}</p>
-          <span class="svc-price-label">sesión · {masaje.duration}</span>
+<V2Layout
+  title={`Servicios — ${brand.method} · ${brand.name}`}
+  description="Podemos empezar con una evaluación, una sesión puntual o un proceso más completo según tu situación y tus objetivos."
+>
+  <!-- ═══ 1. HERO ═══ -->
+  <section class="s-hero">
+    <div class="k-wrap s-hero-grid">
+      <div class="s-hero-copy">
+        <span class="k-eyebrow" data-reveal>Servicios {brand.method}</span>
+        <h1 class="k-display s-hero-title" data-reveal>
+          <span>Distintas formas de empezar.</span>
+          <span class="is-green">Un mismo objetivo: que tu cuerpo pueda hacer <mark>más</mark>.</span>
+        </h1>
+        <div class="s-hero-text" data-reveal>
+          <p>No todas las personas necesitan lo mismo.</p>
+          <p>Podemos empezar con una evaluación, una sesión puntual o un proceso más completo según tu situación y tus objetivos.</p>
         </div>
-        <div class="svc-main">
-          <p>Para el dolor que vuelve siempre al mismo lugar. <strong>Trabajo la contractura desde la raíz</strong> — no solo para que pase, sino para entender qué lo genera y que no regrese.</p>
-          <p>Cada sesión empieza con una evaluación breve de la zona afectada. A partir de ahí trabajo con técnicas neuromusculares, liberación miofascial y puntos gatillo, adaptadas a tu cuadro específico.</p>
-          <ul class="svc-bullets">
-            <li>Evaluación inicial de la zona de dolor</li>
-            <li>Técnicas neuromusculares y liberación miofascial</li>
-            <li>Trabajo en puntos gatillo y contracturas crónicas</li>
-            <li>Indicaciones post-sesión para sostener el resultado</li>
-          </ul>
-          <div class="svc-tags">
-            <span class="svc-tag">{masaje.duration}</span>
-            <span class="svc-tag">Presencial</span>
-            <span class="svc-tag">Individual</span>
-          </div>
-          <BookingLink href={masaje.booking} variant="ghost" arrow>Reservar este servicio</BookingLink>
+        <div data-reveal>
+          <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--green">Quiero una evaluación <Icon name="arrow-right" /></a>
         </div>
       </div>
 
-      <div class="svc-full">
-        <div class="svc-aside">
-          <div class="svc-aside-num">02</div>
-          <h3>Programa<br>Kine4Life</h3>
-          <p class="svc-price-big is-text">{kine4life.price}</p>
-          <span class="svc-price-label">proceso de {kine4life.duration}</span>
-        </div>
-        <div class="svc-main">
-          <p>Para quienes llevan meses o años con el mismo dolor y quieren resolverlo de verdad. <strong>Evaluación, tratamiento y entrenamiento funcional</strong> integrados en un proceso continuo de 3 meses.</p>
-          <p>No son sesiones sueltas — es un programa con diagnóstico inicial, plan de tratamiento progresivo y entrenamiento funcional específico para que el cuerpo no vuelva al dolor.</p>
-          <ul class="svc-bullets">
-            <li>Evaluación kinesiológica completa en la primera sesión</li>
-            <li>Plan de tratamiento individualizado semana a semana</li>
-            <li>Entrenamiento funcional progresivo integrado al tratamiento</li>
-            <li>Seguimiento por WhatsApp entre sesiones</li>
-            <li>Reajuste del plan según evolución</li>
-          </ul>
-          <div class="svc-tags">
-            <span class="svc-tag">{kine4life.duration}</span>
-            <span class="svc-tag">Presencial</span>
-            <span class="svc-tag">Individual</span>
-          </div>
-          <WhatsAppLink message={kine4life.whatsappMessage} variant="ghost" arrow>Consultar por WhatsApp</WhatsAppLink>
-        </div>
-      </div>
-
-      <div class="svc-full">
-        <div class="svc-aside">
-          <div class="svc-aside-num">03</div>
-          <h3>Cuerpo<br>Activo</h3>
-          <p class="svc-price-big is-text">{cuerpoActivo.price}</p>
-          <span class="svc-price-label">{cuerpoActivo.frequency}</span>
-        </div>
-        <div class="svc-main">
-          <p>Programa de movimiento y fuerza funcional diseñado específicamente para <strong>adultos mayores</strong>. Dos sesiones semanales para mejorar la autonomía, el equilibrio y la calidad de vida.</p>
-          <p>Empieza con una evaluación kinesiológica inicial que permite adaptar cada ejercicio a tu historia clínica y tus objetivos. No es gimnasia — es movimiento terapéutico con seguimiento profesional.</p>
-          <ul class="svc-bullets">
-            <li>Evaluación kinesiológica inicial incluida</li>
-            <li>Ejercicios adaptados a tu nivel y patologías</li>
-            <li>Trabajo de equilibrio, fuerza y movilidad articular</li>
-            <li>Prevención de caídas y mejora de la autonomía</li>
-            <li>Seguimiento continuo y ajuste del programa</li>
-          </ul>
-          <div class="svc-tags">
-            <span class="svc-tag">2x semana</span>
-            <span class="svc-tag">Presencial</span>
-            <span class="svc-tag">Adultos mayores</span>
-          </div>
-          <Button href={cuerpoActivo.href} variant="ghost" arrow>Ver el programa</Button>
-        </div>
-      </div>
-
+      <nav class="s-index k-on-green" aria-label="Formas de empezar" data-reveal>
+        <ol>
+          {opciones.map((o) => (
+            <li>
+              <a href={o.href}>
+                <span class="s-index-n" aria-hidden="true">{o.n}</span>
+                <span class="s-index-txt">
+                  <strong>{o.title}</strong>
+                  <span>{o.sub}</span>
+                </span>
+                <Icon name="arrow-right" class="s-index-arrow" />
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
     </div>
   </section>
 
-  <!-- HORARIOS -->
-  <section id="horarios">
-    <div class="wrap">
-      <div class="sec-header centered" data-reveal="up">
-        <span class="eyebrow">Disponibilidad</span>
-        <h2>Días y horarios</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="horarios-grid" data-stagger>
-        <div class="horarios-col">
-          <h3>Días disponibles</h3>
-          <ul>
-            {booking.days.map((d) => (
-              <li>{d.name} <span class:list={['status', { 'is-off': !d.available }]}>{d.available ? 'Disponible' : 'Sin turnos'}</span></li>
-            ))}
-          </ul>
+  <!-- ═══ 2. EVALUACIÓN INICIAL ═══ -->
+  <section class="k-section s-svc s-svc--white" id="evaluacion">
+    <div class="k-wrap s-svc-grid">
+      <header class="s-svc-head" data-reveal>
+        <div class="s-svc-meta">
+          <span class="s-svc-n" aria-hidden="true">01</span>
+          <span class="s-svc-icon"><Icon name="clipboard" /></span>
         </div>
-        <div class="horarios-col">
-          <h3>Turnos disponibles</h3>
-          <ul>
-            {booking.slots.map((s) => (
-              <li>{s.time} <span class="status">{s.label}</span></li>
-            ))}
-          </ul>
-        </div>
+        <h2 class="k-h2">Evaluación inicial</h2>
+        <p class="s-svc-sub">Entender antes de intervenir.</p>
+        <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--green">Quiero una evaluación <Icon name="arrow-right" /></a>
+      </header>
+
+      <div class="s-svc-body" data-reveal>
+        <p>El punto de partida recomendado si tenés dolor, una limitación o no sabés exactamente qué necesitás.</p>
+        <p>Hablamos de tu historia, qué te está pasando, qué cosas te están limitando y qué te gustaría volver a hacer.</p>
+        <p>Evaluamos movimiento, movilidad, fuerza, tolerancia y otros factores relevantes para definir el mejor próximo paso.</p>
+        <blockquote class="s-quote">
+          <p>“No partimos de un tratamiento. <em>Partimos de vos.</em>”</p>
+        </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- AGENDA -->
-  <section id="agenda">
-    <div class="wrap">
-      <div class="agenda-grid">
-        <div data-reveal="left">
-          <span class="eyebrow">Reservas</span>
-          <h3>Agendá tu turno</h3>
-          <p>Elegí el servicio y reservá directamente en el calendario. El turno queda confirmado al instante.</p>
-          <div class="agenda-nota">
-            <p><span aria-hidden="true">📍</span> Sesiones presenciales en Uruguay. Escribime ante cualquier duda antes de reservar.</p>
-          </div>
+  <!-- ═══ 3. MASAJE TERAPÉUTICO ═══ -->
+  <section class="k-section s-svc s-svc--ivory" id="masaje">
+    <div class="k-wrap s-svc-grid">
+      <header class="s-svc-head" data-reveal>
+        <div class="s-svc-meta">
+          <span class="s-svc-n" aria-hidden="true">02</span>
+          <span class="s-svc-icon"><Icon name="hand" /></span>
         </div>
-        <div data-reveal="right">
-          <div class="agenda-form-wrap">
-            <div class="form-group">
-              <p class="form-label agenda-label">Seleccioná el servicio para reservar tu turno:</p>
-              <div class="agenda-options">
-                <a href={masaje.booking} target="_blank" rel="noopener" class="btn-submit agenda-btn">
-                  {masaje.name} — {masaje.price}
-                </a>
-                <a href={whatsappLink(kine4life.whatsappMessage)} target="_blank" rel="noopener" class="btn-submit agenda-btn agenda-btn--kine">
-                  {kine4life.name} — {kine4life.price}
-                </a>
-                <a href={cuerpoActivo.href} class="btn-submit agenda-btn agenda-btn--activo">
-                  {cuerpoActivo.name} — Adultos Mayores
-                </a>
-              </div>
-            </div>
+        <h2 class="k-h2">Masaje terapéutico</h2>
+        <p class="s-svc-sub">Aliviar tensión, rigidez y sobrecarga.</p>
+        <a href={masaje.booking} target="_blank" rel="noopener" class="k-btn k-btn--green">Quiero un masaje <Icon name="arrow-right" /></a>
+      </header>
+
+      <div class="s-svc-body" data-reveal>
+        <p>Una sesión individual orientada a disminuir molestias musculares, tensión y rigidez.</p>
+        <p>Puede ser una intervención puntual o formar parte de un proceso más amplio, según tu situación.</p>
+        <dl class="s-facts">
+          <div>
+            <dt>Duración</dt>
+            <dd>{masaje.duration}</dd>
           </div>
-        </div>
+          <div>
+            <dt>Valor</dt>
+            <dd>{masaje.price}</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
-</BaseLayout>
+
+  <!-- ═══ 4. PROCESO KINE4LIFE ═══ -->
+  <section class="k-section s-svc s-svc--green k-on-green" id="proceso">
+    <div class="k-wrap s-svc-grid">
+      <header class="s-svc-head" data-reveal>
+        <div class="s-svc-meta">
+          <span class="s-svc-n" aria-hidden="true">03</span>
+          <span class="s-svc-icon"><Icon name="trending-up" /></span>
+        </div>
+        <h2 class="k-h2">Proceso {brand.method}</h2>
+        <p class="s-svc-sub">Tratamiento + movimiento + progresión.</p>
+        <a href={ctaV2.procesoInfo} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero saber más <Icon name="arrow-right" /></a>
+      </header>
+
+      <div class="s-svc-body" data-reveal>
+        <p>Para personas que necesitan algo más que una sesión aislada.</p>
+        <p>Integramos tratamiento, terapia manual, ejercicio y progresión física según tu punto de partida y tus objetivos.</p>
+        <p>El objetivo es que progresivamente recuperes movimiento, fuerza, confianza y autonomía.</p>
+        <blockquote class="s-quote">
+          <p>“El objetivo no es depender del tratamiento. <em>Es que cada vez dependas menos de él.</em>”</p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. ORIENTACIÓN ═══ -->
+  <section class="k-section s-orient">
+    <div class="k-wrap">
+      <div class="s-orient-card" data-reveal>
+        <div class="s-orient-copy">
+          <h2 class="k-h2">¿No sabés cuál elegir?</h2>
+          <p>No necesitás saber de antemano qué tratamiento necesitás.</p>
+          <p>Si querés, contame brevemente qué te está pasando y te orientaré sobre cuál puede ser el mejor próximo paso.</p>
+        </div>
+        <a href={ctaV2.contame} class="k-btn k-btn--green">Contame qué te pasa <Icon name="arrow-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. CTA FINAL ═══ -->
+  <section class="s-final k-on-green">
+    <div class="k-wrap s-final-inner" data-reveal>
+      <h2 class="k-display s-final-title">Empezá por entender dónde estás hoy.</h2>
+      <div class="s-final-actions">
+        <a href={ctaV2.evaluacionInicial} target="_blank" rel="noopener" class="k-btn k-btn--cream">Quiero una evaluación <Icon name="arrow-right" /></a>
+        <a href={ctaV2.whatsapp} target="_blank" rel="noopener" class="k-btn k-btn--line-light"><Icon name="message" /> Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</V2Layout>
