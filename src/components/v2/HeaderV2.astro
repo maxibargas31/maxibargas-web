@@ -1,15 +1,18 @@
 ---
 import Icon from './Icon.astro';
+import LogoV2, { type BrandVariant } from './LogoV2.astro';
 import { brand, ctaV2, navV2 } from '../../config/site';
 
+interface Props {
+  variant?: BrandVariant;
+}
+
+const { variant = 'kine4life' } = Astro.props;
 const current = Astro.url.pathname.replace(/\.html$/, '');
 ---
 <header class="k-header" id="navbar">
   <div class="k-header-inner">
-    <a href="/" class="k-logo" aria-label={`${brand.method}, by ${brand.name} — Inicio`}>
-      <span class="k-logo-main">KINE4LIFE</span>
-      <span class="k-logo-sub">by {brand.name}</span>
-    </a>
+    <LogoV2 variant={variant} />
 
     <nav class="k-nav" aria-label="Principal">
       <ul class="k-nav-links">
@@ -28,5 +31,5 @@ const current = Astro.url.pathname.replace(/\.html$/, '');
 <div class="k-mobnav" id="mob-nav">
   {navV2.map((item) => <a href={item.href}>{item.label}</a>)}
   <a href={ctaV2.agendar} class="k-btn k-btn--cream">Agendar <Icon name="arrow-right" /></a>
-  <p class="k-mobnav-foot">{brand.method} · {brand.city}</p>
+  <p class="k-mobnav-foot">{variant === 'training' ? `${brand.name} · Training` : brand.method} · {brand.city}</p>
 </div>

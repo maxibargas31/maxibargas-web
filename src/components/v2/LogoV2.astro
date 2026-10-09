@@ -1,0 +1,24 @@
+---
+/* Logo de la V2. "kine4life": KINE4LIFE by Maxi Bargas · "training": MAXI BARGAS / TRAINING */
+import { brand } from '../../config/site';
+
+export type BrandVariant = 'kine4life' | 'training';
+
+interface Props {
+  variant?: BrandVariant;
+}
+
+const { variant = 'kine4life' } = Astro.props;
+const isTraining = variant === 'training';
+---
+{isTraining ? (
+  <a href="/training" class="k-logo k-logo--training" aria-label={`${brand.name} Training — Inicio de Training`}>
+    <span class="k-logo-main">{brand.name.toUpperCase()}</span>
+    <span class="k-logo-sub">Training</span>
+  </a>
+) : (
+  <a href="/" class="k-logo" aria-label={`${brand.method}, by ${brand.name} — Inicio`}>
+    <span class="k-logo-main">KINE4LIFE</span>
+    <span class="k-logo-sub">by {brand.name}</span>
+  </a>
+)}

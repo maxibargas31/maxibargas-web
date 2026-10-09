@@ -1,17 +1,20 @@
 ---
 import Icon from './Icon.astro';
+import LogoV2, { type BrandVariant } from './LogoV2.astro';
 import { brand, contact, navV2, whatsappLink } from '../../config/site';
 
+interface Props {
+  variant?: BrandVariant;
+}
+
+const { variant = 'kine4life' } = Astro.props;
 const year = new Date().getFullYear();
 ---
 <footer class="k-footer">
   <div class="k-wrap">
     <div class="k-footer-top">
       <div class="k-footer-brand">
-        <a href="/" class="k-logo">
-          <span class="k-logo-main">KINE4LIFE</span>
-          <span class="k-logo-sub">by {brand.name}</span>
-        </a>
+        <LogoV2 variant={variant} />
         <p class="k-footer-tag">{brand.roles}</p>
       </div>
       <div>
@@ -30,7 +33,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
     <div class="k-footer-bottom">
-      <p>© {year} {brand.name} · {brand.method}</p>
+      <p>© {year} {brand.name} · {variant === 'training' ? 'Training' : brand.method}</p>
       <p>{brand.city} · {brand.country}</p>
     </div>
   </div>

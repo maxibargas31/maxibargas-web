@@ -1,8 +1,9 @@
 ---
-/* Layout del nuevo diseño Kine4Life (V2). Por ahora solo lo usa la Home. */
+/* Layout del nuevo diseño V2 (Home Kine4Life y /training). */
 import SEO from '../components/layout/SEO.astro';
 import HeaderV2 from '../components/v2/HeaderV2.astro';
 import FooterV2 from '../components/v2/FooterV2.astro';
+import type { BrandVariant } from '../components/v2/LogoV2.astro';
 import '../styles/v2/tokens.css';
 import '../styles/v2/base.css';
 
@@ -11,9 +12,11 @@ interface Props {
   description?: string;
   noindex?: boolean;
   schema?: boolean;
+  /** Marca del header y footer: Kine4Life (por defecto) o Training */
+  brandVariant?: BrandVariant;
 }
 
-const props = Astro.props;
+const { brandVariant = 'kine4life', ...props } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -32,11 +35,11 @@ const props = Astro.props;
 </head>
 <body>
   <a href="#contenido" class="skip-link">Saltar al contenido</a>
-  <HeaderV2 />
+  <HeaderV2 variant={brandVariant} />
   <main id="contenido">
     <slot />
   </main>
-  <FooterV2 />
+  <FooterV2 variant={brandVariant} />
 
   <script>
     import '../scripts/nav';

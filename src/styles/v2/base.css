@@ -323,3 +323,16 @@ body {
 @media (max-width: 360px) {
   .k-btn { white-space: normal; }
 }
+
+/* Logo variante Training: MAXI BARGAS / TRAINING */
+.k-logo--training .k-logo-main { font-stretch: 100%; letter-spacing: 0.03em; }
+.k-logo--training .k-logo-sub {
+  margin-top: 0.35rem;
+  font-family: var(--k-f-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--k-green-soft);
+}
+.k-footer .k-logo--training .k-logo-sub { color: var(--k-cream); }
